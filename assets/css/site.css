@@ -103,7 +103,7 @@ body[data-nav=claro] .mega{top:80px}
 
 /* ---------- herói ---------- */
 .heroi{position:relative;min-height:880px;height:100vh;max-height:980px;color:#fff;overflow:hidden;background:#142c20}
-.heroi>img.fundo{position:absolute;inset:76px 0 0;width:100%;height:calc(100% - 76px);object-fit:cover}
+.heroi img.fundo{position:absolute;inset:76px 0 0;width:100%;height:calc(100% - 76px);object-fit:cover}
 .heroi::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,46,47,.78) 0%,rgba(15,46,47,.35) 45%,rgba(15,46,47,0) 70%),linear-gradient(0deg,rgba(15,46,47,.55),rgba(15,46,47,0) 40%)}
 .heroi .conteudo{position:absolute;left:var(--gutter);bottom:110px;z-index:2;max-width:620px}
 .heroi .conteudo .tag{display:block;margin-bottom:18px}
@@ -519,7 +519,7 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
   .aviso{height:28px} .aviso-trilho{font-size:10px;gap:36px} .aviso-trilho span::after{margin-left:36px}
   .topo{top:28px}
   .heroi{min-height:0;height:auto;max-height:none;padding:440px 0 120px}
-  .heroi>img.fundo{inset:0;height:100%;object-position:62% center}
+  .heroi img.fundo{inset:0;height:100%;object-position:62% center}
   .heroi::after{background:linear-gradient(0deg,rgba(15,46,47,.94) 30%,rgba(15,46,47,.1) 75%)}
   .heroi .conteudo{position:relative;left:auto;bottom:auto;padding:0 20px}
   .heroi .d1{font-size:52px;margin-bottom:18px}
@@ -662,7 +662,7 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
 /* mobile, segunda passada */
 @media (max-width:900px){
   .heroi{padding:0 0 132px;background:var(--petroleo)}
-  .heroi>img.fundo{position:relative;inset:auto;width:100%;height:62vh;min-height:420px;max-height:540px;object-fit:cover;object-position:68% 40%}
+  .heroi img.fundo{position:relative;inset:auto;width:100%;height:62vh;min-height:420px;max-height:540px;object-fit:cover;object-position:68% 40%}
   .heroi::after{inset:0 0 auto;height:calc(min(max(62vh,420px),540px) + 2px);background:linear-gradient(0deg,var(--petroleo) 0%,rgba(15,46,47,0) 38%),linear-gradient(180deg,rgba(15,46,47,.55) 0%,rgba(15,46,47,0) 30%)}
   .heroi .conteudo{margin-top:-96px}
   .heroi .d1{font-size:46px}
@@ -960,3 +960,88 @@ html{overflow-x:clip}
 .t-pote.card-seed.ativo .base-pote{transform:translateY(14px)}
 .t-pote.card-seed.ativo .botao-seed{background:#fff;gap:8px}
 .t-pote.card-seed.ativo .botao-seed .seta{width:14px;opacity:1;transform:none}
+
+/* ===== v3: logo embutido, vídeos, "como usar", barra fixa, correções do mobile ===== */
+.logo svg{display:block;width:100%;height:100%}
+.logo .l-cla,.logo .l-esc{display:block;width:100%;height:100%}
+.logo .l-esc{display:none}
+body[data-nav=claro] .logo .l-cla{display:none}
+body[data-nav=claro] .logo .l-esc{display:block}
+.menu-mob .logo{display:block}
+
+/* pote sem vídeo (Safari) */
+.giro-estatico{width:100%;height:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35));transition:transform .3s linear}
+.t-pote.card-seed.ativo .giro-estatico{transform:scale(1.15)}
+
+/* vídeo do corpo de vidro na seção do intestino */
+.video-card{width:400px;aspect-ratio:400/620;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 30px 60px -20px rgba(0,0,0,.45);flex:none;will-change:transform}
+.video-card video{width:100%;height:100%;object-fit:cover;background:#d5d1cd}
+/* vídeo da cápsula no "por que em pó" */
+.video-capsula{min-height:640px;background:#ddd5cd}
+.video-capsula video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.por-que{grid-template-columns:420px 1fr}
+[data-parallax]{will-change:transform}
+.s-foto-benef>img.fundo,.heroi img.fundo,.s-intestino>img.fundo{transform-origin:center}
+
+/* "como usar": o círculo cresce até virar a janela com a cena */
+.uso-hover{position:relative;transition:transform .35s var(--ease-out),box-shadow .35s}
+.uso-hover .janela{position:absolute;z-index:1;left:32px;top:auto;bottom:calc(100% - 260px);width:88px;height:88px;border-radius:44px;background-size:cover;background-position:center;opacity:0;transition:left .5s cubic-bezier(.2,.7,.2,1),bottom .5s cubic-bezier(.2,.7,.2,1),width .5s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1),border-radius .5s cubic-bezier(.2,.7,.2,1),opacity .25s}
+.uso-hover>.tag{position:relative;z-index:2;align-self:flex-start;padding:4px 10px;border-radius:11px;transition:background-color .3s,color .3s}
+.uso-hover .circ{position:relative;z-index:2;transition:transform .5s cubic-bezier(.2,.7,.2,1),background-color .3s,color .3s}
+.uso-hover:hover,.uso-hover.ativo{transform:translateY(-4px);box-shadow:0 14px 30px -12px rgba(15,46,47,.25)}
+.uso-hover:hover .janela,.uso-hover.ativo .janela{left:16px;bottom:calc(100% - 16px - 58%);width:calc(100% - 32px);height:58%;border-radius:20px;opacity:1}
+.uso-hover:hover>.tag,.uso-hover.ativo>.tag{background:var(--verde);color:var(--neon)}
+.uso-hover:hover .circ,.uso-hover.ativo .circ{background:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(19px);-webkit-backdrop-filter:blur(19px);transform:translate(calc(var(--canto-x,220px)),-8px) scale(.6)}
+.b-uso .uso-hover{--canto-x:190px}
+.cards-3 .uso-hover{--canto-x:300px}
+@media (prefers-reduced-motion:reduce){.uso-hover .janela,.uso-hover .circ{transition:none}}
+
+/* barra fixa de compra (PDP, celular) */
+.barra-fixa{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:0 12px calc(12px + env(safe-area-inset-bottom,0px));transform:translateY(120%);transition:transform .4s var(--ease)}
+.barra-fixa.on{transform:none}
+.barra-fixa>*{background:var(--verde);color:#fff}
+.faixa-benef-mini{border-radius:24px 24px 0 0;overflow:hidden;height:36px;display:flex;align-items:center;background:#2a5846!important}
+.faixa-benef-mini .trilho{display:flex;gap:28px;white-space:nowrap;padding-left:14px;animation:corre 22s linear infinite;font-size:12px}
+.faixa-benef-mini span{display:flex;align-items:center;gap:6px}
+.faixa-benef-mini .ic{width:15px;height:15px;color:var(--neon)}
+.linha-compra{border-radius:0 0 24px 24px;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 12px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.linha-compra img{width:56px;height:56px;border-radius:12px;object-fit:cover}
+.linha-compra b{display:block;font-weight:500;font-size:15px}
+.linha-compra small{display:block;font-size:12px;opacity:.75}
+.linha-compra em{font-style:normal;font-weight:500;font-size:14px;color:var(--neon)}
+.linha-compra .btn{margin-left:auto;height:44px;padding:0 18px;font-size:15px}
+@media (min-width:901px){.barra-fixa{display:none!important}}
+
+@media (max-width:900px){
+  /* cards de benefício: verso empilhado para não cortar texto */
+  .verso .tag{font-size:10px;margin-bottom:10px;letter-spacing:.06em}
+  .verso dl div{flex-direction:column;gap:2px}
+  .verso dt{font-size:12px;opacity:.85}
+  .verso dd{font-size:15px}
+  .verso .vd{font-size:10px;margin-left:6px}
+  .verso a{font-size:13px;margin-top:10px}
+  .giro-card .face{padding:16px}
+  /* vídeos */
+  .s-intestino{padding:80px 0 60px}
+  .s-intestino .wrap{gap:28px}
+  .video-card{width:100%;max-width:350px;align-self:center}
+  .video-capsula{min-height:0;aspect-ratio:350/520}
+  .por-que{grid-template-columns:1fr}
+  /* como usar no celular: janela à direita do texto */
+  .uso-hover .janela{left:auto;right:16px;bottom:auto;top:50%;transform:translateY(-50%)}
+  .uso-hover:hover .janela,.uso-hover.ativo .janela{right:12px;left:auto;top:12px;bottom:12px;transform:none;width:44%;height:auto;border-radius:16px}
+  .uso-hover:hover .circ,.uso-hover.ativo .circ{transform:none;background:var(--osso);color:var(--petroleo)}
+  .b-uso .uso-hover>div,.cards-3 .uso-hover>div{max-width:50%}
+  /* herói: foto própria para o celular */
+  .heroi img.fundo{object-position:center 60%}
+  /* evita qualquer vazamento lateral */
+  body{overflow-x:hidden}
+}
+
+/* v3.1: barra fixa empilhada; fundos com parallax têm sobra para não mostrar a borda */
+.barra-fixa.so-mobile{flex-direction:column}
+.linha-compra>div{min-width:0;flex:1}
+.linha-compra b,.linha-compra small,.linha-compra em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linha-compra em{display:block}
+.linha-compra .btn{flex:none}
+img.fundo[data-parallax]{top:-10%;bottom:auto;height:120%}

@@ -71,7 +71,7 @@
   };
   const topo = `<header class="topo" id="topo">
     <nav class="nav" aria-label="Principal">
-      <a class="logo" href="index.html" aria-label="Good Green, início"><img class="l-cla" src="${IMG('logo-brancoNeon.svg')}" alt="Good Green"><img class="l-esc" src="${IMG('logo-petroNeon.svg')}" alt="Good Green"></a>
+      <a class="logo" href="index.html" aria-label="Good Green, início"><span class="l-cla">${(window.GG_LOGO||{}).brancoNeon||''}</span><span class="l-esc">${(window.GG_LOGO||{}).petroNeon||''}</span></a>
       <div class="nav-links">
         <button data-mega="loja" aria-expanded="false">Loja</button>
         <button data-mega="ciencia" aria-expanded="false">Ciência</button>
@@ -162,7 +162,7 @@
       <a class="btn btn-linha btn-bloco" href="ingredientes.html">Ver todos os ingredientes <span class="seta">→</span></a></div>
   </div></div>
   <div class="menu-mob vidro-escuro" id="menu" role="dialog" aria-label="Menu">
-    <div class="cab"><a class="logo" href="index.html"><img src="${IMG('logo-brancoNeon.svg')}" alt="Good Green"></a><button class="fechar" data-fecha aria-label="Fechar" style="color:#fff">${ic('fechar')}</button></div>
+    <div class="cab"><a class="logo" href="index.html" aria-label="Good Green, início">${(window.GG_LOGO||{}).brancoNeon||''}</a><button class="fechar" data-fecha aria-label="Fechar" style="color:#fff">${ic('fechar')}</button></div>
     ${[['Loja', 'GG-01, assinatura, kits', [['Good Green GG-01', 'produto.html'], ['Assinatura', 'assinatura.html'], ['Kits e acessórios', 'loja.html']]],
        ['Ciência', 'Ingredientes, intestino, rótulo', [['Ingredientes', 'ingredientes.html'], ['Intestino e microbioma', 'intestino.html'], ['Feito no Brasil', 'feito-no-brasil.html'], ['Qualidade', 'qualidade.html']]],
        ['Explorar', 'Rotina verde, receitas, artigos', [['Rotina verde', 'explorar.html'], ['Receitas', 'receitas.html'], ['Como montar uma rotina de verdes', 'artigo.html']]]]
@@ -380,14 +380,61 @@
   /* "Assinar" no card leva para a compra já com a assinatura marcada */
   $$('[data-assinar]').forEach(a => a.addEventListener('click', () => { const op = $('[data-op="assinatura"]'); if (op) op.click(); }));
 
-  /* card do pote: parado de frente; no hover gira e cresce (como na Seed); sem mouse, gira devagar quando aparece */
-  $$('video[data-hover-giro]').forEach(v => {
-    const card = v.closest('.card-seed') || v;
-    const liga = () => { card.classList.add('ativo'); const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-    const desliga = () => { card.classList.remove('ativo'); v.pause(); v.currentTime = 0; };
+
+  /* Safari (iPhone/Mac) não toca vídeo transparente em webm: mostra a foto do pote de frente, sem girar */
+  const semAlfa = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent) || /iP(hone|ad|od)/.test(navigator.userAgent);
+  if (semAlfa) $$('.giro video').forEach(v => { const img = document.createElement('img'); img.src = (v.getAttribute('poster') || ''); img.alt = 'Pote Good Green'; img.className = 'giro-estatico'; v.replaceWith(img); });
+
+  /* card do pote: parado de frente; no hover gira e cresce (como na Seed). Sem mouse: toque ativa e gira devagar */
+  $$('.card-seed').forEach(card => {
+    const v = card.querySelector('video');
+    const liga = () => { card.classList.add('ativo'); if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } };
+    const desliga = () => { card.classList.remove('ativo'); if (v) { v.pause(); v.currentTime = 0; } };
     if (matchMedia('(hover: hover)').matches) { card.addEventListener('mouseenter', liga); card.addEventListener('mouseleave', desliga); }
-    else { v.playbackRate = .6; new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); }), { threshold: .4 }).observe(card); }
+    else new IntersectionObserver(es => es.forEach(x => x.isIntersecting ? liga() : desliga()), { threshold: .5 }).observe(card);
   });
+
+  /* vídeos que tocam uma vez ao entrar na tela e param no último quadro */
+  $$('video[data-toca-uma-vez]').forEach(v => {
+    let foi = false;
+    new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting && !foi) { foi = true; v.preload = 'auto'; const p = v.play(); if (p && p.catch) p.catch(() => {}); } }), { threshold: .45 }).observe(v);
+  });
+
+  /* "como usar": no celular, o passo no centro da tela fica ativo */
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(max-width: 900px)').matches) {
+    const ioPasso = new IntersectionObserver(es => es.forEach(x => x.target.classList.toggle('ativo', x.isIntersecting)), { rootMargin: '-38% 0px -38% 0px' });
+    $$('.uso-hover').forEach(p => ioPasso.observe(p));
+  }
+
+  /* parallax leve: só desktop e sem "reduzir movimento" */
+  const parallaxEls = $$('[data-parallax]');
+  if (parallaxEls.length && matchMedia('(min-width: 901px) and (hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let pedido = false;
+    const roda = () => {
+      pedido = false; const vh = innerHeight;
+      parallaxEls.forEach(el => {
+        const sec = el.closest('section') || el.parentElement, r = sec.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        const f = parseFloat(el.dataset.parallax), meio = r.top + r.height / 2 - vh / 2, lim = el.classList.contains('fundo') ? r.height * .09 : 1e4, d = Math.max(-lim, Math.min(lim, meio * (1 - f)));
+        let t = `translate3d(0, ${d.toFixed(1)}px, 0)`;
+        if (el.hasAttribute('data-zoom')) { const k = Math.max(0, Math.min(1, 1 - r.top / vh)); t += ` scale(${(1.1 - .1 * k).toFixed(3)})`; }
+        if (f > 1 && el.classList.contains('video-card')) t += ` rotate(${(d / 40).toFixed(2)}deg)`;
+        el.style.transform = t;
+      });
+      $$('.cta-vidro').forEach(c => { const r = c.getBoundingClientRect(), img = c.querySelector('.faixa img'); if (!img) return; const k = Math.max(0, Math.min(1, (vh - r.top) / (vh * .8))); img.style.transform = `translateY(${(24 - 24 * k).toFixed(1)}px)`; });
+    };
+    addEventListener('scroll', () => { if (!pedido) { pedido = true; requestAnimationFrame(roda); } }, { passive: true }); roda();
+  }
+
+  /* barra fixa de compra da PDP no celular: aparece quando o botão de compra sai da tela */
+  const botaoCompra = $('[data-add-qtd]');
+  if (botaoCompra) {
+    document.body.insertAdjacentHTML('beforeend', `<div class="barra-fixa so-mobile" id="barra-fixa"><div class="faixa-benef-mini"><div class="trilho">${['Garrafa de vidro de brinde', 'Frete grátis acima de R$ —', 'Cancele quando quiser', 'Garrafa de vidro de brinde', 'Frete grátis acima de R$ —', 'Cancele quando quiser'].map((t, i) => `<span>${ic(['presente', 'frete', 'check'][i % 3])}${t}</span>`).join('')}</div></div><div class="linha-compra"><img src="${IMG('pote-abacaxi-hortela.jpg')}" alt=""><div><b>Good Green GG-01</b><small>Assinatura</small><em>R$ — / mês</em></div><button class="btn btn-neon" data-assinar-barra>Assinar <span class="seta">→</span></button></div></div>`);
+    const barra = $('#barra-fixa');
+    new IntersectionObserver(es => es.forEach(x => barra.classList.toggle('on', !x.isIntersecting && x.boundingClientRect.top < 0)), { threshold: 0 }).observe(botaoCompra);
+    barra.querySelector('[data-assinar-barra]').addEventListener('click', () => { const op = $('[data-op="assinatura"]'); if (op) op.click(); const q = +($('[data-qtd] span') || { textContent: 1 }).textContent; adiciona('gg', q); });
+  }
+
   /* o 3D embutido não percebe sozinho quando o mouse sai rápido: a página avisa */
   const g3d = $('.g3d');
   if (g3d) ['mouseenter', 'mouseleave'].forEach(ev => $('#g-principal').addEventListener(ev, () => { if (g3d.contentWindow) g3d.contentWindow.postMessage(ev === 'mouseenter' ? 'giro:on' : 'giro:off', '*'); }));

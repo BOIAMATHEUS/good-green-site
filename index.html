@@ -10,14 +10,14 @@
 <body data-nav="vidro" data-page="home">
 
 <section class="heroi">
-  <img class="fundo" src="assets/img/banner-pote-inclinado.jpg" alt="Pote Good Green inclinado com pó verde">
+  <picture><source media="(max-width: 900px)" srcset="assets/img/pote-mesa-escura-copo.jpg"><img class="fundo" data-parallax="0.85" src="assets/img/banner-pote-inclinado.jpg" alt="Pote Good Green inclinado com pó verde"></picture>
   <div class="conteudo">
     <span class="tag neon">Novo · GG-01 Daily Functional Drink</span>
     <h1 class="d1">Seus verdes,<br>sem esforço.</h1>
     <p class="lead">Uma medida de Good Green em 300 ml de água. Vitaminas, minerais, fibras e ingredientes vegetais, com sabor de abacaxi com hortelã.</p>
     <div class="acoes"><a class="btn btn-neon" href="produto.html">Começar <span class="seta">→</span></a><a class="btn btn-vidro" href="#como-usar">Como funciona</a></div>
   </div>
-  <button class="cartao-sabor vidro brilhante entra-vidro" data-ingr="abacaxi"><img src="assets/img/desktop-1440-rectangle.jpg" alt="" loading="lazy" decoding="async"><span style="text-align:left;color:#fff"><span class="tag neon">Sabor</span><b>Abacaxi<br>com hortelã</b><span class="ver">Ver ingrediente  →</span></span></button>
+  <button class="cartao-sabor vidro brilhante entra-vidro" data-ingr="abacaxi" data-parallax="1.08"><img src="assets/img/desktop-1440-rectangle.jpg" alt="" loading="lazy" decoding="async"><span style="text-align:left;color:#fff"><span class="tag neon">Sabor</span><b>Abacaxi<br>com hortelã</b><span class="ver">Ver ingrediente  →</span></span></button>
 </section>
 
 <div class="wrap">
@@ -36,7 +36,7 @@
     <div class="bento b-produto">
       <a class="tile t-pote card-seed" href="produto.html">
         <span class="tag neon">GG-01</span>
-        <div class="giro"><video data-hover-giro muted loop playsinline preload="auto" poster="assets/video/pote-gg-01-hd-poster.webp" style="background-image:url(assets/video/pote-gg-01-hd-poster.webp)" aria-label="Pote Good Green girando"><source src="assets/video/pote-gg-01-hd.webm" type="video/webm"></video></div>
+        <div class="giro"><video data-hover-giro muted loop playsinline preload="auto" poster="assets/video/pote-gg-01-poster.png" style="background-image:url(assets/video/pote-gg-01-poster.png)" aria-label="Pote Good Green girando"><source src="assets/video/pote-gg-01.webm?v=4" type="video/webm"></video></div>
         <div class="base-pote"><b>Daily Functional Drink</b><span style="opacity:.8">Sabor abacaxi com hortelã</span><span class="btn btn-neon btn-sm botao-seed">Ver produto<span class="seta">→</span></span></div>
       </a>
       <div class="tile t-compra">
@@ -80,7 +80,7 @@
 </section>
 
 <section class="s-intestino">
-  <img class="fundo" src="assets/img/ciencia-celulas-cloroplastos.jpg" alt="">
+  <img class="fundo" data-parallax="0.8" src="assets/img/ciencia-celulas-cloroplastos.jpg" alt="">
   <div class="wrap">
     <div class="painel-vidro">
       <span class="tag claro">Intestino e microbioma</span>
@@ -88,7 +88,7 @@
       <p>Fibras, ingredientes vegetais e micronutrientes numa dose diária, para acompanhar o equilíbrio do seu intestino todos os dias.</p>
       <div class="numeros"><div><b>7,5 g</b><span>por dose</span></div><div><b>300 ml</b><span>de água</span></div><div><b>30</b><span>doses</span></div></div>
     </div>
-    <img class="flutua" src="assets/img/pote-recorte.webp" alt="Pote Good Green" loading="lazy" decoding="async">
+    <div class="video-card" data-parallax="1.15"><video data-toca-uma-vez muted playsinline preload="none" poster="assets/video/corpo-de-vidro-poster.jpg" aria-label="Corpo de vidro recebendo o verde até o intestino"><source src="assets/video/corpo-de-vidro.mp4" type="video/mp4"></video></div>
   </div>
 </section>
 
@@ -96,9 +96,9 @@
   <div class="wrap">
     <div class="cabeca"><div><span class="tag">Como usar</span><h2 class="h2">Pronto em 30 segundos.</h2></div></div>
     <div class="bento b-uso">
-      <div class="tile passo f-branco"><span class="tag">01</span><span class="circ"><i data-ic="medida"></i></span><div><h3>Uma medida</h3><p>7,5 g de Good Green.</p></div></div>
-      <div class="tile passo f-hortela"><span class="tag">02</span><span class="circ"><i data-ic="copo"></i></span><div><h3>300 ml de água</h3><p>Gelada, se preferir.</p></div></div>
-      <div class="tile passo f-branco"><span class="tag">03</span><span class="circ"><i data-ic="mexer"></i></span><div><h3>Mexa e beba</h3><p>Até ficar homogêneo.</p></div></div>
+      <div class="tile passo uso-hover f-branco"><span class="janela" style="background-image:url(assets/img/como-usar-1-medida.jpg)" aria-hidden="true"></span><span class="tag">01</span><span class="circ"><i data-ic="medida"></i></span><div><h3>Uma medida</h3><p>7,5 g de Good Green.</p></div></div>
+      <div class="tile passo uso-hover f-hortela"><span class="janela" style="background-image:url(assets/img/como-usar-2-agua.jpg)" aria-hidden="true"></span><span class="tag">02</span><span class="circ"><i data-ic="copo"></i></span><div><h3>300 ml de água</h3><p>Gelada, se preferir.</p></div></div>
+      <div class="tile passo uso-hover f-branco"><span class="janela" style="background-image:url(assets/img/como-usar-3-mexa.jpg)" aria-hidden="true"></span><span class="tag">03</span><span class="circ"><i data-ic="mexer"></i></span><div><h3>Mexa e beba</h3><p>Até ficar homogêneo.</p></div></div>
       <div class="tile t-foto"><img class="cobre" src="assets/img/desktop-1440-tile-foto-a422.jpg" alt="Medida de Good Green no copo" loading="lazy" decoding="async"></div>
     </div>
   </div>
