@@ -1058,3 +1058,6 @@ body[data-nav=claro] .logo .l-esc{display:block}
 .t-pote.card-seed.ativo .giro video{transform:scale(1.15)}
 .t-pote.card-seed .giro{transform-origin:center 60%}
 @media (max-width:900px){.t-pote.card-seed.ativo .giro video{transform:scale(1.06)}.t-pote.card-seed{padding-top:40px}}
+/* etiquetas GG-01: amarelo abacaxi (no claro vira pílula para dar leitura) */
+.tag.gg{color:var(--abacaxi)}
+.tag.gg-pilula{display:inline-block;background:var(--abacaxi);color:var(--petroleo);padding:4px 10px;border-radius:12px;line-height:1.2}

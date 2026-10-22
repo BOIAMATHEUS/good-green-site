@@ -101,7 +101,7 @@
   </div></footer>`;
   const cta = (t) => `<section class="cta-vidro"><img class="fundo" src="${IMG('desktop-1440-tile-textura.jpg')}" alt=""><div class="wrap"><div class="faixa vidro">
     <img src="${IMG('pote-recorte.webp')}" alt="Pote Good Green GG-01">
-    <div><span class="tag neon">Good Green GG-01</span><h2 class="h3">${t}</h2><p>Abacaxi com hortelã · 225 g · 30 doses · R$ —</p>
+    <div><span class="tag gg">Good Green GG-01</span><h2 class="h3">${t}</h2><p>Abacaxi com hortelã · 225 g · 30 doses · R$ —</p>
     <div class="acoes"><a class="btn btn-neon" href="produto.html">Ver o produto <span class="seta">→</span></a><button class="btn btn-escuro" data-add="gg">Adicionar ao carrinho</button></div></div>
   </div></div></section>`;
 
