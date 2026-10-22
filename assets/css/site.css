@@ -1061,3 +1061,8 @@ body[data-nav=claro] .logo .l-esc{display:block}
 /* etiquetas GG-01: amarelo abacaxi (no claro vira pílula para dar leitura) */
 .tag.gg{color:var(--abacaxi)}
 .tag.gg-pilula{display:inline-block;background:var(--abacaxi);color:var(--petroleo);padding:4px 10px;border-radius:12px;line-height:1.2}
+/* celular: card do sabor no fluxo, 24 px abaixo dos botões (igual ao Figma) */
+@media (max-width:900px){
+  .heroi{padding-bottom:32px}
+  .heroi .cartao-sabor{position:relative;left:auto;right:auto;bottom:auto;z-index:2;width:calc(100% - 40px);margin:24px 20px 0;padding:12px}
+}
