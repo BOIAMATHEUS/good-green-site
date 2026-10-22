@@ -313,23 +313,41 @@
   $$('[data-add-qtd]').forEach(b => b.addEventListener('click', () => { const q = +document.querySelector('[data-qtd] span').textContent; adiciona('gg', q); }));
 
 
-  /* pote girando: parado de frente; com o mouse em cima acelera, ao sair desacelera até parar. Sem mouse, gira devagar quando aparece. */
+  /* pote girando (96 quadros num canvas): parado de frente; com o mouse em cima acelera, ao sair freia por atrito e para em cerca de 1 s.
+     Sem mouse, gira devagar enquanto aparece na tela. Dois quadros vizinhos são misturados para ficar liso em qualquer velocidade. */
   const temHover = matchMedia('(hover: hover)').matches;
-  $$('video[data-giro]').forEach(v => {
-    const area = v.closest('.tile, .g-principal') || v;
-    let alvo = 0, vel = 0, raf = 0, ant = 0;
-    const passo = agora => {
-      const dt = ant ? Math.min(.1, (agora - ant) / 1000) : .016; ant = agora;
-      vel += (alvo - vel) * (1 - Math.exp(-dt / (alvo > vel ? .3 : .55)));
-      if (alvo === 0 && vel < .08) { vel = 0; v.pause(); raf = 0; ant = 0; return; }
-      v.playbackRate = Math.max(.0625, vel);
-      if (v.paused) v.play().catch(() => {});
-      raf = requestAnimationFrame(passo);
+  const N = 96, RAPIDO = N / 3.2, DEVAGAR = N / 9;
+  $$('[data-giro]').forEach(box => {
+    const cv = box.querySelector('canvas'), cx = cv.getContext('2d'), area = box.closest('.tile, .g-principal') || box;
+    const quadros = []; let prontos = 0, carregando = false;
+    let ang = 0, vel = 0, alvo = 0, freando = false, raf = 0, ant = 0;
+    const carrega = () => {
+      if (carregando) return; carregando = true;
+      for (let i = 0; i < N; i++) { const im = new Image(); im.decoding = 'async'; im.src = 'assets/giro/' + String(i).padStart(2, '0') + '.webp'; im.onload = () => { prontos++; if (prontos === N) { box.classList.add('pronto'); desenha(); } }; quadros[i] = im; }
     };
-    const muda = a => { alvo = a; if (!raf) raf = requestAnimationFrame(passo); };
-    if (temHover) { area.addEventListener('mouseenter', () => muda(1)); area.addEventListener('mouseleave', () => muda(0)); }
-    else new IntersectionObserver(es => es.forEach(x => muda(x.isIntersecting ? .55 : 0)), { threshold: .4 }).observe(area);
+    const ajusta = () => { const r = box.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); };
+    function desenha() {
+      if (prontos < N) return;
+      const k = ((ang % N) + N) % N, i = Math.floor(k), t = k - i;
+      cx.clearRect(0, 0, cv.width, cv.height);
+      cx.globalAlpha = 1; cx.drawImage(quadros[i], 0, 0, cv.width, cv.height);
+      if (t > .01) { cx.globalAlpha = t; cx.drawImage(quadros[(i + 1) % N], 0, 0, cv.width, cv.height); }
+    }
+    function passo(agora) {
+      const dt = ant ? Math.min(.05, (agora - ant) / 1000) : 1 / 60; ant = agora;
+      if (!freando) { vel += (alvo - vel) * (1 - Math.exp(-dt / .45)); ang += vel * dt; }
+      else { vel *= Math.exp(-dt / .3); ang += vel * dt;
+        if (vel < .6) { ang = Math.round(ang); vel = 0; freando = false; desenha(); raf = 0; ant = 0; return; } }
+      desenha(); raf = requestAnimationFrame(passo);
+    }
+    const anda = () => { if (!raf) raf = requestAnimationFrame(passo); };
+    const gira = v => { carrega(); freando = false; alvo = v; anda(); };
+    const para = () => { if (!raf && !vel) return; freando = true; anda(); };
+    ajusta(); addEventListener('resize', () => { ajusta(); desenha(); });
+    new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) carrega(); if (!temHover) x.isIntersecting ? gira(DEVAGAR) : para(); }), { rootMargin: '200px 0px', threshold: .3 }).observe(area);
+    if (temHover) { area.addEventListener('mouseenter', () => gira(RAPIDO)); area.addEventListener('mouseleave', para); }
   });
+
   /* o 3D embutido não percebe sozinho quando o mouse sai rápido: a página avisa */
   const g3d = $('.g3d');
   if (g3d) ['mouseenter', 'mouseleave'].forEach(ev => $('#g-principal').addEventListener(ev, () => { if (g3d.contentWindow) g3d.contentWindow.postMessage(ev === 'mouseenter' ? 'giro:on' : 'giro:off', '*'); }));
@@ -338,7 +356,7 @@
   $$('[data-thumb]').forEach(t => t.addEventListener('click', () => {
     $$('[data-thumb]').forEach(x => x.classList.toggle('on', x === t));
     const alvo = $('#g-principal'), src = t.dataset.thumb, foto = !['360', '3d'].includes(src);
-    alvo.querySelector('video').hidden = src !== '360';
+    alvo.querySelector('.giro').hidden = src !== '360';
     const f = alvo.querySelector('img.foto'); f.hidden = !foto; if (foto) f.src = IMG(src);
     const fr = alvo.querySelector('.g3d'); fr.hidden = src !== '3d'; if (src === '3d' && !fr.src) fr.src = fr.dataset.src;
     $('.selo-360').hidden = src !== '360'; $('.selo-3d').hidden = src !== '3d';
