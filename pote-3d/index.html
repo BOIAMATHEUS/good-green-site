@@ -1,0 +1,34 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Good Green — Pote 225 g</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Chivo+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f2e2f;--muted:#4b5a57;--line:#d8d3ca;--neon:#78f624}*{box-sizing:border-box}body{margin:0;background:#dcd7d2;color:var(--ink);font:13px 'Hanken Grotesk','Segoe UI',Arial,sans-serif;overflow:hidden}#stage{position:fixed;inset:0}canvas{display:block;width:100%;height:100%;outline:0}
+header{position:absolute;top:34px;left:38px;pointer-events:none}.brand{font-size:26px;font-weight:500;letter-spacing:-.5px}.brand b{color:#2a7d1f;font-weight:500}.eyebrow{font:11px 'Chivo Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-top:10px}
+aside{position:absolute;right:28px;top:28px;width:248px;background:rgba(246,245,241,.9);backdrop-filter:blur(20px);border:1px solid #ffffff90;padding:22px;border-radius:14px;box-shadow:0 8px 32px #0f2e2f0d}
+h1{font-size:20px;font-weight:400;margin:0 0 5px}p{color:var(--muted);font-size:11px;line-height:1.6;margin:0}label{display:block;font:11px 'Chivo Mono',monospace;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:20px 0 9px}
+button{font:inherit;color:inherit;border:1px solid var(--line);background:transparent;padding:9px 10px;border-radius:30px;cursor:pointer}button:hover{background:#e9e5dc}button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:3px}button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+#produtos{display:grid;grid-template-columns:1fr 1fr;gap:6px}#nome{margin-top:10px;font-size:11px;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--ink);cursor:pointer}
+.actions{display:grid;gap:8px;margin-top:22px}.primary{background:var(--neon);border-color:var(--neon);color:var(--ink);font-weight:500}.primary:hover{background:#6ae01c}
+nav{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);display:flex;gap:4px;padding:6px;background:#f6f5f1e8;backdrop-filter:blur(18px);border:1px solid #ffffffaa;border-radius:40px;box-shadow:0 6px 24px #0f2e2f0d}nav button{border:0;font-size:12px;padding:10px 15px}
+.hint{position:absolute;bottom:40px;left:38px;color:var(--muted);font-size:11px;line-height:1.7}.note{margin-top:16px;font-size:11px;line-height:1.55;color:var(--muted)}
+#status{position:absolute;inset:0;display:grid;place-items:center;background:#dcd7d2;z-index:4;font:11px 'Chivo Mono',monospace;letter-spacing:2px;text-transform:uppercase}#status[hidden]{display:none}
+.capture header,.capture aside,.capture nav,.capture .hint{display:none}
+@media(max-width:800px){header{top:20px;left:20px}.brand{font-size:21px}.hint{display:none}#stage{bottom:290px}aside{left:16px;right:16px;top:auto;bottom:82px;width:auto;padding:16px}aside h1,aside p,.note{display:none}aside label{margin-top:10px}nav{bottom:18px;max-width:calc(100% - 24px)}nav button{padding:10px 11px}.capture #stage{bottom:0}}
+.capture #stage{top:0!important;right:0!important;bottom:0!important;left:0!important}
+</style>
+<div id="stage"></div>
+<header><div class="brand">Good <b>Green</b></div><div class="eyebrow">Estúdio de embalagem · pote 225 g</div></header>
+<aside>
+  <h1>Pote 225 g</h1>
+  <p>Ø 9 × 12,2 cm · rótulo 289 × 85 mm<br>na faca do Alison · verniz localizado na marca d'água</p>
+  <label>Produto</label>
+  <div id="produtos"></div>
+  <div id="nome"></div>
+  <label for="exposure">Intensidade da luz</label><input id="exposure" type="range" min="0.7" max="1.5" step=".01" value="1">
+  <div class="actions"><button id="rotate" aria-pressed="false">Girar 360°</button><button id="save" class="primary">Salvar PNG · 2400 px</button></div>
+  <p class="note">GG-02 a GG-04 são exemplos de linha: tabela, ingredientes e dizeres ainda são os do GG-01.</p>
+</aside>
+<nav aria-label="Vistas do pote"><button id="v-frente">Frente</button><button id="v-ingredientes">Ingredientes</button><button id="v-tabela">Tabela</button><button id="v-verso">Dizeres</button></nav>
+<div class="hint">Arraste para girar<br>Role para aproximar</div>
+<div id="status">Preparando o estúdio…</div>
+<script type="importmap">{"imports":{"three":"./three.module.min.js"}}</script>
+<script type="module" src="pote.js?v=24"></script></html>
