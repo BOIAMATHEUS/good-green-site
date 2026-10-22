@@ -945,3 +945,18 @@ html{overflow-x:clip}
 .giro-card .verso.f-hortela::after{background:rgba(40,80,60,.42)}
 .giro-card .verso.f-branco::after{background:rgba(64,26,31,.42)}
 .giro-card .verso dl div{border-color:rgba(255,255,255,.3)}
+/* verso: imagem desfocada num elemento próprio */
+.giro-card .verso::before{content:none}
+.verso-img{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(26px) saturate(120%);z-index:-2}
+/* card do pote: hover estilo Seed (versão A aprovada) */
+.t-pote.card-seed{background:radial-gradient(60% 55% at 50% 45%,#6FA585 0%,#3F7A5C 72%);align-items:center;text-align:center}
+.t-pote.card-seed>span.tag,.t-pote.card-seed .base-pote{transition:transform .3s var(--ease)}
+.t-pote.card-seed .giro video{transition:transform .3s linear}
+.t-pote.card-seed .base-pote{display:flex;flex-direction:column;align-items:center;gap:6px}
+.botao-seed{margin-top:12px;gap:0}
+.botao-seed .seta{display:inline-block;width:0;opacity:0;transform:translateX(-8px);overflow:hidden;transition:width .3s var(--ease),opacity .3s,transform .3s var(--ease)}
+.t-pote.card-seed.ativo .giro video{transform:scale(1.25)}
+.t-pote.card-seed.ativo>span.tag{transform:translateY(-14px)}
+.t-pote.card-seed.ativo .base-pote{transform:translateY(14px)}
+.t-pote.card-seed.ativo .botao-seed{background:#fff;gap:8px}
+.t-pote.card-seed.ativo .botao-seed .seta{width:14px;opacity:1;transform:none}

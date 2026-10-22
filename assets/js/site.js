@@ -379,6 +379,15 @@
 
   /* "Assinar" no card leva para a compra já com a assinatura marcada */
   $$('[data-assinar]').forEach(a => a.addEventListener('click', () => { const op = $('[data-op="assinatura"]'); if (op) op.click(); }));
+
+  /* card do pote: parado de frente; no hover gira e cresce (como na Seed); sem mouse, gira devagar quando aparece */
+  $$('video[data-hover-giro]').forEach(v => {
+    const card = v.closest('.card-seed') || v;
+    const liga = () => { card.classList.add('ativo'); const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    const desliga = () => { card.classList.remove('ativo'); v.pause(); v.currentTime = 0; };
+    if (matchMedia('(hover: hover)').matches) { card.addEventListener('mouseenter', liga); card.addEventListener('mouseleave', desliga); }
+    else { v.playbackRate = .6; new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); }), { threshold: .4 }).observe(card); }
+  });
   /* o 3D embutido não percebe sozinho quando o mouse sai rápido: a página avisa */
   const g3d = $('.g3d');
   if (g3d) ['mouseenter', 'mouseleave'].forEach(ev => $('#g-principal').addEventListener(ev, () => { if (g3d.contentWindow) g3d.contentWindow.postMessage(ev === 'mouseenter' ? 'giro:on' : 'giro:off', '*'); }));
