@@ -122,14 +122,28 @@
     <label class="busca-campo">${ic('busca')}<input id="busca-in" placeholder="Busque ingredientes, artigos, produto" autocomplete="off"><button data-fecha aria-label="Fechar busca">${ic('fechar')}</button></label>
     <span class="tag">Sugestões</span><div id="busca-res"></div>
   </div></div>
-  <div class="modal" id="boas-vindas" role="dialog" aria-label="Boas-vindas"><div class="modal-caixa">
-    <div class="foto"><img src="${IMG('desktop-1440-tile-foto.jpg')}" alt=""></div>
+  <div class="modal modal-bv" id="boas-vindas" role="dialog" aria-label="Boas-vindas"><div class="modal-caixa">
+    <div class="foto"><img id="bv-foto" src="${IMG('desktop-1440-tile-foto.jpg')}" alt=""><span class="selo-oferta vidro"><i></i>BRINDE NO 1º PEDIDO</span></div>
     <button class="fechar" data-fecha aria-label="Fechar">${ic('fechar')}</button>
-    <div class="modal-corpo"><span class="tag">Bem-vindo à Good Green</span><h2>Seu primeiro pedido<br>vem com o kit.</h2>
-      <p class="so-desk">Cadastre-se e ganhe o kit de boas-vindas na primeira compra:</p>
-      <div class="brinde-card"><img src="${IMG('garrafa-vidro.jpg')}" alt=""><div><b>Garrafa de vidro<br>Good Green</b><span class="tag" style="color:var(--verde)">Brinde</span></div></div>
-      <form data-form>${campos3}<button class="btn btn-escuro btn-bloco" style="margin-top:14px">Quero meu kit</button><p class="ok-msg">Pronto! O kit fica guardado para o seu primeiro pedido.</p></form>
-      <p class="letra-miuda">Válido para o 1º pedido. Ao enviar, você aceita receber comunicações da Good Green.</p></div>
+    <div class="modal-corpo">
+      <form data-bv novalidate>
+        <div class="etapa on" data-etapa="1">
+          <h2>Ganhe a garrafa de vidro no seu primeiro pedido.</h2>
+          <p class="so-desk" style="font-size:15px;margin-bottom:16px;color:var(--mut)">Entre para a lista do lançamento e receba o kit de boas-vindas com a sua primeira compra.</p>
+          <div class="brinde-card"><img src="${IMG('garrafa-vidro.jpg')}" alt=""><div><b>Garrafa de vidro Good Green</b><small>Vidro e tampa de inox · grátis no 1º pedido</small></div></div>
+          <div class="campos"><input class="campo" name="nome" placeholder="Seu nome" required autocomplete="name"><input class="campo" name="whats" placeholder="WhatsApp (com DDD)" inputmode="tel" required autocomplete="tel"></div>
+          <button class="btn btn-escuro btn-bloco" style="margin-top:12px">Quero minha garrafa</button>
+          <p class="letra-miuda">Você recebe só o aviso do lançamento e as ofertas da marca.</p>
+        </div>
+        <div class="etapa sucesso" data-etapa="ok">
+          <span class="c">${ic('check')}</span>
+          <h2>Pronto, a sua garrafa<br>está reservada.</h2>
+          <p style="font-size:15px;margin-bottom:20px;color:var(--mut)">Ela vai junto com o seu primeiro pedido. Enviamos o lembrete no seu WhatsApp.</p>
+          <a class="btn btn-escuro btn-bloco" href="produto.html">Conhecer o Good Green <span class="seta">→</span></a>
+          <p class="letra-miuda">O brinde fica guardado por 30 dias.</p>
+        </div>
+      </form>
+    </div>
   </div></div>
   <div class="modal modal-lista" id="lista" role="dialog" aria-label="Lista de lançamento"><div class="modal-caixa">
     <div class="foto"><img src="${IMG('menu-loja-aberto-destaque.jpg')}" alt=""></div>
@@ -313,6 +327,58 @@
   $$('[data-add-qtd]').forEach(b => b.addEventListener('click', () => { const q = +document.querySelector('[data-qtd] span').textContent; adiciona('gg', q); }));
 
 
+
+  /* pop-up de boas-vindas em 2 passos */
+  const bv = $('[data-bv]');
+  if (bv) {
+    const vai = n => { bv.querySelectorAll('.etapa').forEach(p => p.classList.toggle('on', p.dataset.etapa === n)); if (n === 'ok') $('#bv-foto').src = IMG('garrafa-bebendo-rua.jpg'); };
+    bv.addEventListener('submit', e => {
+      e.preventDefault(); e.stopPropagation();
+      const passo = bv.querySelector('.etapa.on'), atual = passo.dataset.etapa;
+      const campos = [...passo.querySelectorAll('input')];
+      const ruim = campos.find(c => !c.checkValidity()); if (ruim) { ruim.reportValidity(); return; }
+      vai('ok');
+      const prox = bv.querySelector('.etapa.on input'); if (prox) setTimeout(() => prox.focus(), 300);
+    }, true);
+  }
+
+  /* galeria da PDP: bolinhas do carrossel no celular */
+  $$('[data-carrossel]').forEach(c => {
+    const slides = [...c.children], dots = c.parentElement.querySelector('.bolinhas'); if (!dots) return;
+    dots.innerHTML = slides.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('');
+    const dica = c.querySelector('.dica-deslize');
+    c.addEventListener('scroll', () => { if (dica && c.scrollLeft > 20) dica.classList.add('some'); const i = Math.round(c.scrollLeft / (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : 1)); [...dots.children].forEach((d, k) => d.classList.toggle('on', k === i)); }, { passive: true });
+  });
+
+  /* linha do tempo da rotina: avança sozinha e responde ao mouse */
+  $$('[data-tempo]').forEach(ol => {
+    const itens = [...ol.children]; let i = 0, t;
+    const marca = k => { i = k; itens.forEach((li, n) => li.classList.toggle('on', n === k)); };
+    const roda = () => { clearInterval(t); t = setInterval(() => marca((i + 1) % itens.length), 3200); };
+    itens.forEach((li, k) => { li.addEventListener('mouseenter', () => { marca(k); clearInterval(t); }); li.addEventListener('click', () => marca(k)); });
+    ol.addEventListener('mouseleave', roda); roda();
+  });
+
+  /* cards de benefício: no toque (sem mouse) vira o card */
+  if (!matchMedia('(hover: hover)').matches) $$('.t-benef').forEach(c => c.addEventListener('click', e => { if (e.target.closest('a')) return; c.classList.toggle('virado'); }));
+  $$('.t-benef').forEach(c => c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('virado'); } }));
+
+  /* brilho atravessando o vidro no hover */
+  $$('.cartao-sabor, .card-produto, .legenda-vidro').forEach(el => el.classList.add('brilhante'));
+
+
+  /* artigo: índice acompanha a leitura; copiar e compartilhar */
+  const indice = $$('.indice a');
+  if (indice.length) {
+    const io2 = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) indice.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + x.target.id)); }), { rootMargin: '-30% 0px -60% 0px' });
+    indice.forEach(a => { const h = document.querySelector(a.getAttribute('href')); if (h) io2.observe(h); });
+  }
+  const cop = $('[data-copiar]'); if (cop) cop.addEventListener('click', () => { try { navigator.clipboard.writeText(location.href); } catch (e) {} toast('Link copiado.'); });
+  const comp = $('[data-compartilhar]'); if (comp) comp.addEventListener('click', () => { if (navigator.share) navigator.share({ title: document.title, url: location.href }).catch(() => {}); else { try { navigator.clipboard.writeText(location.href); } catch (e) {} toast('Link copiado.'); } });
+
+
+  /* "Assinar" no card leva para a compra já com a assinatura marcada */
+  $$('[data-assinar]').forEach(a => a.addEventListener('click', () => { const op = $('[data-op="assinatura"]'); if (op) op.click(); }));
   /* o 3D embutido não percebe sozinho quando o mouse sai rápido: a página avisa */
   const g3d = $('.g3d');
   if (g3d) ['mouseenter', 'mouseleave'].forEach(ev => $('#g-principal').addEventListener(ev, () => { if (g3d.contentWindow) g3d.contentWindow.postMessage(ev === 'mouseenter' ? 'giro:on' : 'giro:off', '*'); }));
