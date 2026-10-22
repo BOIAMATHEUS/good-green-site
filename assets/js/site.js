@@ -400,6 +400,11 @@
     new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting && !foi) { foi = true; v.preload = 'auto'; const p = v.play(); if (p && p.catch) p.catch(() => {}); } }), { threshold: .45 }).observe(v);
   });
 
+  /* vídeos em loop: tocam só enquanto estão na tela */
+  $$('video[data-loop-na-tela]').forEach(v => {
+    new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { v.preload = 'auto'; const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); }), { threshold: .25 }).observe(v);
+  });
+
   /* "como usar": no celular, o passo no centro da tela fica ativo */
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(max-width: 900px)').matches) {
     const ioPasso = new IntersectionObserver(es => es.forEach(x => x.target.classList.toggle('ativo', x.isIntersecting)), { rootMargin: '-38% 0px -38% 0px' });
