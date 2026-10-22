@@ -58,7 +58,16 @@ const ALTURA = 122 * MM;
 controls.target.set(0, ALTURA * .48, 0);
 controls.minDistance = .22; controls.maxDistance = 1.4; controls.maxPolarAngle = Math.PI * .53;
 controls.enablePan = false; controls.enableDamping = true; controls.dampingFactor = .085; controls.autoRotateSpeed = .7;
-if (new URLSearchParams(location.search).has("embed")) { document.body.classList.add("capture"); controls.autoRotate = true; }
+// Embutido no site: parado em repouso; com o mouse em cima acelera até girar e, ao sair, desacelera até parar.
+// Sem mouse (celular), gira devagar sozinho.
+const EMBED = new URLSearchParams(location.search).has("embed");
+const temHover = matchMedia("(hover: hover)").matches;
+let giroAlvo = EMBED && !temHover ? .8 : 0, giroVel = 0;
+if (EMBED && temHover) {
+  document.documentElement.addEventListener("mouseenter", () => { giroAlvo = 5; });
+  document.documentElement.addEventListener("mouseleave", () => { giroAlvo = 0; });
+  addEventListener("message", e => { if (e.data === "giro:on") giroAlvo = 5; if (e.data === "giro:off") giroAlvo = 0; });
+}
 camera.position.set(0, ALTURA * .62, .42);
 
 // ---- materiais ----
@@ -153,6 +162,12 @@ function loop(now) {
     const hor = Math.sqrt(Math.max(tween.dist ** 2 - y * y, 1e-6));
     camera.position.set(controls.target.x + hor * Math.sin(az), camera.position.y, controls.target.z + hor * Math.cos(az));
     dirty = true; if (k >= 1) tween = null;
+  }
+  if (EMBED) {
+    const agora = performance.now(), dt = Math.min(.3, (agora - (window.__gt || agora)) / 1000); window.__gt = agora;
+    giroVel += (giroAlvo - giroVel) * (1 - Math.exp(-dt / (giroAlvo > giroVel ? .45 : .7)));
+    if (giroVel < .02 && giroAlvo === 0) giroVel = 0;
+    controls.autoRotateSpeed = giroVel; controls.autoRotate = giroVel !== 0;
   }
   if (controls.update() || dirty || controls.autoRotate) { renderer.render(scene, camera); dirty = false; }
 }

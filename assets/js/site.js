@@ -282,12 +282,13 @@
     clearTimeout(el._t); el._t = setTimeout(() => { el.style.opacity = 0; el.style.transform = 'translateX(-50%) translateY(20px)'; }, 2600);
   }
 
-  /* pop-up de boas-vindas: home, 1 vez por sessão, depois de 5 s ou 40% de rolagem */
+  /* pop-up de boas-vindas: home, 1 vez por sessão */
   if (document.body.dataset.page === 'home' && !store.sget('bv')) {
     let foi = false;
     const mostra = () => { if (foi || aberta) return; foi = true; store.sset('bv'); abre('boas-vindas'); };
-    setTimeout(mostra, 5000);
-    addEventListener('scroll', () => { if (scrollY > (document.body.scrollHeight - innerHeight) * .4) mostra(); }, { passive: true });
+    // a home abre limpa: o convite só aparece depois de a pessoa rolar metade da página ou passar 20 s nela
+    setTimeout(mostra, 20000);
+    addEventListener('scroll', () => { if (scrollY > (document.body.scrollHeight - innerHeight) * .5) mostra(); }, { passive: true });
   }
 
   /* entrada suave ao rolar */
@@ -310,6 +311,28 @@
     q.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; s.textContent = Math.max(1, +s.textContent + +b.dataset.d); });
   });
   $$('[data-add-qtd]').forEach(b => b.addEventListener('click', () => { const q = +document.querySelector('[data-qtd] span').textContent; adiciona('gg', q); }));
+
+
+  /* pote girando: parado de frente; com o mouse em cima acelera, ao sair desacelera até parar. Sem mouse, gira devagar quando aparece. */
+  const temHover = matchMedia('(hover: hover)').matches;
+  $$('video[data-giro]').forEach(v => {
+    const area = v.closest('.tile, .g-principal') || v;
+    let alvo = 0, vel = 0, raf = 0, ant = 0;
+    const passo = agora => {
+      const dt = ant ? Math.min(.1, (agora - ant) / 1000) : .016; ant = agora;
+      vel += (alvo - vel) * (1 - Math.exp(-dt / (alvo > vel ? .3 : .55)));
+      if (alvo === 0 && vel < .08) { vel = 0; v.pause(); raf = 0; ant = 0; return; }
+      v.playbackRate = Math.max(.0625, vel);
+      if (v.paused) v.play().catch(() => {});
+      raf = requestAnimationFrame(passo);
+    };
+    const muda = a => { alvo = a; if (!raf) raf = requestAnimationFrame(passo); };
+    if (temHover) { area.addEventListener('mouseenter', () => muda(1)); area.addEventListener('mouseleave', () => muda(0)); }
+    else new IntersectionObserver(es => es.forEach(x => muda(x.isIntersecting ? .55 : 0)), { threshold: .4 }).observe(area);
+  });
+  /* o 3D embutido não percebe sozinho quando o mouse sai rápido: a página avisa */
+  const g3d = $('.g3d');
+  if (g3d) ['mouseenter', 'mouseleave'].forEach(ev => $('#g-principal').addEventListener(ev, () => { if (g3d.contentWindow) g3d.contentWindow.postMessage(ev === 'mouseenter' ? 'giro:on' : 'giro:off', '*'); }));
 
   /* galeria da PDP */
   $$('[data-thumb]').forEach(t => t.addEventListener('click', () => {
