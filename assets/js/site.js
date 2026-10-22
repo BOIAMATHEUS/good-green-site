@@ -41,7 +41,7 @@
   ];
   const PRODUTOS = {
     gg: { nome: 'Good Green GG-01', sub: 'Abacaxi com hortelã · 225 g', img: 'pote-recorte.webp', recorte: true },
-    garrafa: { nome: 'Garrafa de vidro', sub: 'Vidro e inox', img: 'garrafa-vidro.jpg' }
+    garrafa: { nome: 'Garrafa de vidro', sub: 'Vidro e inox', img: 'garrafa-vidro-vazia.jpg' }
   };
 
   /* ---------- cabeçalho ---------- */
@@ -52,7 +52,7 @@
     loja: `<span class="tag">Good Green</span>
       ${linha('pote-estudio-claro.jpg', 'GG-01 · Daily Functional Drink', 'Sabor abacaxi com hortelã · 30 doses', 'produto.html', 1)}
       ${linha('desktop-1440-tile-textura.jpg', 'Assinatura', 'Receba todo mês e pause quando quiser', 'assinatura.html')}
-      ${linha('pote-aberto-po.jpg', 'Kit de boas-vindas', 'Pote + garrafa de vidro', 'loja.html')}
+      ${linha('kit-pote-garrafa.jpg', 'Kit de boas-vindas', 'Pote + garrafa de vidro', 'loja.html')}
       <div class="m-sep"></div>
       <div class="m-rodape"><div><span class="tag" style="padding-left:0">Em breve</span><p style="font-size:16px;margin-bottom:6px">Novos sabores da linha</p><button data-abre="lista" style="font-weight:500;font-size:15px">Avise-me quando lançar  →</button><br><a class="btn btn-neon" href="loja.html" style="margin-top:22px;height:50px">Ver a loja <span class="seta">→</span></a></div><img src="${IMG('menu-loja-aberto-destaque.jpg')}" alt=""></div>`,
     ciencia: `${linha('desktop-1440-rectangle.jpg', 'Ingredientes', 'O que vai em cada dose, com a quantidade', 'ingredientes.html')}
@@ -130,7 +130,7 @@
         <div class="etapa on" data-etapa="1">
           <h2>Ganhe a garrafa de vidro no seu primeiro pedido.</h2>
           <p class="so-desk" style="font-size:15px;margin-bottom:16px;color:var(--mut)">Entre para a lista do lançamento e receba o kit de boas-vindas com a sua primeira compra.</p>
-          <div class="brinde-card"><img src="${IMG('garrafa-vidro.jpg')}" alt=""><div><b>Garrafa de vidro Good Green</b><small>Vidro e tampa de inox · grátis no 1º pedido</small></div></div>
+          <div class="brinde-card"><img src="${IMG('garrafa-vidro-vazia.jpg')}" alt=""><div><b>Garrafa de vidro Good Green</b><small>Vidro e tampa de inox · grátis no 1º pedido</small></div></div>
           <div class="campos"><input class="campo" name="nome" placeholder="Seu nome" required autocomplete="name"><input class="campo" name="whats" placeholder="WhatsApp (com DDD)" inputmode="tel" required autocomplete="tel"></div>
           <button class="btn btn-escuro btn-bloco" style="margin-top:12px">Quero minha garrafa</button>
           <p class="letra-miuda">Você recebe só o aviso do lançamento e as ofertas da marca.</p>
@@ -264,7 +264,7 @@
       <div class="carr-corpo">
         ${itens.map(([k, q]) => { const p = PRODUTOS[k]; return `<div class="item"><div class="img ${p.recorte ? '' : 'foto'}"><img src="${IMG(p.img)}" alt=""></div><div class="info"><b>${p.nome}</b><small>${p.sub}</small><button class="rem" data-rem="${k}">Remover</button><div class="pe"><b style="font-size:16px">R$ —</b><div class="qtd sm"><button data-q="${k}" data-d="-1" aria-label="Menos">${ic('menos')}</button><span>${q}</span><button data-q="${k}" data-d="1" aria-label="Mais">${ic('mais')}</button></div></div></div></div>`; }).join('')}
         ${carr.gg ? `<button class="assina-box ${plano === 'assinatura' ? 'on' : ''}" data-plano><span class="radio"></span><span><b>Assinar e economizar</b><small>Entrega todo mês · pause ou cancele quando quiser</small></span></button>` : ''}
-        ${!carr.garrafa ? `<span class="tag" style="display:block;margin:24px 0 2px">Complete seu ritual</span><div class="upsell"><img src="${IMG('garrafa-vidro.jpg')}" alt=""><span><b>Garrafa de vidro</b><small>Vidro e inox · R$ —</small></span><button class="btn btn-linha btn-sm" data-up="garrafa">+ Adicionar</button></div>` : ''}
+        ${!carr.garrafa ? `<span class="tag" style="display:block;margin:24px 0 2px">Complete seu ritual</span><div class="upsell"><img src="${IMG('garrafa-vidro-vazia.jpg')}" alt=""><span><b>Garrafa de vidro</b><small>Vidro e inox · R$ —</small></span><button class="btn btn-linha btn-sm" data-up="garrafa">+ Adicionar</button></div>` : ''}
         <div class="brinde">${ic('presente')}1º pedido: kit de boas-vindas de brinde</div>
       </div>
       <div class="carr-pe"><div class="lin"><span>Subtotal</span><b>R$ —</b></div><small>Frete e cupom no próximo passo.</small><button class="btn btn-escuro btn-bloco" data-checkout>Finalizar compra <span class="seta">→</span></button></div>`;
