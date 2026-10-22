@@ -691,15 +691,10 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
 .g-principal .giro{width:52%}
 @media (max-width:900px){.t-pote .giro{width:62%}}
 /* card do pote: foto do ritual no hover */
-.t-pote .foto-hover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .5s var(--ease-out),transform .9s var(--ease-out);z-index:1}
-.t-pote:hover .foto-hover{opacity:1;transform:none}
 .t-pote>*:not(.foto-hover){position:relative;z-index:2}
-.t-pote:hover .giro{opacity:0;transition:opacity .4s}
 .giro{transition:opacity .4s}
 .giro video{width:100%;height:auto}
 .t-pote .giro{aspect-ratio:auto}
-.t-pote:hover>span.tag,.t-pote:hover>div{text-shadow:0 1px 12px rgba(0,0,0,.35)}
-@media (hover:none){.t-pote .foto-hover{display:none}}
 .giro{aspect-ratio:auto!important}
 
 /* ===== PDP v2 ===== */
@@ -1055,3 +1050,11 @@ body[data-nav=claro] .logo .l-esc{display:block}
 /* card do kit: foto embaixo, véu no meio, texto em cima */
 .c-kit>img.cobre{z-index:0}
 .c-kit.veu::after{z-index:1;height:70%;background:linear-gradient(0deg,rgba(15,46,47,.94) 12%,rgba(15,46,47,0))}
+/* card do pote: menor em repouso para o crescimento do hover caber no card */
+.t-pote.card-seed{overflow:hidden}
+@media (min-width:901px){.t-pote.card-seed .giro{width:min(290px,48%)}}
+.t-pote.card-seed .giro{z-index:1}
+.t-pote.card-seed>span.tag,.t-pote.card-seed .base-pote{z-index:3}
+.t-pote.card-seed.ativo .giro video{transform:scale(1.15)}
+.t-pote.card-seed .giro{transform-origin:center 60%}
+@media (max-width:900px){.t-pote.card-seed.ativo .giro video{transform:scale(1.06)}.t-pote.card-seed{padding-top:40px}}
