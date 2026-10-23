@@ -12,18 +12,18 @@
 
   /* ---------- dados ---------- */
   const INGR = {
-    couve: ['Couve', 'desktop-1440-ingrediente-couve.jpg', 'couve em pó'],
-    abacaxi: ['Abacaxi e hortelã', 'ingrediente-abacaxi-hortela-v2.jpg', 'hortelã em pó e aroma de abacaxi com hortelã'],
-    guarana: ['Guaraná', 'desktop-1440-ingrediente-guarana.jpg', 'guaraná em pó (Paullinia cupana)'],
-    gengibre: ['Gengibre', 'desktop-1440-ingrediente-gengibre.jpg', 'gengibre em pó'],
-    maca: ['Maçã', 'desktop-1440-ingrediente-maca.jpg', 'maçã em pó'],
-    limao: ['Limão', 'menu-explorar-aberto-miniatura-2066.jpg', 'polpa de limão'],
-    laranja: ['Laranja moro', 'ingredientes-ingrediente-laranja-moro.jpg', 'extrato de laranja moro'],
-    espirulina: ['Espirulina', 'ingrediente-espirulina.jpg', 'espirulina (Arthrospira platensis)'],
-    salsa: ['Salsa', 'ingrediente-salsa.jpg', 'salsa em pó'],
-    beterraba: ['Beterraba', 'ingrediente-beterraba.jpg', 'beterraba em pó'],
-    curcuma: ['Cúrcuma', 'ingrediente-curcuma.jpg', 'cúrcuma em pó'],
-    coco: ['Água de coco', 'ingrediente-agua-de-coco.jpg', 'água de coco em pó']
+    couve: ['Couve', 'ing-couve.jpg', 'couve em pó'],
+    abacaxi: ['Abacaxi e hortelã', 'ing-abacaxi-hortela.jpg', 'hortelã em pó e aroma de abacaxi com hortelã'],
+    guarana: ['Guaraná', 'ing-guarana.jpg', 'guaraná em pó (Paullinia cupana)'],
+    gengibre: ['Gengibre', 'ing-gengibre.jpg', 'gengibre em pó'],
+    maca: ['Maçã', 'ing-maca.jpg', 'maçã em pó'],
+    limao: ['Limão', 'ing-limao.jpg', 'polpa de limão'],
+    laranja: ['Laranja moro', 'ing-laranja-moro.jpg', 'extrato de laranja moro'],
+    espirulina: ['Espirulina', 'ing-espirulina.jpg', 'espirulina (Arthrospira platensis)'],
+    salsa: ['Salsa', 'ing-salsa.jpg', 'salsa em pó'],
+    beterraba: ['Beterraba', 'ing-beterraba.jpg', 'beterraba em pó'],
+    curcuma: ['Cúrcuma', 'ing-curcuma.jpg', 'cúrcuma em pó'],
+    coco: ['Água de coco', 'ing-agua-de-coco.jpg', 'água de coco em pó']
   };
   const BUSCA = [
     ['Good Green GG-01', 'Produto', 'produto.html', 'pote-estudio-claro.jpg'],
@@ -154,7 +154,7 @@
       <p class="letra-miuda">Ao enviar, você aceita receber comunicações da Good Green.</p></div>
   </div></div>
   <div class="modal modal-ingr" id="ingrediente" role="dialog" aria-label="Ingrediente"><div class="modal-caixa">
-    <div class="foto"><img id="ingr-img" src="${IMG('desktop-1440-ingrediente-couve.jpg')}" alt=""></div>
+    <div class="foto"><img id="ingr-img" src="${IMG('ing-couve.jpg')}" alt=""></div>
     <button class="fechar" data-fecha aria-label="Fechar">${ic('fechar')}</button>
     <div class="modal-corpo"><span class="tag">Ingrediente vegetal</span><h2 id="ingr-nome"></h2>
       <p>Um dos ingredientes vegetais da fórmula, junto com espirulina, salsa, hortelã, gengibre e outros. Entra numa medida de 7,5 g que você mistura em 300 ml de água.</p>
