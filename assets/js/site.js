@@ -31,8 +31,7 @@
     ['Loja', 'Loja', 'loja.html', 'pote-aberto-po.jpg'],
     ['Ingredientes', 'Ciência', 'ingredientes.html', 'desktop-1440-rectangle.jpg'],
     ['Intestino e microbioma', 'Ciência', 'intestino.html', 'ciencia-cloroplasto.jpg'],
-    ['Feito no Brasil', 'Ciência', 'feito-no-brasil.html', 'mapa-brasil-satelite.jpg'],
-    ['Qualidade', 'Ciência', 'qualidade.html', 'banner-estudio-verde.jpg'],
+    ['Origem e qualidade', 'Ciência', 'feito-no-brasil.html', 'mapa-brasil-satelite.jpg'],
     ['Como ler a tabela nutricional', 'Ciência', 'ingredientes.html#vitaminas', 'ciencia-clorofila.jpg'],
     ['Como montar uma rotina de verdes', 'Artigo', 'artigo.html', 'banner-pedra-folhas.jpg'],
     ['Receitas com Good Green', 'Explorar', 'receitas.html', 'menu-explorar-aberto-miniatura-2066.jpg'],
@@ -57,8 +56,7 @@
       <div class="m-rodape"><div><span class="tag" style="padding-left:0">Em breve</span><p style="font-size:16px;margin-bottom:6px">Novos sabores da linha</p><button data-abre="lista" style="font-weight:500;font-size:15px">Avise-me quando lançar  →</button><br><a class="btn btn-neon" href="loja.html" style="margin-top:22px;height:50px">Ver a loja <span class="seta">→</span></a></div><img src="${IMG('menu-loja-aberto-destaque.jpg')}" alt=""></div>`,
     ciencia: `${linha('desktop-1440-rectangle.jpg', 'Ingredientes', 'O que vai em cada dose, com a quantidade', 'ingredientes.html')}
       ${linha('menu-ciencia-aberto-miniatura.jpg', 'Intestino e microbioma', 'Fibras e ingredientes vegetais na rotina', 'intestino.html')}
-      ${linha('menu-ciencia-aberto-miniatura-d34f.jpg', 'Feito no Brasil', 'Fabricação, origem e qualidade', 'feito-no-brasil.html')}
-      ${linha('menu-ciencia-aberto-miniatura-27f7.jpg', 'Qualidade', 'Fabricação, lote e conservação', 'qualidade.html')}
+      ${linha('menu-ciencia-aberto-miniatura-d34f.jpg', 'Origem e qualidade', 'Feito no Brasil: fabricação, lote e conservação', 'feito-no-brasil.html')}
       <div class="m-sep"></div><span class="tag">Referência</span>
       <a class="m-ref" href="ingredientes.html#vitaminas">Vitaminas do complexo B</a><a class="m-ref" href="ingredientes.html#vitaminas">Vitamina C e zinco</a><a class="m-ref" href="ingredientes.html#vitaminas">Cafeína do guaraná</a><a class="m-ref" href="intestino.html">Fibras e polidextrose</a><a class="m-ref" href="ingredientes.html#vitaminas">Tabela nutricional</a>`,
     explorar: `${linha('menu-explorar-aberto-miniatura.jpg', 'Rotina verde', 'Guias para encaixar seus verdes no dia', 'explorar.html')}
@@ -164,7 +162,7 @@
   <div class="menu-mob vidro-escuro" id="menu" role="dialog" aria-label="Menu">
     <div class="cab"><a class="logo" href="index.html" aria-label="Good Green, início">${(window.GG_LOGO||{}).brancoNeon||''}</a><button class="fechar" data-fecha aria-label="Fechar" style="color:#fff">${ic('fechar')}</button></div>
     ${[['Loja', 'GG-01, assinatura, kits', [['Good Green GG-01', 'produto.html'], ['Assinatura', 'assinatura.html'], ['Kits e acessórios', 'loja.html']]],
-       ['Ciência', 'Ingredientes, intestino, rótulo', [['Ingredientes', 'ingredientes.html'], ['Intestino e microbioma', 'intestino.html'], ['Feito no Brasil', 'feito-no-brasil.html'], ['Qualidade', 'qualidade.html']]],
+       ['Ciência', 'Ingredientes, intestino, rótulo', [['Ingredientes', 'ingredientes.html'], ['Intestino e microbioma', 'intestino.html'], ['Origem e qualidade', 'feito-no-brasil.html']]],
        ['Explorar', 'Rotina verde, receitas, artigos', [['Rotina verde', 'explorar.html'], ['Receitas', 'receitas.html'], ['Como montar uma rotina de verdes', 'artigo.html']]]]
       .map(([t, s, sub]) => `<div><button class="mm-link" style="width:100%;text-align:left" data-sub><span><b>${t}</b><small>${s}</small></span>${ic('seta-direita')}</button><div class="mm-sub" hidden>${sub.map(([a, h]) => `<a href="${h}">${a}</a>`).join('')}</div></div>`).join('')}
     <button class="entrar" data-abre="entrar">Entrar</button>

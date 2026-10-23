@@ -183,7 +183,7 @@ section{position:relative}
 /* ingredientes */
 .b-ingr{grid-template-columns:636fr 314fr 314fr;grid-template-rows:262px 262px}
 .b-ingr .grande{grid-row:1/3}
-.t-ingr{cursor:pointer}
+.t-ingr{cursor:pointer;background:#F7F4EE}
 .t-ingr .rotulo b{font-weight:500;font-size:22px;display:block}
 .t-ingr.grande .rotulo b{font-size:30px}
 .t-ingr .mais{position:absolute;top:18px;right:18px;z-index:2;width:40px;height:40px;border-radius:20px;display:grid;place-items:center;color:#fff;opacity:0;transform:scale(.8);transition:opacity .25s,transform .25s var(--ease-out)}
@@ -1065,4 +1065,27 @@ body[data-nav=claro] .logo .l-esc{display:block}
 @media (max-width:900px){
   .heroi{padding-bottom:32px}
   .heroi .cartao-sabor{position:relative;left:auto;right:auto;bottom:auto;z-index:2;width:calc(100% - 40px);margin:24px 20px 0;padding:12px}
+}
+
+/* origem e qualidade: do pó ao pote em 4 etapas */
+.etapas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.etapas .e-img{position:relative;aspect-ratio:312/244;border-radius:var(--r-md);overflow:hidden;background:#F7F4EE;margin-bottom:24px}
+.etapas .e-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:8%;box-sizing:border-box}
+.etapas .e-img img.ingr{object-fit:cover;padding:0}
+.etapas .e-img img.cobre{object-fit:cover;padding:0}
+.etapas .e-lote{background:var(--petroleo);display:flex;flex-direction:column;justify-content:space-between;padding:28px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.etapas .e-lote span{font-size:12px;color:rgba(255,255,255,.6)}
+.etapas .e-lote b{font-weight:400;font-size:18px;line-height:1.6;color:var(--neon)}
+.etapas h3{font-weight:400;font-size:26px;letter-spacing:-.01em;margin:6px 0 10px}
+.etapas p{color:var(--mut);font-size:16px;line-height:1.5}
+@media (max-width:900px){
+  .etapas{grid-template-columns:1fr;gap:16px}
+  .etapas li{display:grid;grid-template-columns:120px 1fr;column-gap:16px;align-items:start}
+  .etapas .e-img{grid-row:1/4;aspect-ratio:1;margin:0;border-radius:16px}
+  .etapas .e-lote{padding:12px}
+  .etapas .e-lote span{font-size:10px}.etapas .e-lote b{font-size:12px}
+  .etapas h3{font-size:20px;margin:2px 0 4px}
+  .etapas p{font-size:14px}
+  .b-origem .fab p{max-width:58%!important}
+  .b-origem .fab img{width:40%}
 }
