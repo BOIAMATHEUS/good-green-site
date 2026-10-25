@@ -72,9 +72,14 @@
     if (form) form.addEventListener('submit', e => {
       e.preventDefault(); e.stopPropagation();
       const ruim = [...form.querySelectorAll('input')].find(c => !c.checkValidity()); if (ruim) { ruim.reportValidity(); return; }
-      const perfil = $('[data-qz-perfil]'), hora = (resp.hora || [''])[0] || 'de manhã';
-      const rotina = (resp.rotina || [''])[0];
-      if (perfil) perfil.textContent = rotina === 'Faço suco verde em casa' ? 'Você já tem o hábito. Falta tirar o liquidificador do caminho.' : rotina === 'Tomo vários suplementos' ? 'Você quer menos potes no armário e uma rotina só.' : 'Você quer começar sem complicar, ' + hora.toLowerCase() + '.';
+      const perfil = $('[data-qz-perfil]'), det = $('[data-qz-detalhe]');
+      const dor = resp.dor || [], banheiro = (resp.banheiro || [''])[0], verdes = (resp.verdes || [''])[0], tenta = (resp.tenta || [''])[0];
+      let t = 'Você quer começar sem complicar.', d = 'Uma medida de Good Green em 300 ml de água, uma vez ao dia, no horário que sobrar.';
+      if (dor.some(x => /estufada|intestino|tetinha/i.test(x)) || /semana ou menos|Dia sim/.test(banheiro)) { t = 'Seu foco: fibras e verdes todo dia, sem depender de disciplina.'; d = 'Couve, espirulina, maçã, água de coco e beterraba numa medida. Em 30 segundos, sem liquidificador, com a garrafa de vidro para levar.'; }
+      else if (dor.some(x => /Cansaço/i.test(x))) { t = 'Seu foco: uma rotina verde com a cafeína natural do guaraná.'; d = 'Uma medida antes do café ou no meio da tarde: vitaminas C, B2, B6 e B12 e 75 mg de cafeína do guaraná por porção.'; }
+      else if (/Vários potes/i.test(tenta)) { t = 'Seu foco: um pote no lugar de vários.'; d = 'Vitaminas C, B2, B6 e B12, cromo e zinco numa bebida só, uma vez ao dia.'; }
+      else if (/liquidificador/i.test(tenta) || /Nenhuma|Não faço/i.test(verdes)) { t = 'Seu foco: tirar o liquidificador do caminho.'; d = 'O verde que você adia entra em 30 segundos: uma medida em 300 ml de água, gelada fica melhor.'; }
+      if (perfil) perfil.textContent = t; if (det) det.textContent = d;
       mostra(i + 1);
     }, true);
     mostra(0);
