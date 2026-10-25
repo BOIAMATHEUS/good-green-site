@@ -1,6 +1,7 @@
-/* Good Green · LPs de anúncio: barra da oferta no topo, escolha de plano ligada ao carrinho do site, quiz de captação. */
+/* Good Green · LPs de anúncio: barra da oferta no topo, escolha de plano ligada ao carrinho do site, entrada suave ao rolar, barra fixa de compra no celular e quiz de captação. */
 (function () {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const ic = (n, cls = '') => `<svg class="ic ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 
   /* a barra da oferta nasce no HTML da página e sobe para antes do cabeçalho montado pelo site.js */
   const barra = $('.lp-barra');
@@ -15,6 +16,30 @@
   }));
   $$('[data-lp-avulso]').forEach(b => b.addEventListener('click', () => { if (window.GG) { window.GG.setPlano('unica'); window.GG.adiciona('gg', 1); } }));
   $$('[data-lp-add]').forEach(b => b.addEventListener('click', () => { if (window.GG) { window.GG.setPlano('assinatura'); window.GG.adiciona('gg', +(b.dataset.lpAdd || 1)); } }));
+
+  /* entrada suave ao rolar, igual ao site: os blocos da LP entram na mesma régua (.surge → .visto) */
+  const alvos = $$('.lp-hero > *, .lp-aval article, .lp-split > *, .lp-numeros > div, .lp-ingr article, .lp-temnao > div, .lp-kit, .lp-videos figure, .lp-fecho-3 > div, .lp-motivo, .lp-momentos figure, .lp-oferta-caixa, .lp-antes-depois > div, .lp-passos figure, .lp-grade-pessoas img, .lp-kit-card, .rk-hero, .rk-card, .rk-meses > div, .rk-kits article, .lp-selos, .lp-compra > *');
+  if (alvos.length) {
+    alvos.forEach(el => {
+      if (el.classList.contains('surge')) return;
+      el.classList.add('surge');
+      const irmaos = [...el.parentElement.children].filter(c => alvos.includes(c));
+      el.style.transitionDelay = Math.min(irmaos.indexOf(el), 5) * 70 + 'ms';
+    });
+    const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visto'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    alvos.forEach(el => io.observe(el));
+  }
+
+  /* barra fixa de compra no celular (mesma do site): nas LPs sem bloco de compra, aparece depois do primeiro CTA sair da tela */
+  const primeiroCta = $('[data-lp-add]');
+  if (primeiroCta && !$('#barra-fixa') && !$('[data-add-qtd]')) {
+    const qtd = +(primeiroCta.dataset.lpAdd || 1);
+    const nome = qtd > 1 ? `${qtd} potes · assinatura trimestral` : 'Assinatura mensal';
+    document.body.insertAdjacentHTML('beforeend', `<div class="barra-fixa so-mobile" id="barra-fixa"><div class="faixa-benef-mini"><div class="trilho">${['Garrafa de vidro de brinde', 'Frete grátis no trimestral', 'Cancele quando quiser', 'Garrafa de vidro de brinde', 'Frete grátis no trimestral', 'Cancele quando quiser'].map((t, i) => `<span>${ic(['presente', 'frete', 'check'][i % 3])}${t}</span>`).join('')}</div></div><div class="linha-compra"><img src="assets/img/pote-abacaxi-hortela.jpg" alt=""><div><b>Good Green GG-01</b><small>${nome}</small><em>R$ —</em></div><button class="btn btn-neon" data-lp-add="${qtd}">${primeiroCta.textContent.trim().replace(/\s*→\s*$/, '')} <span class="seta">→</span></button></div></div>`);
+    const b = $('#barra-fixa');
+    b.querySelector('[data-lp-add]').addEventListener('click', () => { if (window.GG) { window.GG.setPlano('assinatura'); window.GG.adiciona('gg', qtd); } });
+    new IntersectionObserver(es => es.forEach(x => b.classList.toggle('on', !x.isIntersecting && x.boundingClientRect.top < 0)), { threshold: 0 }).observe(primeiroCta);
+  }
 
   /* quiz */
   const qz = $('.qz');
