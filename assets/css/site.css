@@ -727,8 +727,10 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
 .num3 span{font-size:15px;opacity:.85}
 .rotina{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:center}
 .linha-tempo{list-style:none;display:grid;gap:26px}
-.linha-tempo li{border-left:2px solid var(--linha);padding:0 0 0 22px;opacity:.6;transition:opacity .4s,border-color .4s;cursor:pointer}
-.linha-tempo li.on{opacity:1;border-color:var(--verde)}
+.linha-tempo li{position:relative;padding:0 0 0 22px;opacity:.6;transition:opacity .4s;cursor:pointer}
+.linha-tempo li::before{content:"";position:absolute;left:0;top:4px;width:10px;height:10px;border-radius:5px;background:var(--linha);transition:background .4s}
+.linha-tempo li.on{opacity:1}
+.linha-tempo li.on::before{background:var(--verde)}
 .linha-tempo .chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:13px;background:var(--verde-claro);color:var(--verde);transition:background-color .4s,color .4s}
 .linha-tempo li.on .chip{background:var(--verde);color:var(--neon)}
 .linha-tempo b{display:block;font-weight:500;font-size:22px;margin:10px 0 4px}
@@ -903,7 +905,8 @@ html{overflow-x:clip}
 .indice a.on,.indice a:hover{color:var(--petroleo);border-color:var(--verde);font-weight:500}
 .texto h2{font-weight:500;font-size:26px;margin:8px 0 18px;scroll-margin-top:110px}
 .texto p{font-size:19px;line-height:1.7;opacity:.88;margin-bottom:32px}
-.texto blockquote{border-left:4px solid var(--neon);padding:4px 0 4px 28px;font-weight:300;font-size:40px;line-height:1.15;letter-spacing:-.02em;margin:8px 0 48px}
+.texto blockquote{padding:0;font-weight:300;font-size:40px;line-height:1.15;letter-spacing:-.02em;margin:8px 0 48px}
+.texto blockquote::before{content:"";display:block;width:56px;height:3px;border-radius:2px;background:var(--neon);margin-bottom:20px}
 .art-foto{aspect-ratio:680/400;margin-bottom:40px}
 .dica{display:flex;gap:18px;align-items:center;background:var(--verde-claro);border-radius:20px;padding:24px 28px;margin-bottom:32px}
 .dica .ic{width:28px;height:28px;color:var(--verde);flex:none}
@@ -930,7 +933,7 @@ html{overflow-x:clip}
   .art-corpo{grid-template-columns:1fr;gap:28px}
   .indice{position:static}
   .texto p{font-size:17px}
-  .texto blockquote{font-size:28px;padding-left:18px}
+  .texto blockquote{font-size:28px}
   .card-art-produto{flex-wrap:wrap;padding:14px 18px;gap:14px}
   .card-art-produto img{width:52px;height:74px}
   .card-art-produto .btn{margin-left:0;width:100%}
