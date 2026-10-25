@@ -76,6 +76,7 @@
       const dor = resp.dor || [], banheiro = (resp.banheiro || [''])[0], verdes = (resp.verdes || [''])[0], tenta = (resp.tenta || [''])[0];
       let t = 'Você quer começar sem complicar.', d = 'Uma medida de Good Green em 300 ml de água, uma vez ao dia, no horário que sobrar.';
       if (dor.some(x => /estufada|intestino|tetinha/i.test(x)) || /semana ou menos|Dia sim/.test(banheiro)) { t = 'Seu foco: fibras e verdes todo dia, sem depender de disciplina.'; d = 'Couve, espirulina, maçã, água de coco e beterraba numa medida. Em 30 segundos, sem liquidificador, com a garrafa de vidro para levar.'; }
+      else if (dor.some(x => /Resfriados|imunidade/i.test(x))) { t = 'Seu foco: vitamina C e zinco todo dia, sem abrir vários potes.'; d = 'Por porção: 45 mg de vitamina C (45% do VD) e zinco (64% do VD), junto com couve, espirulina e as vitaminas B, numa bebida só, uma vez ao dia.'; }
       else if (dor.some(x => /Cansaço/i.test(x))) { t = 'Seu foco: uma rotina verde com a cafeína natural do guaraná.'; d = 'Uma medida antes do café ou no meio da tarde: vitaminas C, B2, B6 e B12 e 75 mg de cafeína do guaraná por porção.'; }
       else if (/Vários potes/i.test(tenta)) { t = 'Seu foco: um pote no lugar de vários.'; d = 'Vitaminas C, B2, B6 e B12, cromo e zinco numa bebida só, uma vez ao dia.'; }
       else if (/liquidificador/i.test(tenta) || /Nenhuma|Não faço/i.test(verdes)) { t = 'Seu foco: tirar o liquidificador do caminho.'; d = 'O verde que você adia entra em 30 segundos: uma medida em 300 ml de água, gelada fica melhor.'; }
