@@ -5,18 +5,59 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Loja · Good Green</title>
 <link rel="stylesheet" href="assets/css/site.css?v=202610231745">
+<style>
+.vitrine .receita{display:flex;flex-direction:column}
+.vitrine .receita div.txt{display:flex;flex-direction:column;flex:1}
+.vitrine .receita ul{list-style:none;display:grid;gap:6px;font-size:15px;color:var(--mut);margin:4px 0 22px}
+.vitrine .pe{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}
+.vitrine .pe b{font-weight:500;font-size:22px}
+</style>
 </head>
 <body data-nav="claro" data-page="loja">
-<div class="wrap titulo-pag"><h1 class="d2">Loja</h1><p class="lead mut">Um produto, feito para a sua rotina. Mais sabores em breve.</p></div>
-<section class="secao" style="padding-top:0"><div class="wrap"><div class="bento b-loja">
-  <div class="tile c-gg01"><span class="tag gg">GG-01 · Mais escolhido</span><img src="assets/img/pote-recorte.webp" alt="Pote Good Green GG-01" loading="lazy" decoding="async"><h3>Good Green Daily Functional Drink</h3><p style="opacity:.8">Abacaxi com hortelã · 225 g · 30 doses</p><div class="pe"><b>R$ —</b><span style="display:flex;gap:10px"><a class="btn btn-vidro btn-sm" href="produto.html">Ver produto</a><button class="btn btn-neon btn-sm" data-add="gg">Comprar</button></span></div></div>
-  <div class="tile card f-branco"><span class="tag">Assinatura</span><h3>Receba todo mês<br>e pause quando quiser.</h3><p class="mut" style="margin-bottom:24px">Entrega mensal, sem fidelidade.</p><a class="btn btn-linha" href="assinatura.html">Conhecer a assinatura <span class="seta">→</span></a></div>
-  <div class="tile c-kit veu"><img class="cobre" src="assets/img/kit-pote-garrafa.jpg" alt="" loading="lazy" decoding="async"><span class="tag neon">Kit de boas-vindas</span><b style="font-weight:500;font-size:20px">Pote + garrafa de vidro</b><span style="font-size:14px;opacity:.85">Brinde no 1º pedido da assinatura</span></div>
+<div class="wrap titulo-pag"><h1 class="d2">Loja</h1><p class="lead mut">Um produto, feito para a sua rotina. Escolha a quantidade e leve a garrafa se quiser.</p></div>
+
+<section class="secao" style="padding-top:0"><div class="wrap"><div class="cards-3 vitrine">
+  <div class="receita"><div class="foto"><img src="assets/img/pote-estudio-claro.jpg" alt="Pote Good Green GG-01" loading="lazy" decoding="async"></div><div class="txt">
+    <span class="tag" style="color:var(--verde)">GG-01 · Mais escolhido</span><h3 style="margin-top:10px">1 pote</h3><p>Um mês de doses para conhecer o sabor.</p>
+    <ul><li>1 pote de 225 g em pó</li><li>30 doses de 7,5 g</li><li>Sabor abacaxi com hortelã</li></ul>
+    <div class="pe"><b>R$ —</b><button class="btn btn-escuro btn-sm" data-add="gg">Adicionar</button></div></div></div>
+  <div class="receita"><div class="foto"><img src="assets/img/lp/tres-potes.jpg" alt="Três potes de Good Green" loading="lazy" decoding="async" style="object-position:center 72%"></div><div class="txt">
+    <span class="tag" style="color:var(--verde)">Kit · 90 dias</span><h3 style="margin-top:10px">Kit 3 potes</h3><p>Três meses de rotina em uma só compra.</p>
+    <ul><li>3 potes de 225 g em pó</li><li>90 doses de 7,5 g</li><li>Menor preço por dose</li></ul>
+    <div class="pe"><b>R$ —</b><button class="btn btn-escuro btn-sm" data-add="gg">Adicionar</button></div></div></div>
+  <div class="receita"><div class="foto"><img src="assets/img/garrafa-vidro-vazia.jpg" alt="Garrafa de vidro Good Green" loading="lazy" decoding="async"></div><div class="txt">
+    <span class="tag" style="color:var(--verde)">Acessório</span><h3 style="margin-top:10px">Garrafa de vidro</h3><p>Para preparar a dose em casa e levar com você.</p>
+    <ul><li>Vidro com tampa de inox</li><li>Agite, feche e leve</li><li>Brinde no 1º pedido da assinatura</li></ul>
+    <div class="pe"><b>R$ —</b><button class="btn btn-linha btn-sm" data-add="garrafa">+ Adicionar</button></div></div></div>
 </div>
-<div class="bento duas-cards" style="grid-template-columns:1fr 1fr;margin-top:16px">
-  <div class="tile card f-branco linha-acess"><img src="assets/img/garrafa-vidro-vazia.jpg" alt="" loading="lazy" decoding="async"><div><span class="tag">Acessório</span><h3 style="font-size:28px">Garrafa de vidro</h3><p class="mut" style="margin-bottom:16px">Vidro e inox · R$ —</p><button class="btn btn-linha btn-sm" data-add="garrafa">+ Adicionar</button></div></div>
-  <div class="tile card f-claro"><span class="tag">Em breve</span><h3>Novos sabores<br>da linha.</h3><button class="btn btn-linha" data-abre="lista">Avise-me</button></div>
-</div></div></section>
+<p class="mut" style="margin-top:24px;max-width:720px">Frete e prazo aparecem no carrinho, de acordo com o seu CEP. Quer receber todo mês sem lembrar de comprar? Na assinatura, o plano trimestral tem frete grátis e a garrafa vem de brinde no primeiro pedido.</p>
+
+<div class="selos">
+  <div><i data-ic="check"></i>Notificado RDC 240/2018</div>
+  <div><i data-ic="sem-lactose"></i>Zero lactose</div>
+  <div><i data-ic="sem-gluten"></i>Não contém glúten</div>
+  <div><i data-ic="vegetal"></i>Baixo em calorias</div>
+  <div><i data-ic="doses"></i>30 doses por pote</div>
+</div>
+</div></section>
+
+<section class="secao f-claro"><div class="wrap duas-col">
+  <div class="foto"><img src="assets/img/pote-aberto-po.jpg" alt="Pote de Good Green aberto, com o pó verde" loading="lazy" decoding="async"></div>
+  <div><span class="tag" style="color:var(--verde)">Em cada dose</span><h2 class="h2" style="margin:14px 0 18px">O que vai no copo.</h2>
+    <p class="mut" style="margin-bottom:24px">Uma medida de 7,5 g em 300 ml de água, uma vez ao dia. Pronto em 30 segundos, sem lavar, cortar ou bater.</p>
+    <ul class="lista-ic"><li><i data-ic="vitaminas"></i>Rico em vitaminas C, B2, B6 e B12</li><li><i data-ic="mais"></i>Rico em cromo e zinco</li><li><i data-ic="microbioma"></i>2 g de fibras por porção</li><li><i data-ic="guarana"></i>Com cafeína do guaraná</li><li><i data-ic="vegetal"></i>Baixo em calorias</li></ul>
+    <a class="btn btn-escuro" href="produto.html">Ver o produto completo <span class="seta">→</span></a></div>
+</div></section>
+
+<section class="secao"><div class="wrap">
+  <div class="cabeca"><div><span class="tag">Como escolher</span><h2 class="h2">Qual é o seu ritmo?</h2></div><p class="mut" style="max-width:340px">Uma medida de 7,5 g por dia. Cada pote dura um mês.</p></div>
+  <div class="cards-3">
+    <div class="card f-branco"><span class="tag">Para provar</span><h3>1 pote</h3><p class="mut">Para quem ainda não conhece. Prove o sabor e veja como a dose entra na sua manhã.</p></div>
+    <div class="card f-hortela"><span class="tag">Para manter</span><h3>Kit 3 potes</h3><p>Para quem já tem o hábito. Três meses de doses em uma compra, com o menor preço por dose.</p></div>
+    <div class="card f-claro"><span class="tag">Para não pensar</span><h3>Assinatura</h3><p class="mut" style="margin-bottom:20px">Entrega no seu ritmo, garrafa de brinde no 1º pedido e cancelamento sem multa.</p><a class="btn btn-linha btn-sm" href="assinatura.html">Conhecer a assinatura <span class="seta">→</span></a></div>
+  </div>
+</div></section>
+
 <div data-cta="Seus verdes, sem esforço."></div>
 <script src="assets/js/sprite.js?v=202610231745"></script>
 <script src="assets/js/site.js?v=202610231745"></script>

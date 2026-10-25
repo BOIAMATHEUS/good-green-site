@@ -5,10 +5,117 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Receitas · Good Green</title>
 <link rel="stylesheet" href="assets/css/site.css?v=202610231745">
+<style>
+.rc-lista{display:grid;gap:16px}
+.rc{display:grid;grid-template-columns:420px 1fr;background:#fff;border-radius:var(--r-lg);overflow:hidden}
+.rc .foto{position:relative;min-height:360px}
+.rc .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.rc .txt{padding:40px;display:grid;grid-template-columns:1fr 1.3fr;gap:32px 40px;align-content:start}
+.rc .rc-cab{grid-column:1/-1}
+.rc h3{font-weight:300;font-size:34px;letter-spacing:-.015em;margin:12px 0 8px}
+.rc .info{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.rc h4{font-weight:500;font-size:15px;margin-bottom:10px}
+.rc ul,.rc ol{padding-left:20px;display:grid;gap:8px;font-size:16px;color:var(--mut)}
+@media (max-width:900px){.rc{grid-template-columns:1fr}.rc .foto{aspect-ratio:4/3;min-height:0}.rc .txt{grid-template-columns:1fr;padding:24px;gap:24px}.rc h3{font-size:28px}}
+</style>
 </head>
 <body data-nav="vidro" data-page="receitas">
-<section class="heroi-int"><img fetchpriority="high" src="assets/img/menu-explorar-aberto-miniatura-2066.jpg" alt=""><div class="wrap"><div><span class="tag neon">Explorar · Receitas</span><h1 class="d2">Seus verdes,<br>do seu jeito.</h1><p class="lead">Uma medida de Good Green em 300 ml de água é o básico. Aqui vão outras ideias.</p></div><div class="card-produto vidro"><img src="assets/img/pote-recorte.webp" alt="" loading="lazy" decoding="async"><div><span class="tag gg">GG-01</span><b>Good Green <br>Daily Functional <br>Drink</b><small>Abacaxi com hortelã · 30 doses</small><a class="btn btn-neon btn-sm" href="produto.html">Ver produto <span class="seta">→</span></a></div></div></div></section>
-<section class="secao"><div class="wrap"><div class="cards-4"><div class="receita"><div class="foto"><img src="assets/img/menu-explorar-aberto-miniatura-2066.jpg" alt="" loading="lazy" decoding="async"></div><div class="txt"><h3>Água de coco e limão</h3><p>Uma medida, água de coco gelada e limão.</p><span class="tag" style="color:var(--verde)">5 min</span></div></div><div class="receita"><div class="foto"><img src="assets/img/desktop-1440-rectangle.jpg" alt="" loading="lazy" decoding="async"></div><div class="txt"><h3>Smoothie de abacaxi</h3><p>Abacaxi, hortelã, gelo e uma medida.</p><span class="tag" style="color:var(--verde)">5 min</span></div></div><div class="receita"><div class="foto"><img src="assets/img/ing-laranja-moro.jpg" alt="" loading="lazy" decoding="async"></div><div class="txt"><h3>Laranja gelada</h3><p>Suco de laranja, gelo e uma medida.</p><span class="tag" style="color:var(--verde)">5 min</span></div></div><div class="receita"><div class="foto"><img src="assets/img/ing-maca.jpg" alt="" loading="lazy" decoding="async"></div><div class="txt"><h3>Maçã verde</h3><p>Maçã batida, água gelada e uma medida.</p><span class="tag" style="color:var(--verde)">5 min</span></div></div></div></div></section>
+<section class="heroi-int"><img fetchpriority="high" src="assets/img/menu-explorar-aberto-miniatura-2066.jpg" alt=""><div class="wrap"><div><span class="tag neon">Explorar · Receitas</span><h1 class="d2">Seus verdes,<br>do seu jeito.</h1><p class="lead">Uma medida de Good Green em 300 ml de água é o básico. Aqui vão seis jeitos de variar, sempre com uma medida por dia.</p></div><div class="card-produto vidro"><img src="assets/img/pote-recorte.webp" alt="" loading="lazy" decoding="async"><div><span class="tag gg">GG-01</span><b>Good Green <br>Daily Functional <br>Drink</b><small>Abacaxi com hortelã · 30 doses</small><a class="btn btn-neon btn-sm" href="produto.html">Ver produto <span class="seta">→</span></a></div></div></div></section>
+
+<div class="wrap">
+  <div class="selos">
+    <div><i data-ic="medida"></i>Uma medida de 7,5 g</div>
+    <div><i data-ic="diario"></i>Uma porção por dia</div>
+    <div><i data-ic="gelo"></i>Sempre frio ou natural</div>
+    <div><i data-ic="copo"></i>Prepare e beba na hora</div>
+  </div>
+</div>
+
+<section class="secao">
+  <div class="wrap">
+    <div class="cabeca"><div><span class="tag">Receitas</span><h2 class="h2">Seis receitas,<br>uma medida cada.</h2></div><p class="mut" style="max-width:380px">Todas rendem uma porção e levam uma medida de 7,5 g. Escolha uma por dia e varie ao longo da semana.</p></div>
+    <div class="rc-lista">
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/lp/copo-na-mao.jpg" alt="Copo de Good Green gelado com folhas de hortelã" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">01 · O básico</span><h3>Good Green gelado clássico</h3><p class="mut">O jeito mais simples, e o ponto de partida para todas as outras.</p><div class="info"><span class="tag">2 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>300 ml de água filtrada</li><li>4 cubos de gelo</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Coloque a água em um copo ou coqueteleira.</li><li>Adicione a medida de Good Green.</li><li>Misture por 20 segundos até ficar homogêneo.</li><li>Junte o gelo e beba em seguida.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: coloque a água antes do pó. Assim a mistura fica lisa mais rápido.</p></div>
+        </div>
+      </article>
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/ing-limao.jpg" alt="Limões inteiros e fatiados" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">02 · Cítrica</span><h3>Limonada verde</h3><p class="mut">O limão realça o abacaxi e traz um final mais fresco.</p><div class="info"><span class="tag">5 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>250 ml de água gelada</li><li>Suco de 1 limão</li><li>Gelo a gosto</li><li>1 rodela de limão para servir</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Esprema o limão e coe o suco.</li><li>Misture o suco com a água gelada.</li><li>Adicione a medida de Good Green e mexa bem.</li><li>Sirva com gelo e a rodela de limão.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: prefira limão taiti, que tem menos sementes e sabor mais suave.</p></div>
+        </div>
+      </article>
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/ing-agua-de-coco.jpg" alt="Coco verde aberto" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">03 · Leve</span><h3>Água de coco verde</h3><p class="mut">Um toque adocicado natural, sem precisar de açúcar.</p><div class="info"><span class="tag">3 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>300 ml de água de coco gelada</li><li>Gelo a gosto</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Coloque a água de coco em uma coqueteleira.</li><li>Adicione a medida de Good Green.</li><li>Tampe e agite por 15 segundos.</li><li>Sirva com gelo.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: use água de coco sem açúcar adicionado.</p></div>
+        </div>
+      </article>
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/ing-abacaxi-hortela.jpg" alt="Abacaxi e folhas de hortelã" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">04 · Cremosa</span><h3>Smoothie de abacaxi e hortelã</h3><p class="mut">Mais encorpado, bom para o café da manhã.</p><div class="info"><span class="tag">5 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>1 xícara de abacaxi picado (150 g)</li><li>5 folhas de hortelã</li><li>200 ml de água gelada</li><li>4 cubos de gelo</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Coloque o abacaxi, a hortelã, a água e o gelo no liquidificador.</li><li>Bata por 40 segundos.</li><li>Adicione a medida de Good Green.</li><li>Bata por mais 10 segundos e sirva em seguida.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: com abacaxi congelado, dispense o gelo e o smoothie fica mais cremoso.</p></div>
+        </div>
+      </article>
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/pote-mesa-escura-copo.jpg" alt="Pote de Good Green ao lado de um copo" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">05 · Para a tarde</span><h3>Chá gelado de hortelã</h3><p class="mut">Prepare o chá antes e deixe esfriar por completo.</p><div class="info"><span class="tag">15 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>300 ml de água</li><li>10 folhas de hortelã</li><li>Gelo a gosto</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Ferva a água e desligue o fogo.</li><li>Junte a hortelã, tampe e deixe em infusão por 5 minutos.</li><li>Coe e deixe esfriar até a temperatura ambiente.</li><li>Adicione o gelo e a medida de Good Green. Misture e beba.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: prepare o chá na noite anterior e guarde só o chá na geladeira, sem o pó.</p></div>
+        </div>
+      </article>
+
+      <article class="rc">
+        <div class="foto"><img src="assets/img/garrafa-bebendo-rua.jpg" alt="Pessoa bebendo Good Green na garrafa de vidro" loading="lazy" decoding="async"></div>
+        <div class="txt">
+          <div class="rc-cab"><span class="tag" style="color:var(--verde)">06 · Para levar</span><h3>Na garrafa de vidro</h3><p class="mut">Para o trabalho, a academia ou o caminho. A garrafa vem de brinde no primeiro pedido da assinatura.</p><div class="info"><span class="tag">2 min</span><span class="tag">1 porção</span></div></div>
+          <div><h4>Ingredientes</h4><ul><li>1 medida de Good Green (7,5 g)</li><li>300 ml de água gelada</li><li>3 cubos de gelo</li></ul></div>
+          <div><h4>Modo de preparo</h4><ol><li>Coloque a água e o gelo na garrafa.</li><li>Adicione a medida de Good Green.</li><li>Feche bem a tampa e agite por 15 segundos.</li><li>Beba em até 2 horas e agite de novo antes de cada gole.</li></ol><p class="mut" style="margin-top:14px;font-size:15px">Dica: lave a garrafa logo depois de beber, com água morna e escova.</p></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="secao f-claro">
+  <div class="wrap">
+    <div class="cabeca"><div><span class="tag" style="color:var(--verde)">Cuidados</span><h2 class="h2">O que não fazer.</h2></div></div>
+    <div class="cards-3">
+      <div class="card f-branco"><span class="tag">01</span><h3>Água muito quente</h3><p class="mut">Use água fria ou natural. No chá, deixe esfriar antes de misturar.</p></div>
+      <div class="card f-branco"><span class="tag">02</span><h3>Mais de uma medida</h3><p class="mut">Uma medida de 7,5 g por dia, por pessoa. As receitas são alternativas, não se somam.</p></div>
+      <div class="card f-branco"><span class="tag">03</span><h3>Deixar para amanhã</h3><p class="mut">Prepare na hora de beber. Não guarde pronto de um dia para o outro.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="wrap duas-col" style="align-items:start">
+    <div><span class="tag">Dúvidas</span><h2 class="h2" style="margin:14px 0 18px">Perguntas sobre<br>as receitas.</h2><p class="mut">Outras dúvidas estão na página do produto.</p></div>
+    <div class="acc">
+      <div class="acc-item aberto"><button>Posso fazer duas receitas no mesmo dia?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Não. A porção é de uma medida de 7,5 g por dia, por pessoa. Escolha uma receita por dia.</p></div></div></div>
+      <div class="acc-item"><button>Preciso de liquidificador?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Só para o smoothie. Nas outras receitas, um copo e uma colher ou uma coqueteleira bastam.</p></div></div></div>
+      <div class="acc-item"><button>Posso adoçar?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Pode, a gosto. O sabor de abacaxi com hortelã já vem pronto, então prove antes de adoçar.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
 <div data-cta="Comece pela sua receita."></div>
 <script src="assets/js/sprite.js?v=202610231745"></script>
 <script src="assets/js/site.js?v=202610231745"></script>

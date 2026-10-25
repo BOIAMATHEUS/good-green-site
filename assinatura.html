@@ -5,18 +5,61 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Assinatura · Good Green</title>
 <link rel="stylesheet" href="assets/css/site.css?v=202610231745">
+<style>
+.plano{display:flex;flex-direction:column}
+.plano .preco{font-size:34px;font-weight:300;letter-spacing:-.015em;margin:8px 0 24px}
+.plano .preco small{font-size:15px;opacity:.7}
+.plano.f-verde .lista-ic .ic{color:var(--neon)}
+.plano .btn{margin-top:auto;align-self:flex-start}
+</style>
 </head>
 <body data-nav="vidro" data-page="assinatura">
-<section class="heroi-int"><img fetchpriority="high" src="assets/img/pote-cafe-da-manha.jpg" alt=""><div class="wrap"><div><span class="tag neon">Assinatura</span><h1 class="d2">Seus verdes todo mês,<br>sem pensar.</h1><p class="lead">Uma entrega por mês, no ritmo da sua rotina. Pause, adie ou cancele quando quiser.</p></div><div class="card-produto vidro"><img src="assets/img/pote-recorte.webp" alt="" loading="lazy" decoding="async"><div><span class="tag gg">GG-01</span><b>Good Green <br>Daily Functional <br>Drink</b><small>Abacaxi com hortelã · 30 doses</small><a class="btn btn-neon btn-sm" href="produto.html">Ver produto <span class="seta">→</span></a></div></div></div></section>
+<section class="heroi-int"><img fetchpriority="high" src="assets/img/pote-cafe-da-manha.jpg" alt=""><div class="wrap"><div><span class="tag neon">Assinatura</span><h1 class="d2">Seus verdes todo mês,<br>sem pensar.</h1><p class="lead">Uma entrega no ritmo da sua rotina. Pause, adie ou cancele quando quiser.</p></div><div class="card-produto vidro"><img src="assets/img/pote-recorte.webp" alt="" loading="lazy" decoding="async"><div><span class="tag gg">GG-01</span><b>Good Green <br>Daily Functional <br>Drink</b><small>Abacaxi com hortelã · 30 doses</small><a class="btn btn-neon btn-sm" href="produto.html">Ver produto <span class="seta">→</span></a></div></div></div></section>
+
 <section class="secao"><div class="wrap"><div class="cabeca"><div><span class="tag">Como funciona</span><h2 class="h2">Três passos e pronto.</h2></div></div>
-<div class="cards-3"><div class="tile passo f-branco" style="min-height:340px"><span class="tag">01</span><span class="circ"><i data-ic="sacola"></i></span><div><h3>Escolha</h3><p>Assine o Good Green na página do produto.</p></div></div><div class="tile passo f-hortela" style="min-height:340px"><span class="tag">02</span><span class="circ"><i data-ic="frete"></i></span><div><h3>Receba todo mês</h3><p>O próximo pote chega antes do seu acabar.</p></div></div><div class="tile passo f-branco" style="min-height:340px"><span class="tag">03</span><span class="circ"><i data-ic="assinatura"></i></span><div><h3>Você no controle</h3><p>Pause, adie ou cancele pela sua conta.</p></div></div></div></div></section>
-<section class="secao f-verde"><div class="wrap"><div class="cabeca"><div><span class="tag claro">Vantagens</span><h2 class="h2">Por que assinar.</h2></div><a class="btn btn-neon" href="produto.html">Assinar agora <span class="seta">→</span></a></div>
+<div class="cards-3"><div class="tile passo f-branco" style="min-height:340px"><span class="tag">01</span><span class="circ"><i data-ic="sacola"></i></span><div><h3>Escolha</h3><p>Escolha o plano mensal ou o trimestral.</p></div></div><div class="tile passo f-hortela" style="min-height:340px"><span class="tag">02</span><span class="circ"><i data-ic="frete"></i></span><div><h3>Receba</h3><p>O próximo pedido chega antes do seu pote acabar.</p></div></div><div class="tile passo f-branco" style="min-height:340px"><span class="tag">03</span><span class="circ"><i data-ic="assinatura"></i></span><div><h3>Você no controle</h3><p>Pause, adie ou cancele pela sua conta.</p></div></div></div></div></section>
+
+<section class="secao" style="padding-top:0"><div class="wrap"><div class="cabeca"><div><span class="tag">Planos</span><h2 class="h2">Dois ritmos.<br>Escolha o seu.</h2></div><p class="mut" style="max-width:360px">Cada pote tem 225 g e rende 30 doses de 7,5 g, uma por dia.</p></div>
+<div class="bento duas-cards" style="grid-template-columns:1fr 1fr">
+  <div class="card f-branco plano"><span class="tag">Mensal</span><h3>1 pote por mês</h3><p class="preco">R$ — <small>por mês</small></p>
+    <ul class="lista-ic"><li><i data-ic="pote"></i>1 pote a cada 30 dias</li><li><i data-ic="doses"></i>30 doses por entrega</li><li><i data-ic="frete"></i>Frete: R$ —</li><li><i data-ic="presente"></i>Garrafa de vidro no 1º pedido</li></ul>
+    <button class="btn btn-escuro" data-add="gg">Assinar o mensal <span class="seta">→</span></button></div>
+  <div class="card f-verde plano"><span class="tag neon">Trimestral · Menor preço por dose</span><h3>3 potes a cada 90 dias</h3><p class="preco">R$ — <small>a cada 90 dias</small></p>
+    <ul class="lista-ic"><li><i data-ic="pote"></i>3 potes em uma entrega</li><li><i data-ic="doses"></i>90 doses por entrega</li><li><i data-ic="frete"></i>Frete grátis</li><li><i data-ic="check"></i>Menor preço por dose: R$ —</li><li><i data-ic="presente"></i>Garrafa de vidro no 1º pedido</li></ul>
+    <button class="btn btn-neon" data-add="gg">Assinar o trimestral <span class="seta">→</span></button></div>
+</div>
+<p class="mut" style="margin-top:28px;max-width:720px"><b>Qual escolher?</b> O mensal é bom para começar e conhecer o sabor, com um pote por vez. O trimestral é para quem já tem a dose na rotina: uma entrega a cada 90 dias, frete grátis e o menor preço por dose. Dá para trocar de plano depois, pela sua conta.</p></div></section>
+
+<section class="secao f-claro"><div class="wrap duas-col">
+  <div class="foto"><img src="assets/img/kit-pote-garrafa.jpg" alt="Pote Good Green e garrafa de vidro" loading="lazy" decoding="async"></div>
+  <div><span class="tag" style="color:var(--verde)">Kit de boas-vindas</span><h2 class="h2" style="margin:14px 0 18px">O primeiro pedido<br>vem com a garrafa.</h2>
+    <p class="mut" style="margin-bottom:24px">Em qualquer plano, o primeiro pedido da assinatura chega com a garrafa de vidro de brinde. Prepare a dose nela e leve com você.</p>
+    <ul class="lista-ic"><li><i data-ic="pote"></i>Good Green, sabor abacaxi com hortelã</li><li><i data-ic="garrafa"></i>Garrafa de vidro com tampa de inox</li><li><i data-ic="doses"></i>30 doses de 7,5 g por pote</li></ul>
+    <button class="btn btn-escuro" data-add="gg">Assinar e ganhar o kit <span class="seta">→</span></button></div>
+</div></section>
+
+<section class="secao f-verde"><div class="wrap"><div class="cabeca"><div><span class="tag neon">Sem amarras</span><h2 class="h2">O que você controla.</h2></div><p style="opacity:.8;max-width:340px">Tudo pela sua conta, sem ligar e sem pedir autorização.</p></div>
 <div class="cards-4 vant">
-  <div class="vantagem f-verde2"><b>Preço de assinante</b><p>R$ — por mês (a definir)</p></div>
-  <div class="vantagem f-verde2"><b>Brinde no 1º pedido</b><p>Kit de boas-vindas: pote e garrafa de vidro</p></div>
-  <div class="vantagem f-verde2"><b>Sem fidelidade</b><p>Cancele quando quiser</p></div>
-  <div class="vantagem f-verde2"><b>Frete</b><p>Condição a definir</p></div>
+  <div class="vantagem f-verde2"><b>Pausar</b><p>Viajou ou ainda tem pote? Pause os envios e retome quando quiser.</p></div>
+  <div class="vantagem f-verde2"><b>Adiar</b><p>Empurre a próxima entrega para uma data que combine com você.</p></div>
+  <div class="vantagem f-verde2"><b>Trocar endereço</b><p>Mude o endereço de entrega antes do próximo envio.</p></div>
+  <div class="vantagem f-verde2"><b>Cancelar sem multa</b><p>Sem fidelidade e sem taxa de cancelamento.</p></div>
 </div></div></section>
+
+<section class="secao"><div class="wrap duas-col" style="align-items:start">
+  <div><span class="tag">Dúvidas</span><h2 class="h2" style="margin:14px 0 18px">Perguntas sobre<br>a assinatura.</h2><p class="mut">Outras dúvidas sobre o produto estão na página dele.</p></div>
+  <div class="acc">
+    <div class="acc-item aberto"><button>Qual o prazo de entrega?<span class="mm">+</span></button><div class="acc-corpo"><div><p>O prazo aparece no checkout, de acordo com o seu CEP. Nas entregas seguintes, o pedido sai antes do seu pote acabar.</p></div></div></div>
+    <div class="acc-item"><button>Quanto custa o frete?<span class="mm">+</span></button><div class="acc-corpo"><div><p>No plano trimestral, o frete é grátis. No mensal, o valor é de R$ — e aparece antes de você confirmar.</p></div></div></div>
+    <div class="acc-item"><button>Posso pausar a assinatura?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Pode. Pause pela sua conta antes da próxima cobrança e retome quando quiser. Enquanto estiver pausada, nada é cobrado e nada é enviado.</p></div></div></div>
+    <div class="acc-item"><button>Como cancelo?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Pela sua conta, a qualquer momento. Não há multa nem fidelidade.</p></div></div></div>
+    <div class="acc-item"><button>Posso trocar de plano?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Pode trocar entre mensal e trimestral pela sua conta. A mudança vale a partir do próximo envio.</p></div></div></div>
+    <div class="acc-item"><button>O que vem no primeiro pedido?<span class="mm">+</span></button><div class="acc-corpo"><div><p>O pote ou os potes do seu plano e o kit de boas-vindas, com a garrafa de vidro de brinde.</p></div></div></div>
+    <div class="acc-item"><button>Como funciona o pagamento?<span class="mm">+</span></button><div class="acc-corpo"><div><p>A cobrança é automática a cada ciclo, no cartão cadastrado. Você vê a data da próxima cobrança na sua conta.</p></div></div></div>
+    <div class="acc-item"><button>Ganho uma garrafa a cada pedido?<span class="mm">+</span></button><div class="acc-corpo"><div><p>Não. A garrafa vem uma vez, no primeiro pedido da assinatura. Para ter outra, ela está à venda na loja.</p></div></div></div>
+  </div>
+</div></section>
+
 <div data-cta="Assine e receba todo mês."></div>
 <script src="assets/js/sprite.js?v=202610231745"></script>
 <script src="assets/js/site.js?v=202610231745"></script>
