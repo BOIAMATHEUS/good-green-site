@@ -138,7 +138,7 @@ body[data-lp] .nav{justify-content:space-between}
 
 /* vídeos (estrutura) */
 .lp-videos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.lp-videos figure{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:9/16;background:var(--linha)}
+.lp-videos figure{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:9/16;background:var(--petroleo)}
 .lp-videos img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
 .lp-videos .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:32px;display:grid;place-items:center;background:rgba(255,255,255,.18);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.3);color:#fff}
 .lp-videos figcaption{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;font-size:16px;font-weight:500;text-shadow:0 2px 10px rgba(0,0,0,.4)}
@@ -176,7 +176,7 @@ body[data-lp] .nav{justify-content:space-between}
 .lp-doses b{display:block;font-weight:500;font-size:16px}
 .lp-doses span{font-family:var(--mono);font-size:12px;color:var(--mut)}
 .lp-momentos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.lp-momentos figure{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/5;background:var(--linha)}
+.lp-momentos figure{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/5;background:var(--petroleo)}
 .lp-momentos img{width:100%;height:100%;object-fit:cover}
 .lp-momentos figcaption{position:absolute;left:16px;right:16px;bottom:16px;color:#fff;font-weight:500;font-size:17px;text-shadow:0 2px 10px rgba(0,0,0,.45)}
 .lp-oferta-caixa{border:2px dashed var(--verde);border-radius:var(--r-lg);padding:48px;display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:center;background:#fff}
@@ -245,7 +245,7 @@ body[data-lp] .nav{justify-content:space-between}
 .rk-tabela .prod img{width:56px;height:70px;object-fit:cover;border-radius:10px;flex:none}
 .rk-tabela .prod img.blur{filter:blur(4px);opacity:.9}
 .rk-tabela .sim{color:#167A2E;font-weight:500}
-.rk-tabela .nao{color:#B23A30;font-weight:500}
+.rk-tabela .nao{color:#B23A30;font-weight:500;opacity:1}
 .rk-tabela .meh{color:#8A5A12;font-weight:500}
 .rk-nota{font-size:13px;color:var(--mut);margin-top:-40px;margin-bottom:56px}
 .rk-card{border:1.5px solid var(--linha);border-radius:var(--r-lg);padding:40px;display:grid;grid-template-columns:300px 1fr;gap:40px;background:#fff;margin-bottom:20px;align-items:start}
@@ -264,8 +264,10 @@ body[data-lp] .nav{justify-content:space-between}
 .rk-card ul.menos li::before{background:var(--linha)}
 .rk-card .btn{margin-top:26px}
 .rk-meses{display:grid;gap:16px;margin:32px 0}
-.rk-meses div{border-left:3px solid var(--neon);padding:4px 0 4px 22px}
-.rk-meses b{display:block;font-weight:500;font-size:18px;margin-bottom:8px}
+.rk-meses div{padding:0 0 18px;border-bottom:1px solid var(--linha)}
+.rk-meses div:last-child{border-bottom:0;padding-bottom:0}
+.rk-meses b{display:flex;align-items:center;gap:10px;font-weight:500;font-size:18px;margin-bottom:8px}
+.rk-meses b::before{content:"";width:10px;height:10px;border-radius:5px;background:var(--neon);flex:none}
 .rk-meses p{font-size:16px;color:var(--mut);margin:0;line-height:1.5}
 
 .rk-kits{grid-template-columns:1fr 1fr;max-width:900px;margin:0 auto}
