@@ -32,7 +32,7 @@
     ['Ingredientes', 'Ciência', 'ingredientes.html', 'desktop-1440-rectangle.jpg'],
     ['Intestino e microbioma', 'Ciência', 'intestino.html', 'ciencia-cloroplasto.jpg'],
     ['Origem e qualidade', 'Ciência', 'feito-no-brasil.html', 'mapa-brasil-satelite.jpg'],
-    ['Como ler a tabela nutricional', 'Ciência', 'ingredientes.html#vitaminas', 'ciencia-clorofila.jpg'],
+    ['Como ler a tabela nutricional', 'Ciência', 'como-ler-tabela.html', 'ciencia-clorofila.jpg'],
     ['Como montar uma rotina de verdes', 'Artigo', 'artigo.html', 'banner-pedra-folhas.jpg'],
     ['Receitas com Good Green', 'Explorar', 'receitas.html', 'menu-explorar-aberto-miniatura-2066.jpg'],
     ['Explorar', 'Artigos', 'explorar.html', 'menu-explorar-aberto-miniatura.jpg'],
@@ -58,13 +58,13 @@
       ${linha('menu-ciencia-aberto-miniatura.jpg', 'Intestino e microbioma', 'Fibras e ingredientes vegetais na rotina', 'intestino.html')}
       ${linha('menu-ciencia-aberto-miniatura-d34f.jpg', 'Origem e qualidade', 'Feito no Brasil: fabricação, lote e conservação', 'feito-no-brasil.html')}
       <div class="m-sep"></div><span class="tag">Referência</span>
-      <a class="m-ref" href="ingredientes.html#vitaminas">Vitaminas do complexo B</a><a class="m-ref" href="ingredientes.html#vitaminas">Vitamina C e zinco</a><a class="m-ref" href="ingredientes.html#vitaminas">Cafeína do guaraná</a><a class="m-ref" href="intestino.html">Fibras e polidextrose</a><a class="m-ref" href="ingredientes.html#vitaminas">Tabela nutricional</a>`,
+      <a class="m-ref" href="como-ler-tabela.html">Vitaminas do complexo B</a><a class="m-ref" href="como-ler-tabela.html">Vitamina C e zinco</a><a class="m-ref" href="como-ler-tabela.html">Cafeína do guaraná</a><a class="m-ref" href="intestino.html">Fibras e polidextrose</a><a class="m-ref" href="como-ler-tabela.html">Tabela nutricional</a>`,
     explorar: `${linha('menu-explorar-aberto-miniatura.jpg', 'Rotina verde', 'Guias para encaixar seus verdes no dia', 'explorar.html')}
       ${linha('menu-explorar-aberto-miniatura-2066.jpg', 'Receitas', 'Drinks e smoothies com Good Green', 'receitas.html')}
       <div class="m-sep"></div><span class="tag">Artigos em destaque</span>
       ${linha('menu-loja-aberto-destaque.jpg', 'Como montar uma rotina de verdes', '6 min de leitura', 'artigo.html')}
       ${linha('menu-ciencia-aberto-miniatura.jpg', 'O que é o microbioma intestinal', '8 min de leitura', 'intestino.html')}
-      ${linha('menu-ciencia-aberto-miniatura-27f7.jpg', 'Como ler a tabela nutricional', '5 min de leitura', 'ingredientes.html#vitaminas')}
+      ${linha('menu-ciencia-aberto-miniatura-27f7.jpg', 'Como ler a tabela nutricional', '5 min de leitura', 'como-ler-tabela.html')}
       <a class="m-ref" href="explorar.html" style="font-weight:500;margin-top:8px">Todos os artigos  →</a>`
   };
   const topo = `<header class="topo" id="topo">
@@ -91,7 +91,7 @@
     <div class="rodape-topo">
       <div><h4>Receba novidades do lançamento.</h4><form class="form-linha" data-form><input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required><button class="btn btn-neon">Quero saber</button></form><p class="ok-msg" style="background:var(--verde2);margin-top:12px">Pronto, você está na lista.</p></div>
       <div><span class="tag">Loja</span><ul><li><a href="produto.html">Good Green GG-01</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="loja.html">Kits</a></li></ul></div>
-      <div><span class="tag">Ciência</span><ul><li><a href="ingredientes.html">Ingredientes</a></li><li><a href="intestino.html">Intestino</a></li><li><a href="ingredientes.html#vitaminas">Como ler o rótulo</a></li></ul></div>
+      <div><span class="tag">Ciência</span><ul><li><a href="ingredientes.html">Ingredientes</a></li><li><a href="intestino.html">Intestino</a></li><li><a href="como-ler-tabela.html">Como ler o rótulo</a></li></ul></div>
       <div><span class="tag">Ajuda</span><ul><li><a href="index.html#faq">Perguntas frequentes</a></li><li><a href="#" data-abre="lista">Contato</a></li><li><a href="#" data-abre="lista">Trocas e devoluções</a></li></ul></div>
     </div>
     <p class="legal">Este produto não é um medicamento. Não exceder a recomendação diária de consumo indicada na embalagem.</p>
