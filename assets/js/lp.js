@@ -124,13 +124,13 @@
       if (/Nenhuma|^Uma|Não faço/.test(verdes)) lista.push('verdes');
       if (!lista.length) lista.push('pratico');
       const DADO = {
-        estufada: ['15 a 30%', 'menos risco de infarto, AVC, diabetes tipo 2 e câncer de intestino em quem come mais fibra. O ideal é de 25 a 29 g por dia.', 'Revisão de 185 estudos encomendada pela OMS. The Lancet, 2019.'],
+        estufada: ['18 a 43%', 'mais risco de infarto, AVC, diabetes tipo 2 e câncer de intestino em quem come pouca fibra, comparado com quem come mais. O ideal é de 25 a 29 g por dia.', 'Revisão de 185 estudos encomendada pela OMS. The Lancet, 2019.'],
         intestino: ['36,8%', 'das mulheres adultas têm intestino preso, 2,5 vezes mais que os homens.', 'Estudo populacional em Pelotas (RS). Cadernos de Saúde Pública, 2010.'],
         banheiro: ['36,8%', 'das mulheres adultas têm intestino preso, 2,5 vezes mais que os homens.', 'Estudo populacional em Pelotas (RS). Cadernos de Saúde Pública, 2010.'],
         tetinha: ['1 em 5', 'adultos nas capitais brasileiras come frutas e hortaliças na quantidade recomendada.', 'Vigitel, Ministério da Saúde, 2008 a 2023.'],
         cansaco: ['10 a 19%', 'dos adultos acima de 60 anos têm deficiência de vitamina B12, e a carência é mais comum em mulheres.', 'Revisão internacional. International Journal of Molecular Sciences, 2022.'],
         imunidade: ['17%', 'da população mundial corre risco de ingerir zinco de menos, mineral essencial para a imunidade.', 'Wessells e Brown. PLOS One, 2012.'],
-        verdes: ['33%', 'menos risco de AVC e 24% menos de infarto em quem come 800 g de frutas e verduras por dia, contra quem quase não come.', 'Meta-análise de 95 estudos. International Journal of Epidemiology, 2017.'],
+        verdes: ['49%', 'mais risco de AVC e 32% mais de infarto em quem quase não come frutas e verduras, comparado com quem come 800 g por dia.', 'Meta-análise de 95 estudos. International Journal of Epidemiology, 2017.'],
         pratico: ['1 em 5', 'adultos nas capitais brasileiras come frutas e hortaliças na quantidade recomendada.', 'Vigitel, Ministério da Saúde, 2008 a 2023.']
       };
       const alvo = $('[data-qz-dores]'), alvoS = $('[data-qz-solucao]');
