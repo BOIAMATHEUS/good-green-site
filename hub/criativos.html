@@ -50,15 +50,15 @@ h1{font-weight:300;font-size:clamp(36px,5vw,56px);line-height:1.02;letter-spacin
 .feed .peca .leg{display:none}
 .feed .dia{margin-top:28px}
 /* visualizador */
-.vis{position:fixed;inset:0;z-index:10;display:grid;grid-template-rows:auto 1fr;background:rgba(9,24,25,.94);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.vis{position:fixed;inset:0;z-index:10;display:grid;grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);background:rgba(9,24,25,.98);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
 .vis.aberto{opacity:1;visibility:visible;transition:opacity .25s}
 .vis-barra{display:flex;align-items:center;gap:10px;padding:14px 18px;color:var(--branco)}
 .vis-barra b{font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vis-barra code{font-family:"GG Mono",monospace;font-size:12px;opacity:.65}
 .vis-barra a,.vis-barra button{color:var(--branco);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;transition:background-color .15s}
 .vis-barra a:hover,.vis-barra button:hover{background:rgba(255,255,255,.12)}
-.vis-palco{position:relative;display:grid;place-items:center;padding:0 64px 24px;min-height:0}
-.vis-palco img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);transform:scale(.97);transition:transform .35s var(--chega)}
+.vis-palco{position:relative;display:grid;place-items:center;padding:0 72px 24px;min-height:0;min-width:0;overflow:hidden}
+.vis-palco img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100vh - 96px);max-height:calc(100dvh - 96px);object-fit:contain;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);transform:scale(.97);transition:transform .35s var(--chega)}
 .vis.aberto .vis-palco img{transform:none}
 .seta{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--branco);font-size:22px;display:grid;place-items:center;transition:background-color .15s}
 .seta:hover{background:rgba(255,255,255,.22)}
@@ -85,7 +85,7 @@ h1{font-weight:300;font-size:clamp(36px,5vw,56px);line-height:1.02;letter-spacin
 </div>
 <div class="vis" id="vis" role="dialog" aria-modal="true" aria-label="Peça em tamanho real">
   <div class="vis-barra"><b id="vis-t"></b><code id="vis-c"></code><a id="vis-baixa" download>Baixar</a><button type="button" id="vis-fecha">Fechar</button></div>
-  <div class="vis-palco"><button class="seta ant" type="button" aria-label="Anterior">‹</button><img id="vis-img" alt=""><button class="seta prox" type="button" aria-label="Próxima">›</button></div>
+  <div class="vis-palco"><button class="seta ant" type="button" aria-label="Anterior">‹</button><img id="vis-img" src="../criativos/anuncios/AD01-p.jpg" alt=""><button class="seta prox" type="button" aria-label="Próxima">›</button></div>
 </div>
 <script src="criativos.js"></script>
 <script>
