@@ -123,6 +123,16 @@
       if (dor.some(x => /Resfriados|imunidade/i.test(x))) lista.push('imunidade');
       if (/Nenhuma|^Uma|Não faço/.test(verdes)) lista.push('verdes');
       if (!lista.length) lista.push('pratico');
+      const DADO = {
+        estufada: ['15 a 30%', 'menos risco de infarto, AVC, diabetes tipo 2 e câncer de intestino em quem come mais fibra. O ideal é de 25 a 29 g por dia.', 'Revisão de 185 estudos encomendada pela OMS. The Lancet, 2019.'],
+        intestino: ['36,8%', 'das mulheres adultas têm intestino preso, 2,5 vezes mais que os homens.', 'Estudo populacional em Pelotas (RS). Cadernos de Saúde Pública, 2010.'],
+        banheiro: ['36,8%', 'das mulheres adultas têm intestino preso, 2,5 vezes mais que os homens.', 'Estudo populacional em Pelotas (RS). Cadernos de Saúde Pública, 2010.'],
+        tetinha: ['1 em 5', 'adultos nas capitais brasileiras come frutas e hortaliças na quantidade recomendada.', 'Vigitel, Ministério da Saúde, 2008 a 2023.'],
+        cansaco: ['10 a 19%', 'dos adultos acima de 60 anos têm deficiência de vitamina B12, e a carência é mais comum em mulheres.', 'Revisão internacional. International Journal of Molecular Sciences, 2022.'],
+        imunidade: ['17%', 'da população mundial corre risco de ingerir zinco de menos, mineral essencial para a imunidade.', 'Wessells e Brown. PLOS One, 2012.'],
+        verdes: ['33%', 'menos risco de AVC e 24% menos de infarto em quem come 800 g de frutas e verduras por dia, contra quem quase não come.', 'Meta-análise de 95 estudos. International Journal of Epidemiology, 2017.'],
+        pratico: ['1 em 5', 'adultos nas capitais brasileiras come frutas e hortaliças na quantidade recomendada.', 'Vigitel, Ministério da Saúde, 2008 a 2023.']
+      };
       const alvo = $('[data-qz-dores]'), alvoS = $('[data-qz-solucao]');
       if (alvo) alvo.innerHTML = ''; if (alvoS) alvoS.innerHTML = '';
       const PARA = { estufada: 'Para a barriga estufada', intestino: 'Para o intestino preso', banheiro: 'Para o banheiro sem horário', tetinha: 'Para o inchaço no peito e na barriga', cansaco: 'Para o cansaço da tarde', imunidade: 'Para os resfriados', verdes: 'Para o verde que falta no prato', pratico: 'Para a falta de tempo' };
@@ -130,8 +140,9 @@
         const [img, tit, porque, sol, ben] = D[k];
         if (alvo) {
           const c = document.createElement('article'); c.className = 'qz-dor';
-          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p></div>';
+          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p><div class="dado"><strong></strong><span></span><small></small></div></div>';
           c.querySelector('h4').textContent = tit; c.querySelector('.porque').textContent = porque;
+          const [dn, dt, df] = DADO[k]; c.querySelector('.dado strong').textContent = dn; c.querySelector('.dado span').textContent = dt; c.querySelector('.dado small').textContent = df;
           alvo.appendChild(c);
         }
         if (alvoS) {

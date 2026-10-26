@@ -411,3 +411,9 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-sol ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .qz-sol li{font-size:13px;line-height:1;padding:7px 11px;border-radius:20px;background:rgba(255,255,255,.1);color:#fff}
 @media (max-width:600px){.qz-solucao{padding:22px}.qz-solucao .qz-sol-topo{grid-template-columns:1fr 76px}.qz-solucao h3{font-size:26px}}
+.qz-dor .dado{border-top:1px solid var(--linha);margin-top:12px;padding-top:12px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:baseline}
+.qz-dor .dado strong{grid-row:span 2;font-weight:300;font-size:30px;line-height:1;letter-spacing:-.02em;color:var(--petroleo);white-space:nowrap}
+.qz-dor .dado span{font-size:14px;line-height:1.4;color:var(--petroleo)}
+.qz-dor .dado small{font-size:11px;line-height:1.35;color:var(--mut)}
+@media (max-width:600px){.qz-dor .dado{grid-template-columns:1fr}.qz-dor .dado strong{grid-row:auto;font-size:26px;margin-bottom:4px}}
+@media (max-width:600px){.qz-dor{align-items:start}}
