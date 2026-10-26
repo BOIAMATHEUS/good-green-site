@@ -6,7 +6,7 @@
 <title>Good Green · Barriga estufada, intestino preso, cansaço? Responda e libere a garrafa de brinde</title>
 <meta name="description" content="Responda 4 perguntas sobre o que incomoda no seu dia e libere a garrafa de vidro de brinde no seu primeiro pedido de Good Green.">
 <link rel="stylesheet" href="assets/css/site.css?v=202610261800">
-<link rel="stylesheet" href="assets/css/lp.css?v=202610262110">
+<link rel="stylesheet" href="assets/css/lp.css?v=202610271100">
 </head>
 <body data-nav="claro" data-page="lp" data-lp="quiz">
 
@@ -89,9 +89,22 @@
       <p class="qz-privacidade">Você recebe o aviso do lançamento e as ofertas da marca por WhatsApp e e-mail. Sem spam, e dá para sair quando quiser.</p>
     </section>
 
+    <section class="qz-passo qz-carrega" data-qz-carrega>
+      <div class="anel"><svg viewBox="0 0 132 132" aria-hidden="true"><circle cx="66" cy="66" r="58"/><circle class="vai" cx="66" cy="66" r="58" data-qz-anel/></svg><b data-qz-pct>0%</b></div>
+      <h2 data-qz-carrega-titulo>Estamos montando o seu diagnóstico.</h2>
+      <p class="sub">Cruzando as suas 4 respostas com o que a ciência já sabe sobre fibras, verdes e rotina.</p>
+      <ul class="qz-etapas">
+        <li>Lendo as suas respostas</li>
+        <li>Cruzando com estudos sobre fibras e verdes</li>
+        <li>Montando o seu plano de 30 dias</li>
+        <li>Liberando a sua garrafa de vidro</li>
+      </ul>
+      <small class="qz-leva">Isso leva poucos segundos</small>
+    </section>
+
     <section class="qz-passo qz-resultado">
       <span class="qz-recompensa">Garrafa de vidro liberada</span>
-      <h2>Seu resultado.</h2>
+      <h2 data-qz-ola>Seu resultado está pronto.</h2>
       <div class="qz-nota">
         <div class="num"><b data-qz-nota>7,0</b><small>/10</small></div>
         <div class="txt"><span class="tag">Sua rotina verde hoje</span><div class="barra"><i data-qz-barra style="width:70%"></i></div><p data-qz-nota-texto>Tem base, mas os verdes entram pouco.</p></div>
@@ -108,10 +121,10 @@
       </div>
       <div class="qz-plano">
         <span class="tag">Seu plano de 30 dias</span>
-        <ol>
-          <li><b>Semana 1</b><span data-qz-p1>Uma medida de Good Green em 300 ml de água, uma vez ao dia, no horário que você já tem.</span></li>
-          <li><b>Semana 2</b><span data-qz-p2>Deixe o pote ao lado do copo e prepare na garrafa de vidro nos dias de sair cedo.</span></li>
-          <li><b>Semanas 3 e 4</b><span data-qz-p3>Mantenha a dose no mesmo horário e anote como foi a semana. Na assinatura, o próximo pote chega antes do seu acabar.</span></li>
+        <ol class="qz-linha">
+          <li><span class="ic"><i data-ic="medida"></i></span><div><em>7 dias</em><b>Semana 1</b><span data-qz-p1>Uma medida de Good Green em 300 ml de água, uma vez ao dia, no horário que você já tem.</span></div></li>
+          <li><span class="ic"><i data-ic="garrafa"></i></span><div><em>14 dias</em><b>Semana 2</b><span data-qz-p2>Deixe o pote ao lado do copo e prepare na garrafa de vidro nos dias de sair cedo.</span></div></li>
+          <li><span class="ic"><i data-ic="doses"></i></span><div><em>30 dias</em><b>Semanas 3 e 4</b><span data-qz-p3>Mantenha a dose no mesmo horário e anote como foi a semana. Na assinatura, o próximo pote chega antes do seu acabar.</span></div></li>
         </ol>
       </div>
       <div class="qz-porque">
@@ -138,8 +151,24 @@
   </div>
 </main>
 
+<div class="qz-modal" data-qz-modal hidden>
+  <div class="qz-modal-veu" data-qz-fecha></div>
+  <div class="qz-modal-caixa" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="qz-modal-titulo">
+    <span class="qz-modal-alca" aria-hidden="true"></span><button class="qz-modal-x" type="button" data-qz-fecha aria-label="Fechar">×</button>
+    <picture><source media="(max-width:600px)" srcset="assets/img/kit-3-potes-garrafa-popup.jpg"><img src="assets/img/kit-3-potes-garrafa.jpg" alt="Kit com 3 potes de Good Green e a garrafa de vidro"></picture>
+    <div class="qz-modal-txt">
+      <span class="tag neon">Presente do seu diagnóstico</span>
+      <h3 id="qz-modal-titulo" data-qz-modal-titulo>Você ganhou 10% OFF para começar sua rotina mais saudável.</h3>
+      <p class="longo">No kit trimestral: 3 potes de Good Green, a garrafa de vidro de brinde e frete grátis. O desconto já entra no carrinho.</p><p class="curto">3 potes + garrafa de vidro de brinde + frete grátis.</p>
+      <div class="qz-cupom"><div><small>Seu cupom</small><b>ROTINA10</b></div><div><small>Válido por</small><b data-qz-tempo>15:00</b></div></div>
+      <button class="btn btn-neon btn-bloco" type="button" data-qz-kit>Quero meu kit com 10% OFF <span class="seta">→</span></button>
+      <button class="qz-modal-nao" type="button" data-qz-fecha>Agora não, prefiro só 1 pote</button>
+    </div>
+  </div>
+</div>
+
 <script src="assets/js/sprite.js?v=202610231745"></script>
 <script src="assets/js/site.js?v=202610231745"></script>
-<script src="assets/js/lp.js?v=202610262130"></script>
+<script src="assets/js/lp.js?v=202610271100"></script>
 </body>
 </html>

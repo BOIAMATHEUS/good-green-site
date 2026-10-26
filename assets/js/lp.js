@@ -47,11 +47,15 @@
     const passos = $$('.qz-passo'), prog = $('.qz-prog i'), num = $('.qz-num');
     const resp = {};
     let i = 0;
+    const contaveis = passos.filter(p => !p.matches('.qz-carrega'));
     const mostra = n => {
+      const antes = i;
       i = Math.max(0, Math.min(passos.length - 1, n));
-      passos.forEach((p, k) => p.classList.toggle('on', k === i));
-      prog.style.width = ((i + 1) / passos.length * 100) + '%';
-      num.textContent = (i + 1) + ' / ' + passos.length;
+      const volta = i < antes;
+      passos.forEach((p, k) => { p.classList.toggle('on', k === i); p.classList.toggle('de-volta', k === i && volta); });
+      const pos = contaveis.indexOf(passos[i]), q = pos < 0 ? contaveis.indexOf(passos[i + 1]) : pos;
+      prog.style.width = ((q + 1) / contaveis.length * 100) + '%';
+      num.textContent = (q + 1) + ' / ' + contaveis.length;
       const p = passos[i], ok = p.querySelector('[data-prox]');
       if (ok && p.dataset.escolha) ok.disabled = !p.querySelector('.qz-opcao.on');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -153,8 +157,64 @@
           alvoS.appendChild(c);
         }
       });
-      mostra(i + 1);
+      /* tela de carregamento com o primeiro nome, depois o resultado */
+      const nome = ((form.nome && form.nome.value) || '').trim().split(/\s+/)[0];
+      const Nome = nome ? nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase() : '';
+      const ola = $('[data-qz-ola]'), ct = $('[data-qz-carrega-titulo]'), mt = $('[data-qz-modal-titulo]');
+      if (Nome) {
+        if (ola) ola.textContent = Nome + ', seu resultado está pronto.';
+        if (ct) ct.textContent = Nome + ', estamos montando o seu diagnóstico.';
+        if (mt) mt.textContent = Nome + ', você ganhou 10% OFF para começar sua rotina mais saudável.';
+      }
+      const carr = $('[data-qz-carrega]');
+      const vaiResultado = () => { mostra(passos.indexOf($('.qz-resultado'))); ligaModal(); };
+      if (!carr || matchMedia('(prefers-reduced-motion: reduce)').matches) { vaiResultado(); return; }
+      mostra(passos.indexOf(carr));
+      const anel = $('[data-qz-anel]'), pct = $('[data-qz-pct]'), etapas = carr.querySelectorAll('.qz-etapas li');
+      etapas.forEach(li => li.className = '');
+      const DUR = 4200, t0 = Date.now();
+      const tique = setInterval(() => {
+        const k = Math.min(1, (Date.now() - t0) / DUR), e = 1 - Math.pow(1 - k, 2.2);
+        if (anel) anel.style.strokeDashoffset = (364.4 * (1 - e)).toFixed(1);
+        if (pct) pct.textContent = Math.round(e * 100) + '%';
+        etapas.forEach((li, n) => { const ini = n / etapas.length, fim = (n + 1) / etapas.length; li.className = e >= fim - 0.001 ? 'feito' : e >= ini ? 'agora' : ''; });
+        if (k >= 1) { clearInterval(tique); setTimeout(vaiResultado, 450); }
+      }, 40);
     }, true);
+
+    /* pop-up do kit com desconto, uma vez, quando a oferta do resultado aparece */
+    const modal = $('[data-qz-modal]');
+    let modalLigado = false, relogio;
+    const abreModal = () => {
+      if (!modal || !modal.hidden) return;
+      modal.hidden = false; void modal.offsetWidth; setTimeout(() => modal.classList.add('on'), 20);
+      document.documentElement.style.overflow = 'hidden';
+      let resta = 15 * 60; const tEl = $('[data-qz-tempo]');
+      clearInterval(relogio); relogio = setInterval(() => { resta = Math.max(0, resta - 1); if (tEl) tEl.textContent = String(Math.floor(resta / 60)).padStart(2, '0') + ':' + String(resta % 60).padStart(2, '0'); }, 1000);
+      const cx = modal.querySelector('.qz-modal-caixa'); if (cx) cx.focus({ preventScroll: true });
+    };
+    const fechaModal = () => {
+      if (!modal || modal.hidden) return;
+      modal.classList.remove('on'); document.documentElement.style.overflow = '';
+      setTimeout(() => { modal.hidden = true; }, 300); clearInterval(relogio);
+    };
+    const ligaModal = () => {
+      if (!modal || modalLigado) return; modalLigado = true;
+      const of = $('.qz-oferta'); let feito = false;
+      const vai = () => { if (feito) return; feito = true; abreModal(); };
+      if (of) new IntersectionObserver((es, ob) => es.forEach(x => { if (x.isIntersecting) { ob.disconnect(); setTimeout(vai, 600); } }), { threshold: 0.4 }).observe(of);
+      setTimeout(vai, 25000);
+    };
+    if (modal) {
+      modal.addEventListener('click', e => {
+        if (e.target.closest('[data-qz-fecha]')) fechaModal();
+        if (e.target.closest('[data-qz-kit]')) {
+          try { localStorage.setItem('gg_cupom', 'ROTINA10'); } catch (_) {}
+          fechaModal(); if (window.GG) { window.GG.setPlano('assinatura'); window.GG.adiciona('gg', 3); }
+        }
+      });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') fechaModal(); });
+    }
     mostra(0);
   }
 
