@@ -157,4 +157,20 @@
     }, true);
     mostra(0);
   }
+
+  /* grupo VIP: valida os 3 campos e manda para o grupo do WhatsApp */
+  const vip = document.querySelector('[data-vip-form]');
+  if (vip) {
+    const LINK_GRUPO = vip.dataset.grupo || '#';
+    vip.addEventListener('submit', e => {
+      e.preventDefault();
+      const ruim = [...vip.querySelectorAll('input')].find(c => !c.checkValidity()); if (ruim) { ruim.reportValidity(); return; }
+      const nome = (vip.nome.value || '').trim().split(' ')[0];
+      const ok = document.querySelector('[data-vip-ok]'), ola = document.querySelector('[data-vip-ola]'), link = document.querySelector('[data-vip-link]');
+      if (ola && nome) ola.textContent = 'Pronto, ' + nome + '. Seu lugar está garantido.';
+      if (link) link.href = LINK_GRUPO;
+      vip.hidden = true; if (ok) ok.hidden = false;
+      if (LINK_GRUPO !== '#') setTimeout(() => { location.href = LINK_GRUPO; }, 1500);
+    });
+  }
 })();

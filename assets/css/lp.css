@@ -417,3 +417,62 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-dor .dado small{font-size:11px;line-height:1.35;color:var(--mut)}
 @media (max-width:600px){.qz-dor .dado{grid-template-columns:1fr}.qz-dor .dado strong{grid-row:auto;font-size:26px;margin-bottom:4px}}
 @media (max-width:600px){.qz-dor{align-items:start}}
+/* LP grupo VIP */
+.vip-hero{display:grid;grid-template-columns:600px 1fr;gap:64px;align-items:center;padding:48px 0 72px}
+.vip-hero h1.lp-h{font-size:56px}
+.vip-hero .lp-p{margin:20px 0 28px}
+.vip-checks{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;margin-top:22px}
+.vip-checks li{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--petroleo)}
+.vip-checks .ok{width:22px;height:22px}
+.vip-foto{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;background:var(--linha)}
+.vip-foto img{width:100%;height:100%;object-fit:cover}
+.vip-foto .selo-gratis{right:18px;top:18px;width:112px;height:112px}
+.vip-form{background:#fff;border-radius:var(--r-md);padding:28px;box-shadow:0 24px 50px -30px rgba(15,46,47,.32)}
+.vip-form-topo{display:flex;gap:14px;align-items:center;margin-bottom:20px}
+.vip-form-topo b{display:block;font-weight:500;font-size:20px;color:var(--petroleo)}
+.vip-form-topo small{display:block;font-size:14px;color:var(--mut);margin-top:2px}
+.vip-form .qz-campos{margin-bottom:12px}
+.vip-nota{font-size:12px;line-height:1.5;color:var(--mut);margin-top:12px}
+.vip-ok b{display:block;font-weight:500;font-size:22px;color:var(--petroleo);margin-bottom:8px}
+.vip-ok p{font-size:15px;line-height:1.5;margin-bottom:18px}
+.vip-beneficios{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.vip-beneficios article{grid-column:span 2;background:#fff;border-radius:var(--r-md);overflow:hidden}
+.vip-beneficios article:nth-child(-n+2){grid-column:span 3}
+.vip-beneficios img{display:block;width:100%;height:240px;object-fit:cover}
+.vip-beneficios article:nth-child(-n+2) img{height:340px}
+.vip-beneficios div{padding:20px 22px 24px}
+.vip-beneficios h3{font-weight:500;font-size:19px;color:var(--petroleo);margin-bottom:6px}
+.vip-beneficios p{font-size:15px;line-height:1.5;color:var(--mut)}
+.vip-tabela{max-width:820px;margin:0 auto;border:1px solid var(--linha);border-radius:var(--r-md);overflow:hidden;width:100%;border-collapse:separate;border-spacing:0}
+.vip-tabela th,.vip-tabela td{padding:16px 14px;text-align:left;font-size:15px;line-height:1.4;color:var(--petroleo);border-top:1px solid var(--linha);vertical-align:middle}
+.vip-tabela thead th{background:var(--osso);border-top:0;font-weight:500}
+.vip-tabela tbody th{font-weight:500;width:300px}
+.vip-tabela .vip-sim{background:#E3F1DC}
+.vip-spoiler{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vip-spoiler figure{background:#fff;border-radius:var(--r-md);overflow:hidden}
+.vip-spoiler img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.vip-spoiler figcaption{padding:18px 20px 22px}
+.vip-spoiler b{display:block;font-weight:500;font-size:18px;color:var(--petroleo);margin-bottom:6px}
+.vip-spoiler span{display:block;font-size:15px;line-height:1.5;color:var(--mut)}
+.vip-spoiler em{display:block;font-style:normal;font-family:'Chivo Mono',monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--petroleo);margin-top:8px}
+.vip-como{display:grid;grid-template-columns:600px 1fr;gap:80px;align-items:center}
+.vip-como>img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg)}
+.vip-passos{list-style:none;counter-reset:p;display:grid;gap:28px;margin:28px 0 32px}
+.vip-passos li{counter-increment:p;border-top:1px solid rgba(255,255,255,.18);padding-top:20px;display:grid;grid-template-columns:40px 1fr;gap:4px 20px}
+.vip-passos li::before{content:counter(p);grid-row:span 2;font-weight:300;font-size:44px;line-height:1;color:var(--neon)}
+.vip-passos b{display:block;font-weight:500;font-size:19px}
+.vip-passos span{font-size:15px;line-height:1.5;opacity:.85}
+.vip-faq{max-width:760px}
+.vip-faq details{border-top:1px solid var(--linha);padding:18px 0}
+.vip-faq details:last-child{border-bottom:1px solid var(--linha)}
+.vip-faq summary{cursor:pointer;font-weight:500;font-size:17px;color:var(--petroleo);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.vip-faq summary::after{content:"+";font-weight:300;font-size:22px;line-height:1}
+.vip-faq details[open] summary::after{content:"−"}
+.vip-faq p{font-size:15px;line-height:1.55;color:var(--mut);margin-top:10px;max-width:62ch}
+.vip-fim{position:relative;min-height:620px;display:flex;align-items:center;background:var(--petroleo) url(../img/banner-pote-inclinado.jpg) center/cover no-repeat;color:#fff}
+.vip-fim .wrap{width:100%}
+.vip-fim h2{max-width:560px}
+.vip-fim p{max-width:480px;margin:18px 0 28px;opacity:.85}
+@media (max-width:1100px){.vip-hero,.vip-como{grid-template-columns:1fr 1fr;gap:40px}.vip-hero h1.lp-h{font-size:44px}}
+@media (max-width:900px){.vip-hero{grid-template-columns:1fr;gap:20px;padding:28px 0 48px}.vip-hero-txt{display:contents}.vip-hero-txt>.lp-eyebrow{order:1}.vip-hero-txt>h1{order:2}.vip-hero-txt>.lp-p{order:3;margin:0}.vip-form{order:4}.vip-checks{order:5;flex-direction:column;margin-top:0}.vip-foto{order:6}.vip-hero h1.lp-h{font-size:38px}.vip-beneficios,.vip-spoiler,.vip-como{grid-template-columns:1fr}.vip-beneficios article,.vip-beneficios article:nth-child(-n+2){grid-column:auto}.vip-beneficios img,.vip-beneficios article:nth-child(-n+2) img{height:auto;aspect-ratio:16/10}.vip-tabela th,.vip-tabela td{font-size:13px;padding:14px 10px}.vip-tabela tbody th{width:96px}.vip-fim{min-height:0;display:block;background:var(--petroleo)}.vip-fim::before{content:"";display:block;aspect-ratio:16/9;background:url(../img/banner-pote-inclinado.jpg) center/cover}.vip-fim .wrap{padding-top:32px;padding-bottom:56px}}
+@media (max-width:600px){.vip-form{padding:22px}.vip-foto{border-radius:20px}.vip-foto .selo-gratis{width:92px;height:92px;right:12px;top:12px}.vip-como>img{border-radius:20px}.vip-fim .btn{width:100%;justify-content:center}}
