@@ -345,37 +345,105 @@
     clearTimeout(el._t); el._t = setTimeout(() => { el.style.opacity = 0; el.style.transform = 'translateX(-50%) translateY(20px)'; }, 2600);
   }
 
-  /* pop-up de boas-vindas: home, 1 vez por sessão */
-  if (document.body.dataset.page === 'home' && !store.sget('bv')) {
-    let foi = false;
-    const mostra = () => { if (foi || aberta) return; foi = true; store.sset('bv'); abre('boas-vindas'); };
-    // a home abre limpa: o convite só aparece depois de a pessoa rolar metade da página ou passar 20 s nela
-    setTimeout(mostra, 20000);
-    addEventListener('scroll', () => { if (scrollY > (document.body.scrollHeight - innerHeight) * .5) mostra(); }, { passive: true });
+  const PAGINAS_ROLETA = ['home', 'produto', 'explorar', 'artigo', 'receitas', 'intestino', 'ingredientes', 'tabela', 'origem'];
+  if (PAGINAS_ROLETA.includes(document.body.dataset.page) && !store.get('roleta-feita', false)) {
+    const S = 520, R = 260, RI = 171.6, N = 8, A = 360 / N;
+    const pol = (r, g) => [R + r * Math.sin(g * Math.PI / 180), R - r * Math.cos(g * Math.PI / 180)];
+    const fatia = (r0, r1, g0, g1) => { const [a, b] = pol(r1, g0), [c, d] = pol(r1, g1), [e, f] = pol(r0, g1), [h, i] = pol(r0, g0); return `M${a} ${b}A${r1} ${r1} 0 0 1 ${c} ${d}L${e} ${f}A${r0} ${r0} 0 0 0 ${h} ${i}Z`; };
+    let marcas = '', rotulos = '', divisas = '';
+    for (let k = 0; k < 120; k++) { const g = k * 3, grande = k % 15 === 0, [x1, y1] = pol(R - 4, g), [x2, y2] = pol(R - (grande ? 17 : 11), g); marcas += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${grande ? 'g' : ''}"/>`; }
+    for (let i = 0; i < N; i++) { const g = i * A + A / 2, [x1, y1] = pol(RI, g), [x2, y2] = pol(R, g); divisas += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
+      rotulos += `<g transform="rotate(${i * A} ${R} ${R})" class="${i % 2 ? '' : 'p'}"><text x="${R}" y="${R - R * 0.85 + 16}">GARRAFA DE VIDRO</text><text x="${R}" y="${R - R * 0.85 + 33}" class="s">${i % 2 ? 'NO 1º PEDIDO' : 'GRÁTIS'}</text></g>`; }
+    const svg = `<svg viewBox="0 0 ${S} ${S}" aria-hidden="true"><path class="rol-acesa" d="${fatia(RI, R - 1, -A / 2, A / 2)}"/><g class="rol-disco"><g class="rol-marcas">${marcas}</g><g class="rol-divisas">${divisas}</g><g class="rol-rotulos">${rotulos}</g></g><circle class="rol-miolo" cx="${R}" cy="${R}" r="${RI}"/><circle class="rol-anel" cx="${R}" cy="${R}" r="${RI * 0.78}"/><image href="assets/img/logo-brancoNeon.svg" x="${R - 76}" y="${R - RI + 32}" width="152" height="20"/></svg>`;
+    let conf = ''; for (let i = 0; i < 26; i++) { const ang = (i / 26) * Math.PI * 2 + i, d = 26 + (i * 37 % 40); conf += `<i style="--x:${Math.round(Math.cos(ang) * d)}%;--y:${Math.round(Math.sin(ang) * d * .8)}%;--r:${(i * 53) % 180 - 90}deg;--d:${(i % 7) * 40}ms" class="c${i % 3}"></i>`; }
+    const el = document.createElement('div'); el.className = 'rol'; el.hidden = true;
+    el.innerHTML = `<div class="rol-veu" data-rol-fecha></div>
+      <div class="rol-caixa" role="dialog" aria-modal="true" aria-labelledby="rol-tit" tabindex="-1">
+        <span class="rol-alca" aria-hidden="true"></span>
+        <button class="rol-x" type="button" data-rol-fecha aria-label="Fechar">×</button>
+        <div class="rol-foto">
+          <img class="rol-img" src="assets/img/garrafa-casal.jpg" alt="">
+          <div class="rol-dial"><div class="rol-vidro"></div>${svg}<span class="rol-agulha" aria-hidden="true"></span></div>
+          <div class="rol-premio" aria-hidden="true"><div class="rol-confete">${conf}</div><span class="k">Você ganhou</span><b>Garrafa de vidro</b><img src="assets/img/garrafa-recorte.webp" alt=""></div>
+        </div>
+        <div class="rol-txt">
+          <div class="rol-etapa on" data-e="girar">
+            <span class="tag neon">Presente do 1º pedido</span>
+            <h3 id="rol-tit">Gire a roleta e ganhe um presente.</h3>
+            <p>Toda volta tem prêmio. Deixe seu contato, gire e use no seu primeiro pedido.</p>
+            <form data-rol-form novalidate><div class="qz-campos">
+              <input type="text" name="nome" placeholder="Seu nome" autocomplete="given-name" required>
+              <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" inputmode="tel" autocomplete="tel" pattern="[0-9()\\s+-]{10,}" required>
+              <input type="email" name="email" placeholder="Seu e-mail" autocomplete="email" required>
+            </div><button class="btn btn-neon btn-bloco" type="submit">Girar a roleta <span class="seta">→</span></button></form>
+            <small class="rol-nota">1 giro por pessoa</small>
+          </div>
+          <div class="rol-etapa" data-e="girando" aria-live="polite">
+            <span class="tag neon">Girando</span>
+            <h3 data-rol-ola>Boa sorte.</h3>
+            <p>A agulha para em alguns segundos.</p>
+            <span class="btn btn-bloco rol-espera">Girando...</span>
+          </div>
+          <div class="rol-etapa" data-e="premio" aria-live="polite">
+            <span class="tag neon">Você ganhou</span>
+            <h3>Garrafa de vidro grátis no seu 1º pedido.</h3>
+            <p>O presente já está guardado para você. O código também chegou no seu WhatsApp.</p>
+            <div class="qz-cupom"><div><small>Seu código</small><b>GARRAFA</b></div></div>
+            <a class="btn btn-neon btn-bloco" href="produto.html">Escolher meu plano <span class="seta">→</span></a>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(el);
+    const aba = document.createElement('button'); aba.type = 'button'; aba.className = 'rol-aba'; aba.hidden = true;
+    aba.innerHTML = `<img src="assets/img/garrafa-recorte.webp" alt=""><span><b>Garrafa grátis</b><small>no seu 1º pedido</small></span><span class="seta">→</span>`;
+    document.body.appendChild(aba);
+    const caixa = el.querySelector('.rol-caixa'), disco = el.querySelector('.rol-disco'), form = el.querySelector('[data-rol-form]');
+    const etapa = n => el.querySelectorAll('.rol-etapa').forEach(e => e.classList.toggle('on', e.dataset.e === n));
+    let aberto = false, girou = false, auto = false;
+    const abreRol = () => {
+      if (aberto || aberta) return; aberto = true; aba.hidden = true;
+      el.hidden = false; void el.offsetWidth; setTimeout(() => el.classList.add('on'), 20);
+      document.documentElement.style.overflow = 'hidden'; caixa.focus({ preventScroll: true });
+    };
+    const fechaRol = () => {
+      if (!aberto) return; aberto = false; el.classList.remove('on'); document.documentElement.style.overflow = '';
+      setTimeout(() => { el.hidden = true; }, 320);
+      if (!girou) { store.set('roleta-fechou', Date.now()); aba.hidden = false; }
+    };
+    el.addEventListener('click', e => { if (e.target.closest('[data-rol-fecha]')) fechaRol(); });
+    aba.addEventListener('click', abreRol);
+    addEventListener('keydown', e => { if (e.key === 'Escape' && aberto) fechaRol(); });
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if ([...form.querySelectorAll('input')].some(c => !c.checkValidity())) return;
+      const nome = (form.nome.value || '').trim().split(/\s+/)[0];
+      el.querySelector('[data-rol-ola]').textContent = nome ? 'Boa sorte, ' + nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase() + '.' : 'Boa sorte.';
+      etapa('girando'); girou = true; store.set('roleta-feita', true);
+      try { localStorage.setItem('gg_cupom', 'GARRAFA'); } catch (_) {}
+      const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const volta = 360 * 6 + (360 - Math.floor(Math.random() * N) * A);
+      disco.style.transitionDuration = calmo ? '0s' : '';
+      requestAnimationFrame(() => { disco.style.transform = `rotate(${volta}deg)`; });
+      let feito = false; const fim = () => { if (feito) return; feito = true; el.classList.add('ganhou'); etapa('premio'); };
+      disco.addEventListener('transitionend', fim, { once: true }); setTimeout(fim, calmo ? 300 : 4800);
+    });
+    const fechouEm = store.get('roleta-fechou', 0), recente = Date.now() - fechouEm < 3 * 864e5;
+    if (recente) aba.hidden = false;
+    else if (!store.sget('roleta-vista')) {
+      const dispara = () => { if (auto) return; auto = true; store.sset('roleta-vista'); abreRol(); };
+      let tempo = false, rolou = false;
+      const confere = () => { if (tempo && rolou) dispara(); };
+      setTimeout(() => { tempo = true; confere(); }, 10000);
+      let ultimo = scrollY;
+      addEventListener('scroll', () => {
+        const alt = document.documentElement.scrollHeight - innerHeight;
+        if (alt > 0 && scrollY / alt >= .25) { rolou = true; confere(); }
+        if (ultimo - scrollY > 120 && scrollY / Math.max(alt, 1) > .4 && innerWidth < 900) dispara();
+        ultimo = scrollY;
+      }, { passive: true });
+      document.addEventListener('mouseout', e => { if (!e.relatedTarget && e.clientY <= 0) dispara(); });
+    }
   }
-
-  /* entrada suave ao rolar */
-  const alvos = $$('.cabeca, .tile, .card, .vantagem, .receita, .acessorio, .painel-vidro, .tabela, .s-faq .acc, .faixa, .faixa-benef, .avaliacoes, .artigo p, .nutri tr, .lp-relatos article, .vip-beneficios article, .vip-spoiler figure, .lp-aval article, .lp-ingr article, .vip-passos li');
-  alvos.forEach(el => {
-    el.classList.add('surge');
-    const irmaos = [...el.parentElement.children].filter(c => alvos.includes(c));
-    el.style.transitionDelay = Math.min(irmaos.indexOf(el), 5) * 70 + 'ms';
-  });
-  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visto'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  alvos.forEach(el => io.observe(el));
-
-  /* página: seleção de plano e quantidade */
-  $$('[data-opcoes]').forEach(g => g.addEventListener('click', e => {
-    const o = e.target.closest('[data-op]'); if (!o) return;
-    g.querySelectorAll('[data-op]').forEach(x => x.classList.toggle('on', x === o)); plano = o.dataset.op; salva();
-  }));
-  $$('[data-qtd]').forEach(q => {
-    const s = q.querySelector('span');
-    q.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const n = Math.max(1, +s.textContent + +b.dataset.d); if (n === +s.textContent) { q.classList.remove('treme'); void q.offsetWidth; q.classList.add('treme'); return; } s.textContent = n; s.classList.remove('sobe', 'desce'); void s.offsetWidth; s.classList.add(+b.dataset.d > 0 ? 'sobe' : 'desce'); });
-  });
-  $$('[data-add-qtd]').forEach(b => b.addEventListener('click', () => { const q = +document.querySelector('[data-qtd] span').textContent; adiciona('gg', q); }));
-
-
 
   /* pop-up de boas-vindas em 2 passos */
   const bv = $('[data-bv]');
