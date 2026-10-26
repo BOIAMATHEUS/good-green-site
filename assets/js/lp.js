@@ -144,7 +144,7 @@
         const [img, tit, porque, sol, ben] = D[k];
         if (alvo) {
           const c = document.createElement('article'); c.className = 'qz-dor';
-          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p><div class="dado"><strong></strong><span></span><small></small></div></div>';
+          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg?v=2" alt="" loading="lazy"><div><h4></h4><p class="porque"></p><div class="dado"><strong></strong><span></span><small></small></div></div>';
           c.querySelector('h4').textContent = tit; c.querySelector('.porque').textContent = porque;
           const [dn, dt, df] = DADO[k]; c.querySelector('.dado strong').textContent = dn; c.querySelector('.dado span').textContent = dt; c.querySelector('.dado small').textContent = df;
           alvo.appendChild(c);
