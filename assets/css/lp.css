@@ -390,7 +390,7 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-diag{margin:0 0 16px}
 .qz-diag h3{font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--petroleo);margin:8px 0 6px}
 .qz-diag .sub{margin-bottom:14px}
-.qz-dor{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:start;background:#fff;border-radius:var(--r-md);padding:18px;margin-bottom:12px}
+.qz-dor{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center;background:#fff;border-radius:var(--r-md);padding:18px;margin-bottom:12px}
 .qz-dor img{width:100%;aspect-ratio:4/5;object-fit:contain;background:var(--osso);border-radius:12px}
 .qz-dor h4{font-weight:500;font-size:18px;line-height:1.25;color:var(--petroleo);margin-bottom:6px}
 .qz-dor .porque{font-size:15px;line-height:1.5;color:var(--mut);margin:0 0 12px}
@@ -399,3 +399,15 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-dor ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .qz-dor li{font-size:13px;line-height:1;padding:7px 11px;border-radius:20px;background:#E3F1DC;color:var(--petroleo)}
 @media (max-width:600px){.qz-dor{grid-template-columns:88px 1fr;gap:14px;padding:14px}}
+.qz-solucao{background:var(--petroleo);color:#fff;border-radius:var(--r-md);padding:28px;margin:0 0 16px}
+.qz-solucao .qz-sol-topo{display:grid;grid-template-columns:1fr 104px;gap:16px;align-items:center;margin-bottom:12px}
+.qz-solucao .qz-sol-topo img{width:100%;height:auto}
+.qz-solucao h3{font-weight:300;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+.qz-solucao .foco{display:block;font-weight:500;font-size:16px;line-height:1.35;color:var(--neon)}
+.qz-solucao .sub{color:rgba(255,255,255,.82);margin-bottom:18px}
+.qz-sol{padding:16px 0;border-top:1px solid rgba(255,255,255,.14)}
+.qz-sol h4{font-weight:500;font-size:17px;color:var(--neon);margin-bottom:6px}
+.qz-sol p{font-size:15px;line-height:1.5;margin:0 0 12px;color:#fff}
+.qz-sol ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.qz-sol li{font-size:13px;line-height:1;padding:7px 11px;border-radius:20px;background:rgba(255,255,255,.1);color:#fff}
+@media (max-width:600px){.qz-solucao{padding:22px}.qz-solucao .qz-sol-topo{grid-template-columns:1fr 76px}.qz-solucao h3{font-size:26px}}

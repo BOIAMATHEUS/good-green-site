@@ -123,18 +123,25 @@
       if (dor.some(x => /Resfriados|imunidade/i.test(x))) lista.push('imunidade');
       if (/Nenhuma|^Uma|Não faço/.test(verdes)) lista.push('verdes');
       if (!lista.length) lista.push('pratico');
-      const alvo = $('[data-qz-dores]');
-      if (alvo) {
-        alvo.innerHTML = '';
-        lista.slice(0, 4).forEach(k => {
-          const [img, tit, porque, sol, ben] = D[k];
+      const alvo = $('[data-qz-dores]'), alvoS = $('[data-qz-solucao]');
+      if (alvo) alvo.innerHTML = ''; if (alvoS) alvoS.innerHTML = '';
+      const PARA = { estufada: 'Para a barriga estufada', intestino: 'Para o intestino preso', banheiro: 'Para o banheiro sem horário', tetinha: 'Para o inchaço no peito e na barriga', cansaco: 'Para o cansaço da tarde', imunidade: 'Para os resfriados', verdes: 'Para o verde que falta no prato', pratico: 'Para a falta de tempo' };
+      lista.slice(0, 4).forEach(k => {
+        const [img, tit, porque, sol, ben] = D[k];
+        if (alvo) {
           const c = document.createElement('article'); c.className = 'qz-dor';
-          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p><b>Como a Good Green entra</b><p class="sol"></p><ul></ul></div>';
-          c.querySelector('h4').textContent = tit; c.querySelector('.porque').textContent = porque; c.querySelector('.sol').textContent = sol;
-          ben.forEach(b => { const li = document.createElement('li'); li.textContent = b; c.querySelector('ul').appendChild(li); });
+          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p></div>';
+          c.querySelector('h4').textContent = tit; c.querySelector('.porque').textContent = porque;
           alvo.appendChild(c);
-        });
-      }
+        }
+        if (alvoS) {
+          const c = document.createElement('article'); c.className = 'qz-sol';
+          c.innerHTML = '<h4></h4><p></p><ul></ul>';
+          c.querySelector('h4').textContent = PARA[k]; c.querySelector('p').textContent = sol;
+          ben.forEach(x => { const li = document.createElement('li'); li.textContent = x; c.querySelector('ul').appendChild(li); });
+          alvoS.appendChild(c);
+        }
+      });
       mostra(i + 1);
     }, true);
     mostra(0);
