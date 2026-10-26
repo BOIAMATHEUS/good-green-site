@@ -103,6 +103,38 @@
       const p3 = 'Mantenha a dose no mesmo horário e anote como foi a semana. Na assinatura, o próximo pote chega antes do seu acabar, e a rotina não para.';
       const e1 = $('[data-qz-p1]'), e2 = $('[data-qz-p2]'), e3 = $('[data-qz-p3]');
       if (e1) e1.textContent = p1; if (e2) e2.textContent = p2; if (e3) e3.textContent = p3;
+      /* diagnóstico: dor, o que está por trás, solução e benefícios, com a imagem da resposta */
+      const D = {
+        estufada: ['qz-estufada', 'Barriga estufada depois das refeições', 'Refeição rápida, pouca fibra e pouca água ao longo do dia deixam a digestão pesada, e o inchaço aparece depois de comer.', 'Uma medida por dia traz fibras e ingredientes vegetais, como maçã, couve e gengibre, com 300 ml de água. Somado à água do dia, cria a rotina que faltava.', ['Fibras e ingredientes vegetais', '300 ml de água a mais', 'Baixo em calorias']],
+        intestino: ['qz-intestino', 'Intestino preso', 'Quando falta fibra e falta água, o intestino perde o ritmo e ir ao banheiro vira esforço.', 'Good Green junta fibras e ingredientes vegetais numa medida diária. Com comida de verdade e água, o seu plano de 30 dias foca no ritmo do intestino.', ['Fibras todo dia', 'Couve, maçã e beterraba', 'Zero lactose']],
+        banheiro: ['qz-intestino', 'Banheiro sem horário certo', 'Ir ao banheiro dia sim, dia não, ou só quando dá, costuma ser sinal de pouca fibra e pouca água na rotina.', 'A mesma medida, todo dia no mesmo horário, ajuda a criar o hábito. Fibras e ingredientes vegetais com 300 ml de água, sem pensar.', ['Mesmo horário todo dia', 'Fibras e vegetais', '300 ml de água']],
+        tetinha: ['qz-tetinha', 'Peito e barriga inchados', 'O inchaço costuma vir de refeições pesadas, sal em excesso, pouca água e pouca fibra no dia a dia.', 'Um copo verde, leve e baixo em calorias, entra no lugar do lanche pesado, com mais água na rotina e couve e espirulina na medida.', ['Baixo em calorias', 'Couve e espirulina', 'Mais água no dia']],
+        cansaco: ['qz-cansaco', 'Cansaço e sono depois do almoço', 'Almoço pesado, pouca água e vitaminas que faltam na rotina pesam na energia da tarde.', 'As vitaminas B2, B6 e B12 auxiliam no metabolismo energético, e a cafeína natural do guaraná auxilia no estado de alerta e na concentração.', ['Vitaminas B2, B6 e B12', '75 mg de cafeína do guaraná', 'Uma dose no meio da tarde']],
+        imunidade: ['qz-imunidade', 'Resfriados frequentes', 'Correria, sono curto e pouca fruta e verdura no prato deixam de fora vitaminas importantes.', 'Por porção, 45 mg de vitamina C e zinco, que auxiliam no funcionamento do sistema imune, numa bebida só, todo dia.', ['45 mg de vitamina C', 'Zinco', 'Uma medida de manhã']],
+        verdes: ['qz-verde', 'Pouco verde no prato', 'Couve, espinafre e outras folhas são o que menos entra na rotina de quem corre o dia inteiro.', 'Uma medida junta couve, espirulina, salsa, hortelã e outros ingredientes vegetais, pronta em 30 segundos.', ['Couve e espirulina', 'Pronto em 30 segundos', 'Sem liquidificador']],
+        pratico: ['qz-verde', 'Falta de tempo para o verde', 'A rotina corrida empurra o suco verde e a salada para depois, e o depois não chega.', 'Uma medida em 300 ml de água, em 30 segundos, com vitaminas, minerais e ingredientes vegetais numa bebida só.', ['Pronto em 30 segundos', 'Um pote no lugar de vários', 'Sabor abacaxi com hortelã']]
+      };
+      const lista = [];
+      if (dor.some(x => /estufada/i.test(x))) lista.push('estufada');
+      if (dor.some(x => /Intestino/i.test(x))) lista.push('intestino');
+      else if (/Dia sim|semana ou menos|Varia/.test(banheiro)) lista.push('banheiro');
+      if (dor.some(x => /tetinha/i.test(x))) lista.push('tetinha');
+      if (dor.some(x => /Cansaço/i.test(x))) lista.push('cansaco');
+      if (dor.some(x => /Resfriados|imunidade/i.test(x))) lista.push('imunidade');
+      if (/Nenhuma|^Uma|Não faço/.test(verdes)) lista.push('verdes');
+      if (!lista.length) lista.push('pratico');
+      const alvo = $('[data-qz-dores]');
+      if (alvo) {
+        alvo.innerHTML = '';
+        lista.slice(0, 4).forEach(k => {
+          const [img, tit, porque, sol, ben] = D[k];
+          const c = document.createElement('article'); c.className = 'qz-dor';
+          c.innerHTML = '<img src="assets/img/lp/' + img + '.jpg" alt="" loading="lazy"><div><h4></h4><p class="porque"></p><b>Como a Good Green entra</b><p class="sol"></p><ul></ul></div>';
+          c.querySelector('h4').textContent = tit; c.querySelector('.porque').textContent = porque; c.querySelector('.sol').textContent = sol;
+          ben.forEach(b => { const li = document.createElement('li'); li.textContent = b; c.querySelector('ul').appendChild(li); });
+          alvo.appendChild(c);
+        });
+      }
       mostra(i + 1);
     }, true);
     mostra(0);

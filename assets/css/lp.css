@@ -387,3 +387,15 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-entrega{list-style:none;display:grid;gap:12px;background:#fff;border-radius:var(--r-md);padding:20px 22px;margin:20px 0;font-size:16px;line-height:1.4}
 .qz-entrega li{display:flex;gap:10px;align-items:center}
 .qz-entrega .ok{flex:none}
+.qz-diag{margin:0 0 16px}
+.qz-diag h3{font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--petroleo);margin:8px 0 6px}
+.qz-diag .sub{margin-bottom:14px}
+.qz-dor{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:start;background:#fff;border-radius:var(--r-md);padding:18px;margin-bottom:12px}
+.qz-dor img{width:100%;aspect-ratio:4/5;object-fit:contain;background:var(--osso);border-radius:12px}
+.qz-dor h4{font-weight:500;font-size:18px;line-height:1.25;color:var(--petroleo);margin-bottom:6px}
+.qz-dor .porque{font-size:15px;line-height:1.5;color:var(--mut);margin:0 0 12px}
+.qz-dor b{display:block;font-weight:500;font-size:14px;color:var(--verde);margin-bottom:4px}
+.qz-dor .sol{font-size:15px;line-height:1.5;margin:0 0 12px}
+.qz-dor ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.qz-dor li{font-size:13px;line-height:1;padding:7px 11px;border-radius:20px;background:#E3F1DC;color:var(--petroleo)}
+@media (max-width:600px){.qz-dor{grid-template-columns:88px 1fr;gap:14px;padding:14px}}
