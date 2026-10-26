@@ -110,10 +110,11 @@ body[data-nav=claro] .mega{top:80px}
 .heroi .d1{margin-bottom:28px}
 .heroi .lead{max-width:560px;opacity:.92;margin-bottom:34px}
 .heroi .acoes{display:flex;gap:16px;flex-wrap:wrap}
-.cartao-sabor{position:absolute;right:40px;bottom:60px;z-index:2;width:300px;border-radius:var(--r-md);padding:20px;display:flex;gap:18px;align-items:center;transition:transform .3s var(--ease-out)}
+.cartao-sabor{position:absolute;right:43%;top:34%;z-index:2;width:300px;border-radius:var(--r-md);padding:20px;display:flex;gap:18px;align-items:center;transition:transform .3s var(--ease-out)}
 .cartao-sabor:hover{transform:translateY(-4px)}
 .cartao-sabor img{width:80px;height:80px;border-radius:14px;object-fit:cover}
 .cartao-sabor b{display:block;font-weight:500;font-size:19px;line-height:1.15;margin-top:6px}
+@media (max-width:1700px){.cartao-sabor{right:46%;top:16%}}
 
 /* herói interno */
 .heroi-int{position:relative;color:#fff;min-height:720px;overflow:hidden;background:var(--petroleo);display:flex;align-items:flex-end}
@@ -528,7 +529,7 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
   .heroi .d1{font-size:52px;margin-bottom:18px}
   .heroi .lead{font-size:16px;margin-bottom:26px}
   .heroi .acoes .btn{flex:1}
-  .cartao-sabor{left:20px;right:20px;bottom:24px;width:auto;padding:12px}
+  .cartao-sabor{left:20px;right:20px;top:auto;bottom:24px;width:auto;padding:12px}
   .cartao-sabor img{width:56px;height:56px}
   .secao{padding:72px 0} .secao.apertada{padding:56px 0}
   .cabeca{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:32px}
@@ -898,6 +899,7 @@ html{overflow-x:clip}
 .compartilha button:hover{background:var(--verde-claro)}
 .compartilha .ic{width:18px;height:18px}
 .art-img{min-height:560px}
+img[src*="banner-pedra-folhas"]{object-position:80% 50%}
 .art-corpo{display:grid;grid-template-columns:260px 680px;gap:88px;justify-content:start}
 .indice{position:sticky;top:110px;align-self:start;background:#fff;border-radius:20px;padding:24px;display:grid;gap:4px}
 .indice .tag{margin-bottom:12px}
