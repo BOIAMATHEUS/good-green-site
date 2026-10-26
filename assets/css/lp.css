@@ -384,3 +384,6 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-porque dt{font-weight:500;font-size:16px;line-height:1.35;color:var(--verde)}
 .qz-porque dd{font-size:15px;line-height:1.5;margin:0}
 @media (max-width:600px){.qz-porque dl div{grid-template-columns:1fr}}
+.qz-entrega{list-style:none;display:grid;gap:12px;background:#fff;border-radius:var(--r-md);padding:20px 22px;margin:20px 0;font-size:16px;line-height:1.4}
+.qz-entrega li{display:flex;gap:10px;align-items:center}
+.qz-entrega .ok{flex:none}

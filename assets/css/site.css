@@ -1104,3 +1104,17 @@ body[data-nav=claro] .logo .l-esc{display:block}
   .legenda-vidro.vidro{background:rgba(15,46,47,.66)}
   .card-produto.vidro{background:rgba(15,46,47,.55);box-shadow:0 18px 40px -20px rgba(0,0,0,.5)}
 }
+
+/* celular: enquadramento das fotos de produto pelo pote, nao pelo centro */
+@media (max-width:700px){
+  img[src*="pote-mesa-escura-copo"]{object-position:74% 50% !important}
+  img[src*="pote-cafe-da-manha"]{object-position:66% 55% !important}
+  img[src*="banner-agua-luz"]{object-position:80% 50% !important}
+  img[src*="banner-estudio-verde"]{object-position:78% 50% !important}
+  img[src*="banner-pedra-folhas"]{object-position:76% 50% !important}
+  img[src*="como-usar-"]{object-position:42% 62% !important}
+  img[src*="desktop-1440-tile-foto."]{object-position:45% 55% !important}
+  img[src*="kit-pote-garrafa"]{object-position:50% 60% !important}
+  img[src*="kit-3-potes-garrafa"]{object-position:50% 100% !important}
+  .heroi-int > img{object-position:50% 50% !important}
+}
