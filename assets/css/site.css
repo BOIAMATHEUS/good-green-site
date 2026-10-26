@@ -1244,16 +1244,21 @@ input[type=checkbox],input[type=radio]{accent-color:var(--verde)}
 .rol-premio::before{content:"";position:absolute;inset:0;background:rgba(15,46,47,.5);z-index:-1}
 .rol-premio .k{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--neon);text-shadow:0 2px 12px rgba(0,0,0,.45)}
 .rol-premio b{font-weight:300;font-size:40px;letter-spacing:-.02em;color:#fff;margin-top:4px;text-shadow:0 2px 12px rgba(0,0,0,.45)}
-.rol-premio img{width:82px;margin-top:14px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.5));transform:rotate(-9deg) translateY(40px) scale(.6);opacity:0;transition:transform .7s var(--chega) .15s,opacity .4s .15s}
-.rol-premio::after{content:"";position:absolute;left:50%;top:250px;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(rgba(120,246,36,.6),rgba(120,246,36,.18) 45%,rgba(120,246,36,0) 70%);z-index:-1;transform:scale(.4);opacity:0;transition:transform .8s var(--chega),opacity .5s}
+.rol-premio img{width:82px;margin-top:14px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.5));transform:rotate(-9deg);opacity:0;transform-origin:50% 85%}
+.rol-premio::after{content:"";position:absolute;left:50%;top:250px;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(rgba(120,246,36,.6),rgba(120,246,36,.18) 45%,rgba(120,246,36,0) 70%);z-index:-1;transform:scale(.4);opacity:0;transition:transform .8s var(--chega) .5s,opacity .5s .5s}
 .rol.ganhou .rol-premio{opacity:1}
-.rol.ganhou .rol-premio img{transform:rotate(-9deg);opacity:1}
+.rol.ganhou .rol-premio img{animation:garrafaPousa .9s cubic-bezier(.2,.75,.25,1) both}
+@keyframes garrafaPousa{0%{opacity:0;transform:translate(10%,55%) scale(4.2) rotate(-28deg);filter:blur(10px) drop-shadow(0 18px 24px rgba(0,0,0,.5))}25%{opacity:1}61%{transform:translate(0,2%) scale(.94) rotate(-5deg);filter:blur(0) drop-shadow(0 6px 8px rgba(0,0,0,.6))}78%{transform:translate(0,-3%) scale(1.03) rotate(-11deg)}100%{opacity:1;transform:rotate(-9deg);filter:drop-shadow(0 18px 24px rgba(0,0,0,.5))}}
+.rol-premio .k,.rol-premio b{opacity:0;transform:translateY(8px);transition:opacity .35s .62s,transform .45s var(--chega) .62s}
+.rol.ganhou .rol-premio .k,.rol.ganhou .rol-premio b{opacity:1;transform:none}
+.rol.ganhou .rol-dial{animation:dialPouso .35s .55s ease-out}
+@keyframes dialPouso{0%,100%{translate:0 0}35%{translate:0 5px}70%{translate:0 -2px}}
 .rol.ganhou .rol-premio::after{transform:none;opacity:1}
 .rol.ganhou .rol-dial{top:calc(100% - 230px)}
 .rol-confete{position:absolute;left:50%;top:250px;width:0;height:0}
 .rol-confete i{position:absolute;width:6px;height:12px;border-radius:2px;opacity:0;transform:translate(0,0) rotate(0)}
 .rol-confete i.c0{background:var(--neon)}.rol-confete i.c1{background:var(--abacaxi)}.rol-confete i.c2{background:#fff}
-.rol.ganhou .rol-confete i{animation:confete 1.4s var(--chega) var(--d) forwards}
+.rol.ganhou .rol-confete i{animation:confete 1.4s var(--chega) calc(var(--d) + .55s) forwards}
 @keyframes confete{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:1;transform:translate(calc(var(--x) * 4.3),calc(var(--y) * 5.6)) rotate(var(--r))}}
 .rol-txt{padding:44px 40px 40px;display:grid;align-content:center}
 .rol-etapa{display:none;gap:12px}
@@ -1293,11 +1298,11 @@ input[type=checkbox],input[type=radio]{accent-color:var(--verde)}
 .rol-premio{justify-items:center;padding:24px 0 0}
 .rol-premio b{font-size:30px;margin-top:2px}
 .rol-premio img{position:absolute;left:calc(50% - 30px);top:86px;width:42px;margin:0}
-.rol-premio::after{left:50%;top:136px;width:300px;height:300px;margin:-150px 0 0 -150px}
-.rol-confete{left:50%;right:auto;top:136px}
+.rol-premio::after{left:50%;top:162px;width:300px;height:300px;margin:-150px 0 0 -150px}
+.rol-confete{left:50%;right:auto;top:162px}
 .rol-txt{padding:18px 20px 26px}
 .rol-etapa h3{font-size:26px}
 .rol-etapa p{font-size:14px}
 .rol-aba{left:16px;bottom:16px}
 }
-@media (prefers-reduced-motion:reduce){.rol-disco{transition:none}.rol-caixa,.rol.on .rol-caixa{transform:none}.rol.ganhou .rol-confete i{animation:none;opacity:0}.rol-premio img{transform:rotate(-9deg);transition:opacity .4s}}
+@media (prefers-reduced-motion:reduce){.rol-disco{transition:none}.rol-caixa,.rol.on .rol-caixa{transform:none}.rol.ganhou .rol-confete i{animation:none;opacity:0}.rol.ganhou .rol-premio img{animation:none;opacity:1;transition:opacity .4s}.rol.ganhou .rol-dial{animation:none}}
