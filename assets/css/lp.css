@@ -376,3 +376,11 @@ body[data-lp] .nav{justify-content:space-between}
   .rk-tabela td:first-child,.rk-tabela th:first-child{width:auto;min-width:150px}
   .rk-kits{grid-template-columns:1fr}
 }
+
+.qz-porque{background:#fff;border-radius:var(--r-md);padding:26px 28px 8px;margin:0 0 16px}
+.qz-porque h3{font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--petroleo);margin-bottom:6px}
+.qz-porque dl div{display:grid;grid-template-columns:minmax(0,15em) 1fr;gap:6px 24px;padding:16px 0;border-top:1px solid var(--linha)}
+.qz-porque dl div:first-child{border-top:0}
+.qz-porque dt{font-weight:500;font-size:16px;line-height:1.35;color:var(--verde)}
+.qz-porque dd{font-size:15px;line-height:1.5;margin:0}
+@media (max-width:600px){.qz-porque dl div{grid-template-columns:1fr}}
