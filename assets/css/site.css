@@ -899,7 +899,6 @@ html{overflow-x:clip}
 .compartilha button:hover{background:var(--verde-claro)}
 .compartilha .ic{width:18px;height:18px}
 .art-img{min-height:560px}
-img[src*="banner-pedra-folhas"]{object-position:80% 50%}
 .art-corpo{display:grid;grid-template-columns:260px 680px;gap:88px;justify-content:start}
 .indice{position:sticky;top:110px;align-self:start;background:#fff;border-radius:20px;padding:24px;display:grid;gap:4px}
 .indice .tag{margin-bottom:12px}
@@ -1107,16 +1106,44 @@ body[data-nav=claro] .logo .l-esc{display:block}
   .card-produto.vidro{background:rgba(15,46,47,.55);box-shadow:0 18px 40px -20px rgba(0,0,0,.5)}
 }
 
-/* celular: enquadramento das fotos de produto pelo pote, nao pelo centro */
 @media (max-width:700px){
-  img[src*="pote-mesa-escura-copo"]{object-position:74% 50% !important}
-  img[src*="pote-cafe-da-manha"]{object-position:66% 55% !important}
-  img[src*="banner-agua-luz"]{object-position:80% 50% !important}
-  img[src*="banner-estudio-verde"]{object-position:78% 50% !important}
-  img[src*="banner-pedra-folhas"]{object-position:76% 50% !important}
-  img[src*="como-usar-"]{object-position:42% 62% !important}
-  img[src*="desktop-1440-tile-foto."]{object-position:45% 55% !important}
-  img[src*="kit-pote-garrafa"]{object-position:50% 60% !important}
-  img[src*="kit-3-potes-garrafa"]{object-position:50% 100% !important}
   .heroi-int > img{object-position:50% 50% !important}
 }
+img[src*="banner-agua-luz."]{object-position:68% 50% !important}
+img[src*="banner-pedra-folhas."]{object-position:86% 74% !important}
+img[src*="banner-pote-inclinado."]{object-position:92% 50% !important}
+img[src*="ciencia-cloroplasto."]{object-position:56% 50% !important}
+img[src*="como-usar-1-medida."]{object-position:50% 50% !important}
+img[src*="como-usar-2-agua."]{object-position:50% 50% !important}
+img[src*="como-usar-3-mexa."]{object-position:50% 50% !important}
+img[src*="desktop-1440-tile-foto."]{object-position:50% 74% !important}
+img[src*="desktop-1440-tile-foto-a422."]{object-position:50% 50% !important}
+img[src*="desktop-1440-video-1-9-16."]{object-position:34% 50% !important}
+img[src*="desktop-1440-video-2-circulo."]{object-position:50% 50% !important}
+img[src*="desktop-1440-video-3-pilula."]{object-position:42% 50% !important}
+img[src*="explorar-artigo-6."]{object-position:50% 50% !important}
+img[src*="garrafa-bebendo-rua."]{object-position:50% 16% !important}
+img[src*="garrafa-casal."]{object-position:50% 22% !important}
+img[src*="garrafa-vidro."]{object-position:50% 50% !important}
+img[src*="garrafa-vidro-vazia."]{object-position:50% 50% !important}
+img[src*="ing-abacaxi-hortela."]{object-position:54% 50% !important}
+img[src*="ing-limao."]{object-position:50% 50% !important}
+img[src*="ingrediente-abacaxi-hortela-v2."]{object-position:50% 50% !important}
+img[src*="kit-pote-garrafa."]{object-position:50% 86% !important}
+img[src*="copo-na-mao."]{object-position:60% 50% !important}
+img[src*="pessoa-janela."]{object-position:50% 12% !important}
+img[src*="pessoa-retrato-jeans."]{object-position:50% 30% !important}
+img[src*="pessoa-varanda."]{object-position:50% 50% !important}
+img[src*="pessoa-varanda-homem."]{object-position:50% 32% !important}
+img[src*="pos-corrida."]{object-position:50% 50% !important}
+img[src*="ranking-bancada-vertical."]{object-position:50% 66% !important}
+img[src*="tres-potes."]{object-position:50% 62% !important}
+img[src*="macro-colher-copo."]{object-position:50% 50% !important}
+img[src*="mapa-brasil-satelite."]{object-position:64% 50% !important}
+img[src*="pessoa-perfil-garrafa."]{object-position:50% 50% !important}
+img[src*="pessoa-sorrindo."]{object-position:50% 50% !important}
+img[src*="pote-abacaxi-hortela."]{object-position:50% 50% !important}
+img[src*="pote-aberto-po."]{object-position:50% 50% !important}
+img[src*="pote-cafe-da-manha."]{object-position:86% 50% !important}
+img[src*="pote-estudio-claro."]{object-position:50% 36% !important}
+img[src*="pote-mesa-escura-copo."]{object-position:96% 50% !important}
