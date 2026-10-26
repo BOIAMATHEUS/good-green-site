@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>No celular · Good Green</title>
+<link rel="icon" href="../assets/img/logo-petroNeon.svg">
+<style>
+@font-face{font-family:"GG Sans";src:url(../assets/fonts/GoodGreenSans-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"GG Sans";src:url(../assets/fonts/GoodGreenSans-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"GG Mono";src:url(../assets/fonts/GoodGreenMono-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--petroleo:#0F2E2F;--verde:#1D4535;--neon:#78F624;--osso:#F6F5F1;--linha:#E2DFD7;--mut:#667373}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{background:radial-gradient(1100px 600px at 50% 0%,#fff,var(--osso) 70%);color:var(--petroleo);font:14px/1.5 "GG Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+:focus-visible{outline:2px solid var(--petroleo);outline-offset:2px}
+.barra{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 20px;background:rgba(246,245,241,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.barra .volta{display:flex;align-items:center;gap:10px;color:var(--petroleo);text-decoration:none;margin-right:6px}
+.barra .volta img{height:20px;display:block}
+.barra .volta span{font-family:"GG Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+select,button,.fora{font:inherit;font-weight:500;color:var(--petroleo);background:#fff;border:1px solid var(--linha);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none;transition:border-color .15s,background-color .15s}
+select{max-width:340px}
+select:hover,button:hover,.fora:hover{border-color:var(--petroleo)}
+.tamanhos{display:flex;gap:6px}
+.tamanhos button[aria-pressed="true"]{background:var(--petroleo);color:#fff;border-color:var(--petroleo)}
+.medida{margin-left:auto;font-family:"GG Mono",monospace;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.palco{display:grid;place-items:start center;padding:28px 16px 48px;overflow:auto}
+.palco>div{display:grid;justify-items:center}
+.aparelho{position:relative;width:max-content;padding:13px;border-radius:56px;background:linear-gradient(160deg,#2a3b3b,#0c1717 60%);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 40px 90px -30px rgba(15,46,47,.6)}
+.aparelho::before{content:"";position:absolute;top:24px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#000;z-index:1;pointer-events:none}
+iframe{display:block;border:0;border-radius:43px;background:#fff;width:var(--w);height:var(--h)}
+.dica{max-width:calc(var(--w) + 26px);color:var(--mut);font-size:12px;text-align:center;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="barra">
+  <a class="volta" href="./"><img src="../assets/img/logo-petroNeon.svg" alt="Good Green"><span>Hub</span></a>
+  <select id="pagina" aria-label="Página"></select>
+  <div class="tamanhos" role="group" aria-label="Tamanho da tela">
+    <button type="button" data-w="360" data-h="780">360</button>
+    <button type="button" data-w="390" data-h="844" aria-pressed="true">390</button>
+    <button type="button" data-w="430" data-h="932">430</button>
+  </div>
+  <button type="button" id="recarrega">Recarregar</button>
+  <a class="fora" id="fora" href="../" target="_blank" rel="noopener">Abrir em aba</a>
+  <span class="medida" id="medida">390 × 844</span>
+</div>
+<div class="palco"><div>
+  <div class="aparelho"><iframe id="tela" title="Página no celular" src="about:blank"></iframe></div>
+  <p class="dica">A página roda na largura real do celular: o layout, o menu, os botões e os pop-ups são os mesmos do aparelho.</p>
+</div></div>
+<script src="paginas.js"></script>
+<script>
+(function () {
+  var tela = document.getElementById('tela'), sel = document.getElementById('pagina'), fora = document.getElementById('fora'), medida = document.getElementById('medida'), raiz = document.documentElement;
+  window.GG_HUB.forEach(function (g) {
+    var og = document.createElement('optgroup'); og.label = g.grupo;
+    g.itens.forEach(function (it) { var o = document.createElement('option'); o.value = it[2]; o.textContent = it[1]; og.appendChild(o); });
+    sel.appendChild(og);
+  });
+  function tamanho(w, h) {
+    raiz.style.setProperty('--w', w + 'px'); raiz.style.setProperty('--h', h + 'px'); medida.textContent = w + ' × ' + h;
+    document.querySelectorAll('.tamanhos button').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.w === w)); });
+    try { localStorage.setItem('gg-hub-tamanho', w + 'x' + h); } catch (e) {}
+  }
+  function abre(u) {
+    tela.src = '../' + u; fora.href = '../' + u;
+    try { history.replaceState(null, '', '?u=' + encodeURIComponent(u)); } catch (e) {}
+  }
+  document.querySelectorAll('.tamanhos button').forEach(function (b) { b.addEventListener('click', function () { tamanho(+b.dataset.w, +b.dataset.h); }); });
+  sel.addEventListener('change', function () { abre(sel.value); });
+  document.getElementById('recarrega').addEventListener('click', function () { tela.src = tela.src; });
+  var salvo = null; try { salvo = localStorage.getItem('gg-hub-tamanho'); } catch (e) {}
+  if (salvo) { var p = salvo.split('x'); tamanho(+p[0], +p[1]); } else tamanho(390, 844);
+  var pedida = new URLSearchParams(location.search).get('u') || 'index.html';
+  if (![].some.call(sel.options, function (o) { return o.value === pedida; })) { var o = document.createElement('option'); o.value = pedida; o.textContent = pedida; sel.appendChild(o); }
+  sel.value = pedida; abre(pedida);
+})();
+</script>
+</body>
+</html>

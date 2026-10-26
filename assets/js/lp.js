@@ -215,6 +215,7 @@
       });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') fechaModal(); });
     }
+    if (modal && new URLSearchParams(location.search).get('abrir') === 'kit') setTimeout(abreModal, 500);
     mostra(0);
   }
 

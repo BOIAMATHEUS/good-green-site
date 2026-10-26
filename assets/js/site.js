@@ -346,7 +346,8 @@
   }
 
   const PAGINAS_ROLETA = ['home', 'produto', 'explorar', 'artigo', 'receitas', 'intestino', 'ingredientes', 'tabela', 'origem'];
-  if (PAGINAS_ROLETA.includes(document.body.dataset.page) && !store.get('roleta-feita', false)) {
+  const pedido = new URLSearchParams(location.search).get('abrir'), forcaRol = pedido === 'roleta';
+  if ((PAGINAS_ROLETA.includes(document.body.dataset.page) && !store.get('roleta-feita', false)) || forcaRol) {
     const S = 520, R = 260, RI = 171.6, N = 8, A = 360 / N;
     const pol = (r, g) => [R + r * Math.sin(g * Math.PI / 180), R - r * Math.cos(g * Math.PI / 180)];
     const fatia = (r0, r1, g0, g1) => { const [a, b] = pol(r1, g0), [c, d] = pol(r1, g1), [e, f] = pol(r0, g1), [h, i] = pol(r0, g0); return `M${a} ${b}A${r1} ${r1} 0 0 1 ${c} ${d}L${e} ${f}A${r0} ${r0} 0 0 0 ${h} ${i}Z`; };
@@ -428,7 +429,8 @@
       disco.addEventListener('transitionend', fim, { once: true }); setTimeout(fim, calmo ? 300 : 4800);
     });
     const fechouEm = store.get('roleta-fechou', 0), recente = Date.now() - fechouEm < 3 * 864e5;
-    if (recente) aba.hidden = false;
+    if (forcaRol) setTimeout(abreRol, 500);
+    else if (recente) aba.hidden = false;
     else if (!store.sget('roleta-vista')) {
       const dispara = () => { if (auto) return; auto = true; store.sset('roleta-vista'); abreRol(); };
       let tempo = false, rolou = false;
@@ -576,4 +578,5 @@
     $$('[data-filtro]').forEach(x => x.classList.toggle('on', x === b));
     $$('[data-cat]').forEach(a => a.classList.toggle('some', b.dataset.filtro !== 'todos' && a.dataset.cat !== b.dataset.filtro));
   }));
+  if (pedido && ['carrinho', 'entrar', 'busca', 'lista', 'boas-vindas'].includes(pedido)) setTimeout(() => abre(pedido), 500);
 })();
