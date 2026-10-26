@@ -1285,16 +1285,16 @@ input[type=checkbox],input[type=radio]{accent-color:var(--verde)}
 .rol-alca{display:block;position:absolute;left:50%;top:10px;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:rgba(255,255,255,.9);z-index:3}
 .rol-x{width:32px;height:32px;font-size:22px;right:12px}
 .rol-foto{height:250px;transition:height .5s var(--chega)}
-.rol.ganhou .rol-foto{height:330px}
+.rol.ganhou .rol-foto{height:380px}
 .rol-img{object-position:50% 22%}
 .rol-dial{width:440px;height:440px;left:calc(50% - 220px);top:calc(100% - 158px)}
 .rol.ganhou .rol-dial{top:calc(100% - 150px)}
 .rol-agulha{left:212px}
-.rol-premio{justify-items:start;padding:62px 0 0 24px}
-.rol-premio b{font-size:34px;max-width:7ch;line-height:1.05}
-.rol-premio img{position:absolute;right:58px;top:52px;width:62px;margin:0}
-.rol-premio::after{left:auto;right:-60px;top:160px;width:300px;height:300px;margin:-150px 0 0 0}
-.rol-confete{left:auto;right:90px;top:160px}
+.rol-premio{justify-items:center;padding:24px 0 0}
+.rol-premio b{font-size:30px;margin-top:2px}
+.rol-premio img{position:absolute;left:calc(50% - 30px);top:86px;width:42px;margin:0}
+.rol-premio::after{left:50%;top:136px;width:300px;height:300px;margin:-150px 0 0 -150px}
+.rol-confete{left:50%;right:auto;top:136px}
 .rol-txt{padding:18px 20px 26px}
 .rol-etapa h3{font-size:26px}
 .rol-etapa p{font-size:14px}
