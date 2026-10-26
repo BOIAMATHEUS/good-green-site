@@ -32,7 +32,7 @@
 
   /* barra fixa de compra no celular (mesma do site): nas LPs sem bloco de compra, aparece depois do primeiro CTA sair da tela */
   const primeiroCta = $('[data-lp-add]');
-  if (primeiroCta && !$('#barra-fixa') && !$('[data-add-qtd]')) {
+  if (primeiroCta && !$('#barra-fixa') && !$('[data-add-qtd]') && !$('.qz')) {
     const qtd = +(primeiroCta.dataset.lpAdd || 1);
     const nome = qtd > 1 ? `${qtd} potes · assinatura trimestral` : 'Assinatura mensal';
     document.body.insertAdjacentHTML('beforeend', `<div class="barra-fixa so-mobile" id="barra-fixa"><div class="faixa-benef-mini"><div class="trilho">${['Garrafa de vidro de brinde', 'Frete grátis no trimestral', 'Cancele quando quiser', 'Garrafa de vidro de brinde', 'Frete grátis no trimestral', 'Cancele quando quiser'].map((t, i) => `<span>${ic(['presente', 'frete', 'check'][i % 3])}${t}</span>`).join('')}</div></div><div class="linha-compra"><img src="assets/img/pote-abacaxi-hortela.jpg" alt=""><div><b>Good Green GG-01</b><small>${nome}</small><em>R$ —</em></div><button class="btn btn-neon" data-lp-add="${qtd}">${primeiroCta.textContent.trim().replace(/\s*→\s*$/, '')} <span class="seta">→</span></button></div></div>`);
@@ -81,6 +81,28 @@
       else if (/Vários potes/i.test(tenta)) { t = 'Seu foco: um pote no lugar de vários.'; d = 'Vitaminas C, B2, B6 e B12, cromo e zinco numa bebida só, uma vez ao dia.'; }
       else if (/liquidificador/i.test(tenta) || /Nenhuma|Não faço/i.test(verdes)) { t = 'Seu foco: tirar o liquidificador do caminho.'; d = 'O verde que você adia entra em 30 segundos: uma medida em 300 ml de água, gelada fica melhor.'; }
       if (perfil) perfil.textContent = t; if (det) det.textContent = d;
+      /* nota de 0 a 10 pela rotina de hoje */
+      let nota = 10;
+      nota -= Math.min(3, dor.filter(x => !/Nada disso/i.test(x)).length) * 1.2;
+      if (/Dia sim/.test(banheiro)) nota -= 1; else if (/semana ou menos/.test(banheiro)) nota -= 2; else if (/Varia/.test(banheiro)) nota -= 1;
+      if (/Nenhuma/.test(verdes)) nota -= 2; else if (/^Uma/.test(verdes)) nota -= 1; else if (/Não faço/.test(verdes)) nota -= 1;
+      if (/Nada ainda/.test(tenta)) nota -= 0.5;
+      nota = Math.max(3, Math.min(9.5, Math.round(nota * 2) / 2));
+      const nEl = $('[data-qz-nota]'), bEl = $('[data-qz-barra]'), ntEl = $('[data-qz-nota-texto]');
+      if (nEl) nEl.textContent = nota.toFixed(1).replace('.', ',');
+      if (bEl) bEl.style.width = (nota * 10) + '%';
+      if (ntEl) ntEl.textContent = nota >= 8 ? 'Base boa. O que falta é constância, e isso o plano resolve.' : nota >= 6 ? 'Tem base, mas os verdes entram pouco no seu dia.' : 'Hoje os verdes quase não entram na sua rotina. Dá para virar em 30 dias.';
+      /* plano de 30 dias */
+      let p1 = 'Uma medida de Good Green em 300 ml de água, uma vez ao dia, no horário que você já tem.';
+      if (dor.some(x => /estufada|intestino/i.test(x))) p1 = 'Uma medida de Good Green em 300 ml de água logo depois do café da manhã, todo dia, e mais dois copos de água até o almoço.';
+      else if (dor.some(x => /tetinha/i.test(x))) p1 = 'Uma medida de Good Green depois do café da manhã, todo dia, e troque o lanche da tarde por uma fruta.';
+      else if (dor.some(x => /Cansaço/i.test(x))) p1 = 'Uma medida de Good Green antes do café ou no meio da tarde, no lugar do segundo café: cafeína do guaraná e vitaminas B.';
+      else if (dor.some(x => /Resfriados|imunidade/i.test(x))) p1 = 'Uma medida de Good Green de manhã, todo dia: vitamina C e zinco na primeira hora, sem abrir vários potes.';
+      let p2 = 'Deixe o pote ao lado do copo e prepare na garrafa de vidro nos dias de sair cedo.';
+      if (/Dia sim|semana ou menos|Varia/.test(banheiro) || /Nenhuma|Não faço/.test(verdes)) p2 = 'Some fibras de comida de verdade: feijão, fruta com casca e uma salada por dia, com água ao longo do dia. A medida continua a mesma.';
+      const p3 = 'Mantenha a dose no mesmo horário e anote como foi a semana. Na assinatura, o próximo pote chega antes do seu acabar, e a rotina não para.';
+      const e1 = $('[data-qz-p1]'), e2 = $('[data-qz-p2]'), e3 = $('[data-qz-p3]');
+      if (e1) e1.textContent = p1; if (e2) e2.textContent = p2; if (e3) e3.textContent = p3;
       mostra(i + 1);
     }, true);
     mostra(0);

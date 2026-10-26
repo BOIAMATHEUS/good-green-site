@@ -315,6 +315,26 @@ body[data-lp] .nav{justify-content:space-between}
 .qz-brinde b{display:block;font-weight:500}
 .qz-brinde small{color:var(--verde);font-weight:500}
 .qz-privacidade{font-size:12px;color:var(--mut);line-height:1.5;margin-top:40px}
+.qz-nota{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:#fff;border-radius:var(--r-md);padding:24px 28px;margin:20px 0 16px}
+.qz-nota .num{display:flex;align-items:baseline;gap:4px;font-weight:300;letter-spacing:-.03em}
+.qz-nota .num b{font-weight:300;font-size:72px;line-height:1;color:var(--petroleo)}
+.qz-nota .num small{font-size:20px;color:var(--mut)}
+.qz-nota .barra{height:8px;border-radius:4px;background:var(--osso);overflow:hidden;margin:10px 0 10px}
+.qz-nota .barra i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--verde),var(--neon));transition:width .8s var(--ease-out)}
+.qz-nota p{font-size:16px;line-height:1.4;margin:0}
+.qz-plano{background:#fff;border-radius:var(--r-md);padding:24px 28px;margin:0 0 16px}
+.qz-plano ol{list-style:none;display:grid;gap:14px;margin-top:14px}
+.qz-plano li{display:grid;grid-template-columns:112px 1fr;gap:14px;font-size:16px;line-height:1.4;padding-top:14px;border-top:1px solid var(--linha)}
+.qz-plano li:first-child{border-top:0;padding-top:0}
+.qz-plano li b{font-weight:500;color:var(--verde)}
+.qz-oferta{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;background:var(--petroleo);color:#fff;border-radius:var(--r-md);padding:20px;margin:0 0 20px}
+.qz-oferta img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px}
+.qz-oferta b{display:block;font-weight:500;font-size:22px;letter-spacing:-.01em;margin:8px 0 6px}
+.qz-oferta small{display:block;font-size:13px;opacity:.8;line-height:1.45}
+.qz-oferta em{display:block;font-style:normal;font-weight:300;font-size:32px;margin:12px 0 14px}
+.qz-oferta .acoes{display:flex;gap:10px;flex-wrap:wrap}
+.qz-oferta .btn-linha{color:#fff;border-color:rgba(255,255,255,.35)}
+@media (max-width:600px){.qz-nota{grid-template-columns:1fr;gap:12px}.qz-plano li{grid-template-columns:1fr;gap:4px}.qz-oferta{grid-template-columns:1fr}.qz-oferta img{aspect-ratio:16/10}}
 .qz-resultado .perfil{background:var(--petroleo);color:#fff;border-radius:var(--r-md);padding:28px;margin:20px 0 28px}
 .qz-resultado .perfil b{display:block;font-weight:300;font-size:30px;letter-spacing:-.02em;margin-bottom:8px}
 
