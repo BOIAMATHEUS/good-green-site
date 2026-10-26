@@ -251,7 +251,39 @@
   let plano = store.get('plano', 'assinatura');
   const salva = () => { store.set('carrinho', carr); store.set('plano', plano); conta(); };
   const conta = () => { const n = Object.values(carr).reduce((a, b) => a + b, 0); const b = $('#bolinha'); b.textContent = n; b.classList.toggle('on', n > 0); };
-  function adiciona(k, q = 1) { carr[k] = (carr[k] || 0) + q; salva(); abre('carrinho'); }
+  const calmo = matchMedia('(prefers-reduced-motion: reduce)');
+  let ultimoToque = null, ultimoT = 0;
+  document.addEventListener('pointerdown', e => { const b = e.target.closest('button, a'); if (b) { ultimoToque = b; ultimoT = Date.now(); } }, true);
+  function confirma(b) {
+    if (!b || !b.classList.contains('btn') || b.classList.contains('feito')) return;
+    const antes = b.innerHTML, w = b.offsetWidth;
+    b.style.minWidth = w + 'px'; b.classList.add('feito');
+    b.innerHTML = 'Adicionado <span class="marca-ok" aria-hidden="true">✓</span>';
+    setTimeout(() => { b.classList.remove('feito'); b.innerHTML = antes; b.style.minWidth = ''; }, 1600);
+  }
+  function voa(origem, fim) {
+    const alvo = $('.nav-ic[data-abre="carrinho"]');
+    if (calmo.matches || !origem || !alvo) { fim(); return; }
+    const a = origem.getBoundingClientRect(), z = alvo.getBoundingClientRect();
+    if (!a.width || z.bottom < 0) { fim(); return; }
+    const img = document.createElement('img'); img.src = 'assets/img/pote-recorte.webp'; img.alt = ''; img.className = 'voo';
+    const L = 64; img.style.cssText = `width:${L}px;height:${L}px;left:${a.left + a.width / 2 - L / 2}px;top:${a.top + a.height / 2 - L / 2}px`;
+    document.body.appendChild(img);
+    const dx = z.left + z.width / 2 - (a.left + a.width / 2), dy = z.top + z.height / 2 - (a.top + a.height / 2);
+    const voo = img.animate([
+      { transform: 'translate(0,0) scale(.6)', opacity: 0 },
+      { transform: 'translate(0,-24px) scale(1)', opacity: 1, offset: .15 },
+      { transform: `translate(${dx * .55}px,${dy * .55 - 90}px) scale(.8)`, opacity: 1, offset: .55 },
+      { transform: `translate(${dx}px,${dy}px) scale(.3)`, opacity: .4 }
+    ], { duration: 620, easing: 'cubic-bezier(.45,0,.2,1)' });
+    let foi = false; const acaba = () => { if (foi) return; foi = true; img.remove(); fim(); };
+    voo.onfinish = acaba; setTimeout(acaba, 700);
+  }
+  function adiciona(k, q = 1) {
+    const b = Date.now() - ultimoT < 1500 ? ultimoToque : null;
+    carr[k] = (carr[k] || 0) + q; confirma(b);
+    voa(b, () => { salva(); const bo = $('#bolinha'); bo.classList.remove('pulsa'); void bo.offsetWidth; bo.classList.add('pulsa'); setTimeout(() => { abre('carrinho'); const ks = Object.keys(carr).filter(x => carr[x] > 0), it = $$('#carrinho .carr-corpo .item')[ks.indexOf(k)]; if (it) it.classList.add('novo'); }, calmo.matches ? 0 : 260); });
+  }
   window.GG = { adiciona, abre, setPlano: p => { plano = p; salva(); } };
   function renderCarrinho() {
     const g = $('#carrinho'), itens = Object.entries(carr).filter(([, q]) => q > 0);
@@ -287,6 +319,25 @@
   $$('.acc-item>button').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('aberto')));
 
   /* aviso rápido */
+  const MSG = { email: 'Confira o e-mail: falta o @ ou o final, como .com', tel: 'Confira o WhatsApp: coloque o DDD e o número, como 11 99999 9999', text: 'Escreva o seu nome' };
+  const marca = (c, ruim) => {
+    c.classList.toggle('erro', ruim); c.classList.toggle('valido', !ruim && !!c.value.trim());
+    let m = c.nextElementSibling && c.nextElementSibling.classList.contains('campo-msg') ? c.nextElementSibling : null;
+    if (ruim && !m) { m = document.createElement('span'); m.className = 'campo-msg'; m.textContent = MSG[c.type] || 'Confira este campo'; c.after(m); }
+    if (!ruim && m) m.remove();
+  };
+  document.addEventListener('invalid', e => { const c = e.target; if (!c.matches || !c.matches('.qz-campos input')) return; marca(c, true); c.classList.remove('treme'); void c.offsetWidth; c.classList.add('treme'); }, true);
+  document.addEventListener('blur', e => { const c = e.target; if (c.matches && c.matches('.qz-campos input') && c.value.trim()) marca(c, !c.checkValidity()); }, true);
+  document.addEventListener('input', e => { const c = e.target; if (c.matches && c.matches('.qz-campos input') && c.classList.contains('erro') && c.checkValidity()) marca(c, false); }, true);
+  document.addEventListener('submit', e => { const f = e.target; if (!f.querySelector || !f.querySelector('.qz-campos')) return; const ruins = [...f.querySelectorAll('.qz-campos input')].filter(c => !c.checkValidity()); ruins.forEach(c => { marca(c, true); c.classList.remove('treme'); void c.offsetWidth; c.classList.add('treme'); }); }, true);
+  document.addEventListener('click', e => {
+    const cp = e.target.closest('.qz-cupom'); if (!cp) return;
+    const cod = cp.querySelector('b'); if (!cod) return;
+    try { navigator.clipboard.writeText(cod.textContent.trim()); } catch (_) {}
+    let ok = cp.querySelector('.copiado'); if (!ok) { ok = document.createElement('span'); ok.className = 'copiado'; cod.parentElement.appendChild(ok); }
+    ok.textContent = 'Copiado ✓'; clearTimeout(cp._t); cp._t = setTimeout(() => ok.remove(), 1600);
+  });
+
   function toast(t) {
     let el = $('#toast');
     if (!el) { el = document.createElement('div'); el.id = 'toast'; el.style.cssText = 'position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--petroleo);color:#fff;padding:14px 22px;border-radius:30px;font-size:14px;z-index:90;opacity:0;transition:.3s;max-width:calc(100% - 40px);text-align:center'; document.body.appendChild(el); }
@@ -304,7 +355,7 @@
   }
 
   /* entrada suave ao rolar */
-  const alvos = $$('.cabeca, .tile, .card, .vantagem, .receita, .acessorio, .painel-vidro, .tabela, .s-faq .acc, .faixa, .faixa-benef, .avaliacoes, .artigo p, .nutri tr');
+  const alvos = $$('.cabeca, .tile, .card, .vantagem, .receita, .acessorio, .painel-vidro, .tabela, .s-faq .acc, .faixa, .faixa-benef, .avaliacoes, .artigo p, .nutri tr, .lp-relatos article, .vip-beneficios article, .vip-spoiler figure, .lp-aval article, .lp-ingr article, .vip-passos li');
   alvos.forEach(el => {
     el.classList.add('surge');
     const irmaos = [...el.parentElement.children].filter(c => alvos.includes(c));
@@ -320,7 +371,7 @@
   }));
   $$('[data-qtd]').forEach(q => {
     const s = q.querySelector('span');
-    q.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; s.textContent = Math.max(1, +s.textContent + +b.dataset.d); });
+    q.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const n = Math.max(1, +s.textContent + +b.dataset.d); if (n === +s.textContent) { q.classList.remove('treme'); void q.offsetWidth; q.classList.add('treme'); return; } s.textContent = n; s.classList.remove('sobe', 'desce'); void s.offsetWidth; s.classList.add(+b.dataset.d > 0 ? 'sobe' : 'desce'); });
   });
   $$('[data-add-qtd]').forEach(b => b.addEventListener('click', () => { const q = +document.querySelector('[data-qtd] span').textContent; adiciona('gg', q); }));
 

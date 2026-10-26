@@ -505,7 +505,7 @@ body[data-lp] .nav{justify-content:space-between}
 .vip-faq details:last-child{border-bottom:1px solid var(--linha)}
 .vip-faq summary{cursor:pointer;font-weight:500;font-size:17px;color:var(--petroleo);list-style:none;display:flex;justify-content:space-between;gap:16px}
 .vip-faq summary::after{content:"+";font-weight:300;font-size:22px;line-height:1}
-.vip-faq details[open] summary::after{content:"−"}
+
 .vip-faq p{font-size:15px;line-height:1.55;color:var(--mut);margin-top:10px;max-width:62ch}
 .vip-fim{position:relative;min-height:620px;display:flex;align-items:center;background:var(--petroleo) url(../img/banner-pote-inclinado.jpg) center/cover no-repeat;color:#fff}
 .vip-fim .wrap{width:100%}

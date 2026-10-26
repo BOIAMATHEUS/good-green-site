@@ -9,7 +9,7 @@
   --osso:#F6F5F1; --branco:#fff; --linha:#E2DFD7; --mut:#5B6763;
   --abacaxi:#F4C531; --hortela:#B9E4C9; --verde-claro:#EAF6E2;
   --gutter:72px; --max:1296px; --r-lg:28px; --r-md:20px; --r-sm:14px;
-  --ease:cubic-bezier(.75,0,.25,1); --ease-out:cubic-bezier(.2,.7,.2,1);
+  --ease:cubic-bezier(.75,0,.25,1); --ease-out:cubic-bezier(.2,.7,.2,1); --chega:cubic-bezier(.16,1,.3,1); --erro:#B4442A;
   --sans:"GG Sans",system-ui,sans-serif; --mono:"GG Mono",ui-monospace,monospace;
 }
 [hidden]{display:none!important}
@@ -500,9 +500,9 @@ form.enviado .campos,form.enviado .btn{display:none} form.enviado .ok-msg{displa
 .menu-mob .entrar{display:block;font-size:17px;margin:24px 0}
 
 /* animação de entrada */
-.surge{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.surge{opacity:0;transform:translateY(16px);transition:opacity .6s var(--chega),transform .6s var(--chega)}
 .surge.visto{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.surge{opacity:1;transform:none}.aviso-trilho,.flutua{animation:none}}
+@media (prefers-reduced-motion:reduce){.surge{transform:none;transition:opacity .4s linear}.aviso-trilho,.flutua{animation:none}}
 
 /* ---------- responsivo ---------- */
 @media (max-width:1180px){
@@ -1147,3 +1147,67 @@ img[src*="pote-aberto-po."]{object-position:50% 50% !important}
 img[src*="pote-cafe-da-manha."]{object-position:86% 50% !important}
 img[src*="pote-estudio-claro."]{object-position:50% 36% !important}
 img[src*="pote-mesa-escura-copo."]{object-position:96% 50% !important}
+html{-webkit-tap-highlight-color:transparent;scrollbar-color:rgba(15,46,47,.35) transparent;scrollbar-width:thin}
+::selection{background:var(--neon);color:var(--petroleo)}
+input,textarea{caret-color:var(--verde)}
+input[type=checkbox],input[type=radio]{accent-color:var(--verde)}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--petroleo);outline-offset:3px}
+.f-escuro :focus-visible,.f-verde :focus-visible,.rodape :focus-visible,.heroi :focus-visible,.topo :focus-visible,.mega :focus-visible,.vip-fim :focus-visible,.qz-solucao :focus-visible,.qz-oferta :focus-visible{outline-color:var(--neon)}
+.btn:focus-visible{outline-offset:4px}
+.preco,.qtd span,.lp-numeros b,.bolinha,[data-qz-tempo],[data-qz-pct],.qz-nota b{font-variant-numeric:tabular-nums}
+.btn{transition:transform .25s var(--chega),background-color .25s,color .25s,box-shadow .25s}
+.btn:active{transform:scale(.97);transition-duration:.1s}
+.btn.feito{background:var(--petroleo);color:var(--neon);pointer-events:none}
+.btn.feito .seta{display:none}
+.btn .marca-ok{display:inline-block;animation:okEntra .35s var(--chega)}
+@keyframes okEntra{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.bolinha.pulsa{animation:pulsa .45s var(--chega)}
+@keyframes pulsa{0%{transform:scale(1)}35%{transform:scale(1.35)}100%{transform:scale(1)}}
+.voo{position:fixed;z-index:95;pointer-events:none;border-radius:12px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(15,46,47,.35))}
+#carrinho .item.novo{animation:itemNovo 1.4s var(--chega)}
+@keyframes itemNovo{0%{background:var(--verde-claro)}70%{background:var(--verde-claro)}100%{background:var(--osso)}}
+.qtd span.sobe{animation:numSobe .18s var(--chega)}
+.qtd span.desce{animation:numDesce .18s var(--chega)}
+@keyframes numSobe{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+@keyframes numDesce{from{transform:translateY(-8px);opacity:0}to{transform:none;opacity:1}}
+.qtd button:active{transform:scale(.88)}
+.qtd button{transition:transform .1s,background-color .15s}
+.opcao,.opcao-g{transition:border-color .2s,background-color .2s,transform .1s}
+.opcao:active,.opcao-g:active,.lp-opcao:active{transform:scale(.99)}
+.lp-opcao .radio::after,.opcao .radio::after{transition:transform .2s var(--chega)}
+.lp-opcao.on .radio::after{animation:okEntra .25s var(--chega)}
+.qz-campos input,.vip-form input,.form-linha input,.busca-campo input{transition:border-color .15s,box-shadow .15s,background-color .15s}
+.qz-campos input:hover{border-color:#c9c5bb}
+.qz-campos input:focus{border-color:var(--petroleo);box-shadow:0 0 0 4px var(--verde-claro)}
+.qz-campos input.erro{border-color:var(--erro);box-shadow:0 0 0 4px rgba(180,68,42,.12)}
+.qz-campos input.valido:not(:focus){background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%2378F624'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='%230F2E2F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 16px center/22px no-repeat;padding-right:48px}
+.treme{animation:treme .3s linear}
+@keyframes treme{20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.campo-msg{display:block;font-size:13px;line-height:1.4;color:var(--erro);margin:-2px 0 4px 4px;animation:numSobe .2s var(--chega)}
+.lp-relatos article,.vip-beneficios article,.vip-spoiler figure,.lp-aval article,.lp-ingr article,.qz-dor,.relac,.card-art-produto{transition:transform .35s var(--chega),box-shadow .35s var(--chega)}
+.lp-relatos img,.vip-beneficios img,.vip-spoiler img,.lp-ingr img,.relac img{transition:transform .6s var(--chega)}
+@media (hover:hover){
+.lp-relatos article:hover,.vip-beneficios article:hover,.vip-spoiler figure:hover,.lp-aval article:hover,.lp-ingr article:hover,.relac:hover,.card-art-produto:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(15,46,47,.45)}
+.lp-relatos article:hover img,.vip-beneficios article:hover img,.vip-spoiler figure:hover img,.lp-ingr article:hover img,.relac:hover img{transform:scale(1.04)}
+}
+.lp-relatos article:active,.vip-beneficios article:active,.vip-spoiler figure:active,.lp-ingr article:active{transform:scale(.98)}
+.artigo p a,.lp-p a,.lp-legal a,.migalha a,.acc-corpo a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(15,46,47,.35);transition:text-decoration-color .2s,color .2s}
+.artigo p a:hover,.lp-p a:hover,.lp-legal a:hover,.migalha a:hover,.acc-corpo a:hover{text-decoration-color:currentColor}
+:root{interpolate-size:allow-keywords}
+.vip-faq details::details-content,.lp-faq details::details-content{block-size:0;overflow:hidden;transition:block-size .25s var(--ease),content-visibility .25s allow-discrete}
+.vip-faq details[open]::details-content,.lp-faq details[open]::details-content{block-size:auto;transition-duration:.35s;transition-timing-function:var(--chega)}
+.vip-faq summary::after{content:"+" !important;transition:transform .3s var(--chega)}
+.vip-faq details[open] summary::after{transform:rotate(45deg)}
+.vip-faq details p{animation:numSobe .35s var(--chega)}
+.qz-cupom{cursor:pointer;transition:background-color .2s,transform .1s}
+.qz-cupom:hover{background:#d8ecce}
+.qz-cupom:active{transform:scale(.98)}
+.qz-cupom .copiado{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--verde);animation:numSobe .2s var(--chega)}
+#toast{transition:opacity .25s,transform .35s var(--chega) !important}
+@media (prefers-reduced-motion:reduce){
+.btn,.btn:active,.qtd button:active,.opcao:active,.opcao-g:active,.lp-opcao:active{transform:none}
+.bolinha.pulsa,.qtd span.sobe,.qtd span.desce,.treme,.btn .marca-ok,.lp-opcao.on .radio::after,.vip-faq details p,.campo-msg{animation:none}
+.lp-relatos article:hover,.vip-beneficios article:hover,.vip-spoiler figure:hover,.lp-aval article:hover,.lp-ingr article:hover,.relac:hover,.card-art-produto:hover,.lp-relatos article:hover img,.vip-beneficios article:hover img,.vip-spoiler figure:hover img,.lp-ingr article:hover img,.relac:hover img{transform:none}
+.vip-faq details::details-content{transition:none}
+}
