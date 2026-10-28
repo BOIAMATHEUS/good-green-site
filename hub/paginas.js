@@ -21,6 +21,9 @@ window.GG_HUB = [
     ['lp-grupo-vip', 'LP Grupo VIP', 'lp-grupo-vip.html'],
     ['quiz', 'Quiz · diagnóstico', 'quiz.html']
   ]},
+  { grupo: '3D', itens: [
+    ['pote-3d', 'Pote 225 g em 3D · rótulo final 28/10', 'pote-3d/index.html']
+  ]},
   { grupo: 'Pop-ups e modais', itens: [
     ['m-roleta', 'Roleta do 1º pedido', 'index.html?abrir=roleta'],
     ['m-kit', 'Pop-up do kit (fim do quiz)', 'quiz.html?abrir=kit'],
